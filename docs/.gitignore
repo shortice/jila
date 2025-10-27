@@ -1,0 +1,3 @@
+.vitepress/cache
+bun.lock
+node_modules
