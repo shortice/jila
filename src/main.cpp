@@ -97,7 +97,6 @@ void SetupImGui(
     io.IniFilename = nullptr;
 }
 
-// Init приложение
 SDL_AppResult SDL_AppInit(void **appstate, int argc, char **argv) {
     Jila::Logger::named("Runtime").info("Starting...");
 
@@ -162,7 +161,6 @@ SDL_AppResult SDL_AppInit(void **appstate, int argc, char **argv) {
     return SDL_APP_CONTINUE;
 }
 
-// render
 SDL_AppResult SDL_AppIterate(void *appstate) {
     Jila::LuaModule* module = Jila::LuaModule::GetModule("main");
     Jila::AppState* state = (Jila::AppState*)appstate;
@@ -208,7 +206,6 @@ SDL_AppResult SDL_AppIterate(void *appstate) {
     return SDL_APP_CONTINUE;
 }
 
-// event
 SDL_AppResult SDL_AppEvent(void *appstate, SDL_Event *event) {
     ImGui_ImplSDL3_ProcessEvent(event);
 
@@ -230,7 +227,6 @@ SDL_AppResult SDL_AppEvent(void *appstate, SDL_Event *event) {
     return SDL_APP_CONTINUE;
 }
 
-// quit
 void SDL_AppQuit(void *appstate, SDL_AppResult result) {
     Jila::QuitRuntime();
 

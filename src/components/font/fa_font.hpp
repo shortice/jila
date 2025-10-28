@@ -14,7 +14,6 @@ void Quit(sol::state* state);
 static LuaComponent ComponentFaIcons {
     "Font Awesome Icons",
     "Shortice",
-    false,
     FaIconsComponent::Init,
     FaIconsComponent::Quit
 };

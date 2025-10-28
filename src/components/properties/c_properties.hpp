@@ -73,7 +73,6 @@ void Quit(sol::state* state);
 static LuaComponent ComponentProperties {
     "Properties",
     "Shortice",
-    false,
     PropertiesComponent::Init,
     PropertiesComponent::Quit
 };

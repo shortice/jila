@@ -18,7 +18,6 @@ struct LuaComponent {
 
     const char* name;
     const char* copyright;
-    bool active;
 
     std::function<bool(sol::state*)> Init;
     std::function<void(sol::state*)> Quit;

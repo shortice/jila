@@ -14,7 +14,6 @@ void Quit(sol::state* state);
 static LuaComponent ComponentNet {
     "Network",
     "Shortice",
-    false,
     NetComponent::Init,
     NetComponent::Quit
 };

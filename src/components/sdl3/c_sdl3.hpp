@@ -14,7 +14,6 @@ void Quit(sol::state* state);
 static LuaComponent ComponentSdl {
     "SDL",
     "Shortice",
-    false,
     SdlComponent::Init,
     SdlComponent::Quit
 };

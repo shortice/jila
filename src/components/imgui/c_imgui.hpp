@@ -14,7 +14,6 @@ void Quit(sol::state* state);
 static LuaComponent ComponentImGui {
     "Dear ImGui",
     "Shortice",
-    false,
     ImGuiComponent::Init,
     ImGuiComponent::Quit
 };

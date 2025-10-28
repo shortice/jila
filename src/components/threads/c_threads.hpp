@@ -14,7 +14,6 @@ void Quit(sol::state* state);
 static LuaComponent ComponentThreads {
     "Threads",
     "Shortice",
-    false,
     ThreadsComponent::Init,
     ThreadsComponent::Quit
 };

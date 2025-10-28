@@ -49,8 +49,6 @@ void IterComponentEnable(LuaComponent& component) {
 }
 
 void IterComponentQuit(LuaComponent& component) {
-    if (component.active) return;
-
     component.Quit(runtime->state);
 }
 

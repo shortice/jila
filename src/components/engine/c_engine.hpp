@@ -14,7 +14,6 @@ void Quit(sol::state* state);
 static LuaComponent ComponentEngine {
     "Engine",
     "Shortice",
-    false,
     EngineComponent::Init,
     EngineComponent::Quit
 };

@@ -13,7 +13,6 @@ void Quit(sol::state* state);
 static LuaComponent ComponentFileSystem {
     "FileSystem",
     "Shortice",
-    false,
     FileSystemComponent::Init,
     FileSystemComponent::Quit
 };
