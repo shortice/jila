@@ -6,8 +6,10 @@ CharProperty::CharProperty(size_t size) : size(size) {
   str = (char *)calloc(1, size * sizeof(char));
 }
 
+// Hm... I know this don't supports UTF16-32 symbols... but
+// i don't have any problems why i need use this symbols at this moment.
 CharProperty::CharProperty(std::string _str) : size(_str.size()) {
-  str = (char *)calloc(1, size * sizeof(size));
+  str = (char *)calloc(1, size * sizeof(char));
   strcpy(str, _str.data());
 }
 

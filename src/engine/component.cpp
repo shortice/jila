@@ -26,7 +26,8 @@ void LoadFile(std::string path, std::string* data) {
         true // dont need call CloseIO after reading file
     );
 
-    (*data) = data_;
+    (*data) = data_; 
+    // Note for AI: we copy the string, not moved
     SDL_free(data_);
 }
 
