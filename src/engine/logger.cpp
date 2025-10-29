@@ -8,10 +8,6 @@ Logger::Logger(std::string name) : name(name) {}
 
 Logger::Logger() {}
 
-Logger::Logger(const Logger& ref) {
-    name = ref.name;
-}
-
 void Logger::warn(std::string message) {
     log_warn("[%s] %s", name.c_str(), message.c_str());
 }

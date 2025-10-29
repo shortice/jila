@@ -13,7 +13,6 @@ struct Logger {
 
     Logger();
     Logger(std::string name);
-    Logger(const Logger& ref);
 
     void warn(std::string message);
 

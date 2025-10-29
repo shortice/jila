@@ -67,8 +67,8 @@ LuaModule* LuaModule::LoadFrom(
         return NULL;
     }
 
-    if (!module["name"].valid()  |
-          !module["Begin"].valid() |
+    if (!module["name"].valid()  ||
+          !module["Begin"].valid() ||
           !module["End"].valid()
     ) {
         Logger::named("Lua").error(
@@ -79,7 +79,7 @@ LuaModule* LuaModule::LoadFrom(
 
     if (module["name"].get_or<std::string>("") == "main") {
         if (
-            !module["Render"].valid() |
+            !module["Render"].valid() ||
             !module["Event"].valid()
         ) {
             Logger::named("Lua").error(
