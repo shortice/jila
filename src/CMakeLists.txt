@@ -111,12 +111,10 @@ file(GLOB_RECURSE JILA_LIB_SOURCES
     "${JILA_COMPONENTS_DIR}/**/*.cpp"
 )
 
-list(APPEND JILA_LIB_SOURCES
-    "${JILA_SOURCE_DIR}/misc.cpp"
-)
-
 # Add application source for release builds
 if(JILA_RELEASE)
+    # TODO: need execute script for .lua files to one .cpp
+    # or maybe other? Like .res file contains all code? I need think.
     list(APPEND JILA_LIB_SOURCES "${JILA_APP_DIR}/jila_app.cpp")
 endif()
 

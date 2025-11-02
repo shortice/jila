@@ -6,7 +6,6 @@
 #include "SDL3/SDL_timer.h"
 #include "engine/runtime.hpp"
 
-#include "misc.hpp"
 #include "imgui.h"
 #include "imgui_impl_sdl3.h"
 #include "imgui_impl_sdlrenderer3.h"
@@ -17,7 +16,7 @@
 
 #include "engine/logger.hpp"
 #include "engine/component.hpp"
-#include "misc.hpp"
+#include "engine/errors.hpp"
 
 
 #define ICON_MIN_FA 0xe005
@@ -115,7 +114,7 @@ SDL_AppResult SDL_AppInit(void **appstate, int argc, char **argv) {
     );
 
     SDL_Window* window = SDL_CreateWindow(
-        "Jila Engine",
+        "Application",
         (int)(1280 * main_scale),
         (int)(720 * main_scale),
         window_flags
@@ -174,20 +173,10 @@ SDL_AppResult SDL_AppIterate(void *appstate) {
     ImGui_ImplSDL3_NewFrame();
     ImGui::NewFrame();
 
+    // TODO: only Debug mode
     if (module) {
-        auto result = module->Render(SDL_GetTicks());
-
-        // TODO: Improve error messages?
-        if (!result.valid()) {
-            sol::error err = result;
-
-            ImGui::SetTooltip("%s %s\n",
-                "Error when render!\n\n",
-                err.what()
-            );
-
-            ImGui::End();
-        }
+        sol::protected_function_result result = module->Render(SDL_GetTicks());
+        Jila::RenderError(result);
     }
 
     ImGui::Render();

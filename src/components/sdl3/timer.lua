@@ -13,13 +13,20 @@ SDL_DateTime = {}
 ---@param time integer
 ---@param localTime boolean
 ---
----@return SDL_DateTime
+---@return SDL_DateTime SDL_DateTime year is 0 if failing.
+---
+--- 
+--- @see SDL_GetError for read error.
 function SDL_TimeToDateTime(time, localTime) end
 
 ---@param dateTime SDL_DateTime
 ---
----@return integer
+---@return integer integer or 0 when error.
+---
+--- @see SDL_GetError for read error.
 function SDL_DateTimeToTime(dateTime) end
 
----@return integer
+---@return integer integer or 0 when error.
+---
+--- @see SDL_GetError for read error.
 function SDL_GetCurrentTime() end

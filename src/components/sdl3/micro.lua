@@ -4,17 +4,23 @@
 ---@class Microphone
 Microphone = {}
 
---- @return Microphone
+--- @return Microphone? Microphone or nil when error.
+--- 
+--- @see SDL_GetError for read error.
 function SDL_CreateMicro() end
 
 --- @param micro Microphone
 ---
---- @return boolean
+--- @return boolean boolean false when error.
+--- 
+--- @see SDL_GetError for read error.
 function SDL_MicroPause(micro) end
 
 --- @param micro Microphone
 ---
---- @return boolean
+--- @return boolean boolean false when error.
+--- 
+--- @see SDL_GetError for read error.
 function SDL_MicroResume(micro) end
 
 --- @param micro Microphone
@@ -25,5 +31,5 @@ function SDL_MicroPaused(micro) end
 --- @param micro Microphone
 --- @param fileName string
 ---
---- @return boolean
+--- @return boolean boolean always true.
 function SDL_MicroSaveWAV(micro, fileName) end

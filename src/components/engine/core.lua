@@ -1,17 +1,23 @@
 ---@meta core
 
---- Получает ошибку или "", если нифига нету.
+--- Get error, else "".
 ---
+--- If you see this message on some functions:
+--- 
+--- "See: SDL_GetError for read error."
+--- 
+--- Then function supports set's error when failing.
+--- 
 --- @return string
 function SDL_GetError() end
 
---- Получает загруженный модуль по имени.
----@param name string Имя модуля.
----@return table Возвращает таблицу (sol::table) представляющую модуль или nil.
+--- Get module, else nil.
+--- @param name string Module name.
+--- @return table?
 function GetModule(name) end
 
----Глобальная переменная для хранения разных значений.
----Обратите внимание, она не работает только в основном (main) потоке.
+--- Global variables for storing some data across modules.
+--- Careful! This not work in separate thread's.
 ---
----@type table
+--- @type table
 Scope = {}

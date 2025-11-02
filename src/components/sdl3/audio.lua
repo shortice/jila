@@ -20,8 +20,10 @@ _Track = {}
 
 --- Initialize Audio system. Return nil when error.
 ---
---- @return _Mixer|nil
---- @overload fun(channels: number, freq: number): _Mixer
+--- @return _Mixer?
+--- @overload fun(channels: number, freq: number): _Mixer?
+---
+--- @see SDL_GetError for read error.
 ---
 --- @nodiscard
 function SDL_InitMixer() end
@@ -35,7 +37,9 @@ function SDL_QuitMixer(mixer) end
 ---
 --- @param mixer _Mixer
 --- @param path string Path of the music file.
---- @return _Audio|nil Audio or nil when error.
+--- @return _Audio? Audio or nil when error.
+---
+--- @see SDL_GetError for read error.
 ---
 --- @nodiscard
 function SDL_CreateAudio(mixer, path) end
@@ -44,41 +48,62 @@ function SDL_CreateAudio(mixer, path) end
 ---
 --- @param mixer _Mixer
 ---
---- @return _Track|nil
+--- @return _Track? Track or nil when error.
+---
+--- @see SDL_GetError for read error.
+--- 
+--- @nodiscard
 function SDL_CreateTrack(mixer) end
 
 --- @param track _Track
 --- @param audio _Audio
+--- 
+--- @return boolean boolean false when error.
+--- 
+--- @see SDL_GetError for read error.
 function SDL_SetTrackAudio(track, audio) end
 
 --- @param track _Track
 ---
---- @return boolean
+--- @return boolean boolean false when error.
+--- 
+--- @see SDL_GetError for read error.
 function SDL_PlayTrack(track) end
 
 --- @param track _Track
 ---
---- @return boolean
+--- @return boolean boolean false when error.
+--- 
+--- @see SDL_GetError for read error.
 function SDL_StopTrack(track) end
 
 --- @param track _Track
 ---
---- @return boolean
+--- @return boolean boolean false when error.
+--- 
+--- @see SDL_GetError for read error.
 function SDL_PauseTrack(track) end
 
 --- @param track _Track
 ---
---- @return boolean
+--- @return boolean boolean false when error.
+--- 
+--- @see SDL_GetError for read error.
 function SDL_ResumeTrack(track) end
 
 --- @param track _Track
 --- @param newPos number New track position
---- @return boolean boolean
+--- 
+--- @return boolean boolean false when error.
+--- 
+--- @see SDL_GetError for read error.
 function SDL_SetTrackPosition(track, newPos) end
 
 --- @param mixer _Mixer
 --- @param volume number Volume from 0 to 255.
---- @return number number
+--- @return boolean boolean false when error.
+--- 
+--- @see SDL_GetError for read error.
 function SDL_SetMixerVolume(mixer, volume) end
 
 --- @param track _Track

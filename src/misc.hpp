@@ -1,7 +1,6 @@
 #pragma once
 
 #include <memory>
-#include <string>
 
 namespace Jila {
 
@@ -16,7 +15,4 @@ MakeSafeMemory(T* mem, void deleter(T*)) {
 		deleter
 	);
 }
-
-void CriticalError(std::string func);
-
 }

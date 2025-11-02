@@ -27,7 +27,7 @@ void bindSdlWindow(sol::state* state) {
     state -> set_function(
         "SDL_GetWindowSafeArea",
         []() -> ImVec4 {
-            SDL_Rect rect;
+            SDL_Rect rect {0, 0, 0, 0};
             SDL_GetWindowSafeArea(GetState() -> window, &rect);
             return ImVec4(rect.x, rect.y, rect.h, rect.w);
         }

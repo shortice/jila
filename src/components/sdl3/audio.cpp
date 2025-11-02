@@ -44,6 +44,8 @@ struct AudioMeta {
     static AudioMeta fromAudio(Audio audio) {
         SDL_PropertiesID propId = MIX_GetAudioProperties(audio->proxy);
 
+        // TODO: how handle errors at this place?
+        
         Sint64 ms = MIX_AudioFramesToMS(
             audio->proxy,
             MIX_GetAudioDuration(audio->proxy)
@@ -166,6 +168,7 @@ AudioMeta _SDL_GetAudioMeta(Audio audio) {
 }
 
 Sint64 _SDL_GetTrackPosistion(Track track) {
+    // TODO: handle -1 when error
     return toSeconds(MIX_GetTrackPlaybackPosition(track.get()->proxy));
 }
 

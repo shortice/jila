@@ -20,9 +20,9 @@ SDL_DateTime _SDL_TimeToDateTime(Uint32 time, bool localTime) {
 Uint32 _SDL_DateTimeToTime(SDL_DateTime dateTime) {
     SDL_Time time = 0;
 
-    SDL_DateTimeToTime(
+    if (!SDL_DateTimeToTime(
         &dateTime, &time
-    );
+    )) return 0;
 
     return time;
 }
@@ -30,7 +30,7 @@ Uint32 _SDL_DateTimeToTime(SDL_DateTime dateTime) {
 Uint32 _SDL_GetCurrentTime() {
     SDL_Time time = 0;
 
-    SDL_GetCurrentTime(&time);
+    if (!SDL_GetCurrentTime(&time)) return 0;
 
     return SDL_NS_TO_SECONDS(time);
 }
