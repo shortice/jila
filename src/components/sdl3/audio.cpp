@@ -1,3 +1,4 @@
+#ifdef JILA_AUDIO
 #include <memory>
 #include "SDL3/SDL_properties.h"
 #include "SDL3_mixer/SDL_mixer.h"
@@ -249,3 +250,4 @@ void bindSdlAudio(sol::state* state) {
 }
 
 }
+#endif

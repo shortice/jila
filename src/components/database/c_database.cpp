@@ -1,3 +1,4 @@
+#ifdef JILA_DATABASE
 #include "components/database/c_database.hpp"
 #include "misc.hpp"
 #include "leveldb/db.h"
@@ -104,3 +105,4 @@ void Quit(sol::state* state) {
 }
 
 }
+#endif

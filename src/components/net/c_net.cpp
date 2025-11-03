@@ -1,3 +1,4 @@
+#ifdef JILA_NET
 #include "components/net/c_net.hpp"
 #include "cpr/cpr.h"
 #include "cpr/response.h"
@@ -67,3 +68,4 @@ void Quit(sol::state* state) {
 }
 
 }
+#endif
