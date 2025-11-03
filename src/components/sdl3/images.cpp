@@ -1,3 +1,4 @@
+#ifdef JILA_IMAGES
 #include "components/sdl3/images.hpp"
 #include "imgui.h"
 #include "SDL3/SDL_render.h"
@@ -73,3 +74,4 @@ void bindSdlImages(sol::state* state) {
 }
 
 }
+#endif

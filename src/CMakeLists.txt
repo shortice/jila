@@ -8,8 +8,12 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Build type configuration
 option(JILA_RELEASE "Compile Lua code and don't use dev tools" OFF)
+option(JILA_AUDIO "Enable audio module" OFF)
+option(JILA_IMAGES "Enable image module" OFF)
+option(JILA_NET "Enable Net module" OFF)
+option(JILA_DATABASE "Enable database module" OFF)
 
-if(CMAKE_BUILD_TYPE EQUAL "Release")
+if(CMAKE_BUILD_TYPE STREQUAL "Release")
     set(JILA_RELEASE ON)
 endif()
 
@@ -80,14 +84,26 @@ set(JILA_APP_DIR "${JILA_SOURCE_DIR}/app")
 
 # External dependencies
 add_subdirectory(${JILA_EXTERNAL_DIR}/SDL)
-add_subdirectory(${JILA_EXTERNAL_DIR}/SDL_Image)
-add_subdirectory(${JILA_EXTERNAL_DIR}/SDL_Mixer)
+
+if(JILA_IMAGES)
+    add_subdirectory(${JILA_EXTERNAL_DIR}/SDL_Image)
+    add_compile_definitions(JILA_IMAGES)
+endif()
+
+if(JILA_AUDIO)
+    add_subdirectory(${JILA_EXTERNAL_DIR}/SDL_Mixer)
+    add_compile_definitions(JILA_AUDIO)
+endif()
+
 add_subdirectory(${JILA_EXTERNAL_DIR}/lua_jit)
 
 # LevelDB configuration
-set(LEVELDB_BUILD_TESTS OFF)
-set(LEVELDB_BUILD_BENCHMARKS OFF)
-add_subdirectory(${JILA_EXTERNAL_DIR}/leveldb)
+if(JILA_DATABASE)
+    set(LEVELDB_BUILD_TESTS OFF)
+    set(LEVELDB_BUILD_BENCHMARKS OFF)
+    add_subdirectory(${JILA_EXTERNAL_DIR}/leveldb)
+    add_compile_definitions(JILA_DATABASE)
+endif()
 
 # EFSW (only for development builds)
 if(NOT JILA_RELEASE)
@@ -156,36 +172,62 @@ target_link_libraries(main
     PRIVATE
     $<TARGET_NAME_IF_EXISTS:SDL3::SDL3main>
     $<IF:$<TARGET_EXISTS:SDL3::SDL3>,SDL3::SDL3,SDL3::SDL3-static>
-    $<IF:$<TARGET_EXISTS:SDL3_image::SDL3_image>,SDL3_image::SDL3_image,SDL3_image::SDL3_image-static>
-    $<IF:$<TARGET_EXISTS:SDL3_mixer::SDL3_mixer>,SDL3_mixer::SDL3_mixer,SDL3_mixer::SDL3_mixer-static>
 )
+
+if(JILA_IMAGES)
+    target_link_libraries(
+        main 
+        PRIVATE
+        $<IF:$<TARGET_EXISTS:SDL3_image::SDL3_image>,SDL3_image::SDL3_image,SDL3_image::SDL3_image-static>
+    )
+endif()
+
+if(JILA_AUDIO)
+    target_link_libraries(
+        main 
+        PRIVATE
+        $<IF:$<TARGET_EXISTS:SDL3_mixer::SDL3_mixer>,SDL3_mixer::SDL3_mixer,SDL3_mixer::SDL3_mixer-static>
+    )
+endif()
 
 # FetchContent dependencies
 include(FetchContent)
 
 # Android curl configuration
-if(ANDROID)
+if(ANDROID AND JILA_NET)
     # TODO: Fix curl build for Android. SSL dont work.
     find_package(curl REQUIRED CONFIG COMPONENTS HTTP HTTPS)
     target_link_libraries(main PRIVATE curl::curl_static)
 endif()
 
-# CPR HTTP library
-FetchContent_Declare(
-    cpr
-    GIT_REPOSITORY https://github.com/libcpr/cpr.git
-    GIT_TAG 1.12.0
-)
-FetchContent_MakeAvailable(cpr)
+if(JILA_NET)
+    # CPR HTTP library
+    FetchContent_Declare(
+        cpr
+        GIT_REPOSITORY https://github.com/libcpr/cpr.git
+        GIT_TAG 1.12.0
+    )
+    FetchContent_MakeAvailable(cpr)
 
-# Final linking
+    target_link_libraries(main
+        PRIVATE
+        cpr::cpr
+    )
+    add_compile_definitions(JILA_NET)
+endif()
+
 target_link_libraries(main
     PRIVATE
     luajit::lib
     luajit::header
-    cpr::cpr
-    leveldb
 )
+
+if(JILA_DATABASE)
+    target_link_libraries(main
+        PRIVATE
+        leveldb
+    )
+endif()
 
 if(NOT JILA_RELEASE)
     target_link_libraries(main PRIVATE efsw)

@@ -1,3 +1,4 @@
+#ifdef JILA_DATABASE
 #pragma once
 
 #include "engine/component.hpp"
@@ -19,3 +20,4 @@ static LuaComponent ComponentDataBase {
 };
 
 }
+#endif
