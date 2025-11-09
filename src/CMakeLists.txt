@@ -13,6 +13,16 @@ option(JILA_IMAGES "Enable image module" OFF)
 option(JILA_NET "Enable Net module" OFF)
 option(JILA_DATABASE "Enable database module" OFF)
 
+option(JILA_ALL "Enable all modules" OFF)
+# For lint/static-analyze/etc
+
+if(JILA_ALL)
+    set(JILA_AUDIO ON)
+    set(JILA_IMAGES ON)
+    set(JILA_NET ON)
+    set(JILA_DATABASE ON)
+endif()
+
 if(CMAKE_BUILD_TYPE STREQUAL "Release")
     set(JILA_RELEASE ON)
 endif()
@@ -94,8 +104,6 @@ if(JILA_AUDIO)
     add_subdirectory(${JILA_EXTERNAL_DIR}/SDL_Mixer)
     add_compile_definitions(JILA_AUDIO)
 endif()
-
-add_subdirectory(${JILA_EXTERNAL_DIR}/lua_jit)
 
 # LevelDB configuration
 if(JILA_DATABASE)
@@ -190,8 +198,13 @@ if(JILA_AUDIO)
     )
 endif()
 
-# FetchContent dependencies
-include(FetchContent)
+include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/luajit.cmake)
+
+add_subdirectory(${JILA_EXTERNAL_DIR}/sol2)
+target_link_libraries(main
+    PRIVATE
+    sol2::sol2
+)
 
 # Android curl configuration
 if(ANDROID AND JILA_NET)
@@ -201,13 +214,7 @@ if(ANDROID AND JILA_NET)
 endif()
 
 if(JILA_NET)
-    # CPR HTTP library
-    FetchContent_Declare(
-        cpr
-        GIT_REPOSITORY https://github.com/libcpr/cpr.git
-        GIT_TAG 1.12.0
-    )
-    FetchContent_MakeAvailable(cpr)
+    add_subdirectory(${JILA_EXTERNAL_DIR}/cpr)
 
     target_link_libraries(main
         PRIVATE

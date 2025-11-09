@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 
 option(LUA_DIR "Path of Lua 5.4 source dir" OFF)
-set(LUAJIT_DIR ${CMAKE_SOURCE_DIR}/external/lua_jit/LuaJIT)
 
 if(CMAKE_COMPILER_IS_GNUCC)
   set(LUA_TARGET_SHARED ON)

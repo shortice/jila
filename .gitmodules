@@ -13,12 +13,15 @@
 [submodule "src/external/efsw"]
 	path = src/external/efsw
 	url = https://github.com/SpartanJ/efsw
-[submodule "src/external/curlpp"]
-	path = src/external/curlpp
-	url = https://github.com/jpbarrette/curlpp
 [submodule "src/external/leveldb"]
 	path = src/external/leveldb
 	url = https://github.com/google/leveldb
-[submodule "src/external/lua_jit/LuaJIT"]
-	path = src/external/lua_jit/LuaJIT
+[submodule "src/external/sol2"]
+	path = src/external/sol2
+	url = https://github.com/ThePhD/sol2.git
+[submodule "src/external/cpr"]
+	path = src/external/cpr
+	url = https://github.com/libcpr/cpr
+[submodule "src/external/LuaJIT"]
+	path = src/external/LuaJIT
 	url = https://github.com/LuaJIT/LuaJIT

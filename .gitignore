@@ -51,3 +51,6 @@ src/app/jila_app.cpp
 
 # Claude code stuff :-)
 vibe.sh
+
+# Infer static-analyzer
+infer-out
