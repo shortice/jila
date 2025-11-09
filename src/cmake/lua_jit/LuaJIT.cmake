@@ -431,11 +431,11 @@ add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/luajit_relver.txt
   WORKING_DIRECTORY ${LUAJIT_DIR}
 )
 
-add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/luajit.h
+add_custom_command(OUTPUT ${LJ_DIR}/luajit.h
   COMMAND ${HOST_WINE} ${MINILUA_PATH} ${LUAJIT_DIR}/src/host/genversion.lua
   ARGS ${LUAJIT_DIR}/src/luajit_rolling.h
        ${CMAKE_CURRENT_BINARY_DIR}/luajit_relver.txt
-       ${CMAKE_CURRENT_BINARY_DIR}/luajit.h
+       ${LJ_DIR}/luajit.h
   DEPENDS ${LUAJIT_DIR}/src/luajit_rolling.h
   DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/luajit_relver.txt
 )
@@ -444,7 +444,7 @@ add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/luajit.h
 add_custom_command(OUTPUT ${BUILDVM_ARCH_H}
   COMMAND ${HOST_WINE} ${MINILUA_PATH} ${DASM_PATH} ${DASM_FLAGS}
           -o ${BUILDVM_ARCH_H} ${VM_DASC_PATH}
-  DEPENDS minilua ${DASM_PATH} ${CMAKE_CURRENT_BINARY_DIR}/luajit.h)
+  DEPENDS minilua ${DASM_PATH} ${LJ_DIR}/luajit.h)
 add_custom_target(buildvm_arch_h ALL
   DEPENDS ${BUILDVM_ARCH_H}
 )
@@ -671,7 +671,7 @@ set(luajit_headers
   ${LJ_DIR}/lua.h
   ${LJ_DIR}/luaconf.h
   ${LJ_DIR}/lualib.h
-  ${CMAKE_CURRENT_BINARY_DIR}/luajit.h)
+  ${LJ_DIR}/luajit.h)
 install(FILES ${luajit_headers} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/luajit)
 install(TARGETS libluajit
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
