@@ -21,7 +21,7 @@ struct FsEntry {
 
 struct FsState {
     FsState(std::string currentCwd) : 
-        currentCwd(currentCwd), 
+        currentCwd(std::move(currentCwd)), 
         includeHidden(false) {}
 
     std::vector<FsEntry> currentEntries;
@@ -191,7 +191,7 @@ bool Init(sol::state* state) {
                 return Fs_GetAllFiles(
                     state,
                     recursive,
-                    exts
+                    std::move(exts)
                 );
             }
         )

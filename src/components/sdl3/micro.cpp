@@ -173,7 +173,7 @@ bool _SDL_MicroSaveWAV(Micro micro, std::string fileName) {
             free(buf);
             return false;
         } else {
-            for (int pos = 1; pos <= (data / sizeof(float)); pos++) {
+            for (unsigned long pos = 1; pos <= (data / sizeof(float)); pos++) {
                 audioRaw.push_back(
                     *(buf+pos-1)
                 );

@@ -39,7 +39,7 @@ void _PushThreadMessageLua(
     std::string threadName,
     sol::object m) {
     ThreadMessage *msg = new ThreadMessage{};
-    msg->threadName = threadName;
+    msg->threadName = std::move(threadName);
     msg->statusCode = RUNNING;
     
     if (m.get_type() == sol::type::number) {
