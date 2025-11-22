@@ -78,7 +78,6 @@ function M.Render(time)
 
     SameLine()
 
-    -- Информация о окне
     local windowSize = GetWindowSize()
     local windowPos = GetWindowPos()
     Text("Widnow size: " .. tostring(windowSize.x) .. ", " .. tostring(windowSize.y))
