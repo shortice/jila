@@ -4,7 +4,7 @@ layout: home
 
 hero:
   name: "Jila"
-  text: "Experiemental framework"
+  text: "Experiemental Lua framework"
   tagline:  for building cross-platform Lua apps.
   actions:
     - theme: brand
@@ -16,10 +16,11 @@ hero:
 
 features:
   - title: Lua based apps
-    details: Easy to learn. Powered by LuaJIT.
-  - title: All you need in one lib
-    details: GUI (powered by Dear ImGui), Platform specific API's, Audio, Image... more soon!
+    details: Easy to learn. Powered by LuaJIT, SDL3 & Dear ImGui.
+  - title: All you need (or don't need:)
+    details: Basic GUI, Platform specific API's, Audio, Image, AI inference... more soon!
   - title: Able to extend api
-    details: By using LuaComponent modules (soon). You can off some modules.
+    details: Click here, if you want more info.
+    link: /extend/write_own_component
 ---
 
