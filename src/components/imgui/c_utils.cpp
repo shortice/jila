@@ -1,5 +1,23 @@
 #include "imgui.h"
+#include "imgui_internal.h"
 #include "components/imgui/c_utils.hpp"
+
+void ScrollWhenDragging()
+{
+    ImVec2& mouse_delta = ImGui::GetIO().MouseDelta;
+    ImVec2 delta = ImVec2(0.0f, -mouse_delta.y);
+
+    ImGuiContext& g = *ImGui::GetCurrentContext();
+    ImGuiWindow* window = g.CurrentWindow;
+
+    if (!g.HoveredWindow) return;
+
+    if (
+        g.HoveredWindow->ID == window->ID &&
+        ImGui::IsMouseDragging(ImGuiMouseButton_Left) && delta.y != 0.0f
+    )
+        ImGui::SetScrollY(window, window->Scroll.y + delta.y);
+}
 
 void _ImGui_SameLine_V1() {
     ImGui::SameLine();
@@ -28,6 +46,11 @@ void _ImGui_ShowMetricsWindow() {
 namespace Jila {
 
 void bindImUtils(sol::state* state) {
+    state -> set_function(
+        "ScrollWhenDragging", 
+        &ScrollWhenDragging
+    );
+
     state -> set_function(
         "SameLine",
         sol::overload(

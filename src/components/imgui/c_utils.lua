@@ -16,3 +16,5 @@ function Separator() end
 function ShowDemoWindow() end
 
 function ShowMetricsWindow() end
+
+function ScrollWhenDragging() end
