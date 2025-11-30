@@ -91,6 +91,17 @@ function M.Render(time)
         Text("Typing space!")
     end
 
+    if BeginListBox("Test") then
+        for i = 1, 10, 1 do
+            if Selectable("Test##" .. tostring(i), BoolValue) then
+                print("Hello", i)
+            end
+        end
+
+        ScrollWhenDragging()
+        EndListBox()
+    end
+
     if IsMouseDown(ImGuiMouseButton_Left) then
         local mousePos = GetMousePos()
         Text("Left mouse click pos: " .. tostring(mousePos.x) .. ", " .. tostring(mousePos.y))
@@ -98,6 +109,7 @@ function M.Render(time)
 
     ProgressValue = (ProgressValue + 0.001) % 1.0
 
+    ScrollWhenDragging()
     End()
 end
 
