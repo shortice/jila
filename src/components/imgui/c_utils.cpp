@@ -14,9 +14,12 @@ void ScrollWhenDragging()
 
     if (
         g.HoveredWindow->ID == window->ID &&
-        ImGui::IsMouseDragging(ImGuiMouseButton_Left) && delta.y != 0.0f
-    )
+        ImGui::IsMouseDragging(ImGuiMouseButton_Left) && 
+        delta.y != 0.0f && !g.ActiveIdHasBeenEditedThisFrame 
+    ) {
+        g.ActiveId = 0; // For drop click event when end scrolling
         ImGui::SetScrollY(window, window->Scroll.y + delta.y);
+    }
 }
 
 void _ImGui_SameLine_V1() {
