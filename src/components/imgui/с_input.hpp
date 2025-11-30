@@ -1,5 +1,5 @@
 /*
-Ввод.
+Input.
 */
 #include "sol/sol.hpp"
 

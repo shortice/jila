@@ -171,6 +171,14 @@ void _ImGui_OpenPopup(const std::string& label) {
     ImGui::OpenPopup(label.data());
 }
 
+bool _ImGui_BeginListBox(const std::string& label) {
+    return ImGui::BeginListBox(label.data());
+}
+
+void _ImGui_EndListBox() {
+    ImGui::EndListBox();
+}
+
 void bindImWidgets(sol::state* state) {
     state -> set_function(
         "Button",
@@ -353,6 +361,16 @@ void bindImWidgets(sol::state* state) {
     state->set_function(
         "Bullet",
         &_ImGui_Bullet
+    );
+
+    state->set_function(
+        "BeginListBox",
+        &_ImGui_BeginListBox
+    );
+
+    state->set_function(
+        "EndListBox",
+        &_ImGui_EndListBox
     );
 }
 

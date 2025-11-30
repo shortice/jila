@@ -128,3 +128,10 @@ function ProgressBar(fraction) end
 function ProgressBar(fraction, size) end
 
 function Bullet() end
+
+---@param label string
+---
+---@return boolean
+function BeginListBox(label) end
+
+function EndListBox() end
