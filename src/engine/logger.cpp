@@ -9,19 +9,19 @@ Logger::Logger(std::string name) : name(name) {}
 Logger::Logger() {}
 
 void Logger::warn(std::string message) {
-    log_warn("[%s] %s", name.c_str(), message.c_str());
+    ulog_warn("[%s] %s", name.c_str(), message.c_str());
 }
 
 void Logger::error(std::string message){
-    log_error("[%s] %s", name.c_str(), message.c_str());
+    ulog_error("[%s] %s", name.c_str(), message.c_str());
 }
 
 void Logger::debug(std::string message){
-    log_debug("[%s] %s", name.c_str(), message.c_str());
+    ulog_debug("[%s] %s", name.c_str(), message.c_str());
 }
 
 void Logger::info(std::string message){
-    log_info("[%s] %s", name.c_str(), message.c_str());
+    ulog_info("[%s] %s", name.c_str(), message.c_str());
 }
 
 static std::map<std::string, Logger> loggers = {};
