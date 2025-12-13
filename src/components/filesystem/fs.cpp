@@ -53,19 +53,15 @@ void Fs_GetFolders(FsState& state) {
         if (!state.includeHidden and isHidden) continue;
 
         if (_.path().has_filename()) {
-            filename = _.path().filename();
-        } else {
-            filename = "";
+            filename = _.path().filename().string();
         }
 
         if (_.path().has_extension()) {
-            ext = _.path().extension();
-        } else {
-            ext = "";
+            ext = _.path().extension().string();
         }
 
         state.currentEntries.push_back({
-            _.path(),
+            _.path().string(),
             filename,
             ext,
             _.is_directory()
@@ -107,19 +103,15 @@ void _IterFiles(
         ) continue;
 
         if (_.path().has_filename()) {
-            filename = _.path().filename();
-        } else {
-            filename = "";
+            filename = _.path().filename().string();
         }
 
         if (_.path().has_extension()) {
-            ext = _.path().extension();
-        } else {
-            ext = "";
+            ext = _.path().extension().string();
         }
 
         state.currentEntries.push_back({
-            _.path(),
+            _.path().string(),
             filename,
             ext,
             _.is_directory()

@@ -1,7 +1,6 @@
-#include "SDL3/SDL_init.h"
 #define SDL_MAIN_USE_CALLBACKS
-
 #include "SDL3/SDL_main.h"
+
 #include "SDL3/SDL_render.h"
 #include "SDL3/SDL_timer.h"
 #include "engine/runtime.hpp"
@@ -125,7 +124,7 @@ SDL_AppResult SDL_AppInit(void **appstate, int argc, char **argv) {
     SDL_Renderer* renderer = SDL_CreateRenderer(window, nullptr);
     SDL_SetRenderVSync(renderer, 1);
 
-    if(!renderer) Jila::CriticalError("SDL_CreateRenderer");;
+    if(!renderer) Jila::CriticalError("SDL_CreateRenderer");
 
     #ifndef __ANDROID__
     SDL_SetWindowPosition(
