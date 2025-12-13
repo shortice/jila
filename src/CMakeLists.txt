@@ -6,12 +6,17 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+
 # Build type configuration
 option(JILA_RELEASE "Compile Lua code and don't use dev tools" OFF)
 option(JILA_AUDIO "Enable audio module" OFF)
 option(JILA_IMAGES "Enable image module" OFF)
 option(JILA_NET "Enable Net module" OFF)
 option(JILA_DATABASE "Enable database module" OFF)
+
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 
 option(JILA_ALL "Enable all modules" OFF)
 # For lint/static-analyze/etc
@@ -46,14 +51,6 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
         set(CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG")
         set(CMAKE_C_FLAGS_RELEASE "-O3 -DNDEBUG")
     endif()
-    
-    # Enable warnings
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wpedantic")
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra -Wpedantic")
-    
-    # Ignore unused parameter warnings
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unused-parameter")
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-unused-parameter")
 elseif(MSVC)
     # MSVC configuration
     set(CMAKE_CXX_FLAGS_DEBUG "/Zi /Od")
@@ -63,14 +60,6 @@ elseif(MSVC)
         set(CMAKE_CXX_FLAGS_RELEASE "/O2 /DNDEBUG")
         set(CMAKE_C_FLAGS_RELEASE "/O2 /DNDEBUG")
     endif()
-    
-    # Enable warnings for MSVC
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} /W4")
-    
-    # Disable unused parameter warnings for MSVC
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /wd4100")
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} /wd4100")
 endif()
 
 # Enable ccache if available
@@ -78,11 +67,6 @@ find_program(CCACHE_EXECUTABLE ccache)
 if(CCACHE_EXECUTABLE)
     set(CMAKE_CXX_COMPILER_LAUNCHER "${CCACHE_EXECUTABLE}")
     set(CMAKE_C_COMPILER_LAUNCHER "${CCACHE_EXECUTABLE}")
-endif()
-
-# Define build-specific macros
-if(JILA_RELEASE)
-    add_compile_definitions(JILA_RELEASE)
 endif()
 
 # Set paths
@@ -94,29 +78,6 @@ set(JILA_APP_DIR "${JILA_SOURCE_DIR}/app")
 
 # External dependencies
 add_subdirectory(${JILA_EXTERNAL_DIR}/SDL)
-
-if(JILA_IMAGES)
-    add_subdirectory(${JILA_EXTERNAL_DIR}/SDL_Image)
-    add_compile_definitions(JILA_IMAGES)
-endif()
-
-if(JILA_AUDIO)
-    add_subdirectory(${JILA_EXTERNAL_DIR}/SDL_Mixer)
-    add_compile_definitions(JILA_AUDIO)
-endif()
-
-# LevelDB configuration
-if(JILA_DATABASE)
-    set(LEVELDB_BUILD_TESTS OFF)
-    set(LEVELDB_BUILD_BENCHMARKS OFF)
-    add_subdirectory(${JILA_EXTERNAL_DIR}/leveldb)
-    add_compile_definitions(JILA_DATABASE)
-endif()
-
-# EFSW (only for development builds)
-if(NOT JILA_RELEASE)
-    add_subdirectory(${JILA_EXTERNAL_DIR}/efsw)
-endif()
 
 # Collect source files
 set(JILA_IMGUI_SOURCES
@@ -159,12 +120,41 @@ else()
     )
 endif()
 
-# Target properties
-set_target_properties(main PROPERTIES
-    CXX_STANDARD 17
-    CXX_STANDARD_REQUIRED ON
-    CXX_EXTENSIONS OFF
-)
+if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+    # Enable warnings
+    target_compile_options(main PRIVATE -Wall -Wextra -Wpedantic)
+elseif(MSVC)
+    # Enable warnings for MSVC
+    target_compile_options(main PRIVATE /W4)
+endif()
+
+# Define build-specific macros
+if(JILA_RELEASE)
+    target_compile_definitions(main PRIVATE JILA_RELEASE)
+endif()
+
+if(JILA_IMAGES)
+    add_subdirectory(${JILA_EXTERNAL_DIR}/SDL_Image)
+    target_compile_definitions(main PRIVATE JILA_IMAGES)
+endif()
+
+if(JILA_AUDIO)
+    add_subdirectory(${JILA_EXTERNAL_DIR}/SDL_Mixer)
+    target_compile_definitions(main PRIVATE JILA_AUDIO)
+endif()
+
+# LevelDB configuration
+if(JILA_DATABASE)
+    set(LEVELDB_BUILD_TESTS OFF)
+    set(LEVELDB_BUILD_BENCHMARKS OFF)
+    add_subdirectory(${JILA_EXTERNAL_DIR}/leveldb)
+    target_compile_definitions(main PRIVATE JILA_DATABASE)
+endif()
+
+# EFSW (only for development builds)
+if(NOT JILA_RELEASE)
+    add_subdirectory(${JILA_EXTERNAL_DIR}/efsw)
+endif()
 
 # Platform-specific properties
 if(WIN32)
@@ -220,7 +210,7 @@ if(JILA_NET)
         PRIVATE
         cpr::cpr
     )
-    add_compile_definitions(JILA_NET)
+    target_compile_definitions(main PRIVATE JILA_NET)
 endif()
 
 target_link_libraries(main
