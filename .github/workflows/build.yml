@@ -1,4 +1,4 @@
-name: C++ CI (Clang on Windows & Linux)
+name: C++ CI
 
 on:
   push:
@@ -30,6 +30,8 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+        with:
+          submodules: 'true'
 
       - name: Setup Clang on Linux
         if: runner.os == 'Linux'
