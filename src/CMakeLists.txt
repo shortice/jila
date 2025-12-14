@@ -26,9 +26,10 @@ if(JILA_ALL)
     set(JILA_DATABASE ON)
 endif()
 
-if(CMAKE_BUILD_TYPE STREQUAL "Release")
-    set(JILA_RELEASE ON)
-endif()
+# TODO: Enable if i develop bundles, similar to React Native
+#if(CMAKE_BUILD_TYPE STREQUAL "Release")
+#    set(JILA_RELEASE ON)
+#endif()
 
 # Set default build type
 # TODO: Maybe not use Debug at default build?
