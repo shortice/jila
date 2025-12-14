@@ -14,9 +14,7 @@ option(JILA_IMAGES "Enable image module" OFF)
 option(JILA_NET "Enable Net module" OFF)
 option(JILA_DATABASE "Enable database module" OFF)
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/app)
 
 option(JILA_ALL "Enable all modules" OFF)
 # For lint/static-analyze/etc

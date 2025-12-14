@@ -1,0 +1,51 @@
+name: C++ CI (Clang on Windows & Linux)
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            generator: "Unix Makefiles" 
+            build_type: Release
+            cc: clang
+            cxx: clang++
+          - os: windows-latest
+            generator: "Visual Studio 17 2022"
+            build_type: Release
+            cc: clang-cl
+            cxx: clang-cl
+            extra_flags: "-T ClangCL"
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Clang on Linux
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y clang lld ninja-build
+
+      - name: Configure CMake
+        shell: bash
+        run: |
+          cmake -S ./src -B build \
+            -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} \
+            -G "${{ matrix.generator }}" \
+            ${{ matrix.extra_flags }} \
+            ${{ runner.os == 'Linux' && format('-DCMAKE_C_COMPILER={0} -DCMAKE_CXX_COMPILER={1}', matrix.cc, matrix.cxx) || '' }}
+
+      - name: Build Project
+        shell: bash
+        run: cmake --build build --config ${{ matrix.build_type }}

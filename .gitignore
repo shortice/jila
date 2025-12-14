@@ -54,3 +54,6 @@ vibe.sh
 
 # Infer static-analyzer
 infer-out
+
+# Vscode
+.vscode
