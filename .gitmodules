@@ -16,9 +16,6 @@
 [submodule "src/external/leveldb"]
 	path = src/external/leveldb
 	url = https://github.com/google/leveldb
-[submodule "src/external/sol2"]
-	path = src/external/sol2
-	url = https://github.com/ThePhD/sol2.git
 [submodule "src/external/cpr"]
 	path = src/external/cpr
 	url = https://github.com/libcpr/cpr

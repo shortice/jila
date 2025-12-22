@@ -6,7 +6,6 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-
 # Build type configuration
 option(JILA_RELEASE "Compile Lua code and don't use dev tools" OFF)
 option(JILA_AUDIO "Enable audio module" OFF)
@@ -39,27 +38,6 @@ endif()
 
 # Export compile commands
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-
-# Compiler configuration
-if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
-    # Common flags for GCC and Clang
-    set(CMAKE_CXX_FLAGS_DEBUG "-g -O0")
-    set(CMAKE_C_FLAGS_DEBUG "-g -O0")
-    
-    if(JILA_RELEASE)
-        set(CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG")
-        set(CMAKE_C_FLAGS_RELEASE "-O3 -DNDEBUG")
-    endif()
-elseif(MSVC)
-    # MSVC configuration
-    set(CMAKE_CXX_FLAGS_DEBUG "/Zi /Od")
-    set(CMAKE_C_FLAGS_DEBUG "/Zi /Od")
-    
-    if(JILA_RELEASE)
-        set(CMAKE_CXX_FLAGS_RELEASE "/O2 /DNDEBUG")
-        set(CMAKE_C_FLAGS_RELEASE "/O2 /DNDEBUG")
-    endif()
-endif()
 
 # Enable ccache if available
 find_program(CCACHE_EXECUTABLE ccache)
@@ -119,12 +97,21 @@ else()
     )
 endif()
 
+# Compiler configuration
 if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
-    # Enable warnings
-    target_compile_options(main PRIVATE -Wall -Wextra -Wpedantic)
-elseif(MSVC)
-    # Enable warnings for MSVC
-    target_compile_options(main PRIVATE /W4)
+    set(CMAKE_CXX_FLAGS_DEBUG "-g -O0")
+    set(CMAKE_C_FLAGS_DEBUG "-g -O0")
+    
+    if(JILA_RELEASE)
+        set(CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG")
+        set(CMAKE_C_FLAGS_RELEASE "-O3 -DNDEBUG")
+    endif()
+
+    target_compile_options(main PRIVATE -Wall 
+        -Wextra -Wpedantic -Wno-unused-parameter -Wno-newline-eof
+    )
+else()
+    message("We only support clang compiler now. Sorry.")
 endif()
 
 # Define build-specific macros
@@ -188,12 +175,6 @@ if(JILA_AUDIO)
 endif()
 
 include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/luajit.cmake)
-
-add_subdirectory(${JILA_EXTERNAL_DIR}/sol2)
-target_link_libraries(main
-    PRIVATE
-    sol2::sol2
-)
 
 # Android curl configuration
 if(ANDROID AND JILA_NET)
