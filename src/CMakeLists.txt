@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.17)
 project(Jila LANGUAGES CXX C)
 
 # Set C++ standard
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
@@ -53,9 +53,6 @@ set(JILA_ENGINE_DIR "${JILA_SOURCE_DIR}/engine")
 set(JILA_COMPONENTS_DIR "${JILA_SOURCE_DIR}/components")
 set(JILA_APP_DIR "${JILA_SOURCE_DIR}/app")
 
-# External dependencies
-add_subdirectory(${JILA_EXTERNAL_DIR}/SDL)
-
 # Collect source files
 set(JILA_IMGUI_SOURCES
     "${JILA_EXTERNAL_DIR}/imgui/imgui.cpp"
@@ -78,6 +75,10 @@ if(JILA_RELEASE)
     # TODO: need execute script for .lua files to one .cpp
     # or maybe other? Like .res file contains all code? I need think.
     list(APPEND JILA_LIB_SOURCES "${JILA_APP_DIR}/jila_app.cpp")
+endif()
+
+if(JILA_DATABASE)
+    list(APPEND JILA_LIB_SOURCES "${JILA_EXTERNAL_DIR}/sqlite3/sqlite3.c")
 endif()
 
 # Create target
@@ -111,8 +112,10 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
         -Wextra -Wpedantic -Wno-unused-parameter -Wno-newline-eof
     )
 else()
-    message("We only support clang compiler now. Sorry.")
+    message(FATAL_ERROR "Unsupported compiler.")
 endif()
+
+add_subdirectory(${JILA_EXTERNAL_DIR}/SDL)
 
 # Define build-specific macros
 if(JILA_RELEASE)
@@ -127,14 +130,6 @@ endif()
 if(JILA_AUDIO)
     add_subdirectory(${JILA_EXTERNAL_DIR}/SDL_Mixer)
     target_compile_definitions(main PRIVATE JILA_AUDIO)
-endif()
-
-# LevelDB configuration
-if(JILA_DATABASE)
-    set(LEVELDB_BUILD_TESTS OFF)
-    set(LEVELDB_BUILD_BENCHMARKS OFF)
-    add_subdirectory(${JILA_EXTERNAL_DIR}/leveldb)
-    target_compile_definitions(main PRIVATE JILA_DATABASE)
 endif()
 
 # EFSW (only for development builds)
@@ -200,10 +195,7 @@ target_link_libraries(main
 )
 
 if(JILA_DATABASE)
-    target_link_libraries(main
-        PRIVATE
-        leveldb
-    )
+    target_compile_definitions(main PRIVATE JILA_DATABASE)
 endif()
 
 if(NOT JILA_RELEASE)

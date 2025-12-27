@@ -13,9 +13,6 @@
 [submodule "src/external/efsw"]
 	path = src/external/efsw
 	url = https://github.com/SpartanJ/efsw
-[submodule "src/external/leveldb"]
-	path = src/external/leveldb
-	url = https://github.com/google/leveldb
 [submodule "src/external/cpr"]
 	path = src/external/cpr
 	url = https://github.com/libcpr/cpr

@@ -1,97 +1,95 @@
 #ifdef JILA_DATABASE
 #include "components/database/c_database.hpp"
 #include "misc.hpp"
-#include "leveldb/db.h"
+#include "SDL3/SDL_error.h"
+#include "sqlite3/sqlite3.h"
 
 namespace Jila {
 
 namespace DataBase_Component {
 
-typedef std::shared_ptr<leveldb::DB> DataBase;
+struct DB {
+    sqlite3* conn;
+    std::vector<std::array<std::string, 2>> objects;
+};
 
-DataBase Data_Create(
-    std::string name
+typedef std::shared_ptr<DB> DataBase;
+
+DataBase Data_Connect(
+    std::string path
 ) {
-    leveldb::DB* data;
-    leveldb::Options opts{};
+    sqlite3* db;
 
-    opts.create_if_missing = true;
+    int rc = sqlite3_open(path.c_str(), &db);
 
-    leveldb::DB::Open(
-        opts,
-        name,
-        &data
-    );
+    if (rc) {
+        sqlite3_close(db);
+        SDL_SetError("%s", sqlite3_errmsg(db));
+        return 0;
+    }
 
-    return MakeSafeMemory<leveldb::DB>(
-        data,
-        [](leveldb::DB* data) {
-            delete data;
+    return MakeSafeMemory<DB>(
+        new DB {db, {}}, 
+        [](DB* db) {
+            sqlite3_close(db -> conn);
         }
     );
 }
 
-std::string Data_Get(DataBase data, std::string key) {
-    std::string value;
-    
-    data->Get(
-        leveldb::ReadOptions(),
-        key,
-        &value
+static int callback(
+    void *db, 
+    int argc, 
+    char **argv, 
+    char **azColName
+) {
+    int i;
+
+    DataBase* _db = (DataBase*)db;
+
+    for (i = 0; i < argc; i++) {
+        (*_db)->objects.push_back({
+            azColName[i],
+            argv[i] ? argv[i] : "NULL"
+        });
+    }
+
+    return 0;
+}
+
+bool Data_Exec(DataBase db, std::string sql) {
+    char* err = 0;
+
+    if (db->objects.size() > 0) {
+        db->objects.clear();
+    }
+
+    int rc = sqlite3_exec(
+        db->conn, sql.c_str(), callback, &db, &err
     );
 
-    return value;
-}
+    if (rc != SQLITE_OK) {
+        SDL_SetError("%s", err);
+        sqlite3_free(err);
+        return false;
+    }
 
-bool Data_Set(DataBase data, std::string key, std::string value) {
-    return data->Put(
-        leveldb::WriteOptions(),
-        key,
-        value
-    ).ok();
-}
-
-bool Data_Delete(DataBase data, std::string key) {
-    return data->Delete(
-        leveldb::WriteOptions(),
-        key
-    ).ok();
-}
-
-bool Data_IsExists(DataBase data, std::string key) {
-    std::string value;
-    
-    return data->Get(
-        leveldb::ReadOptions(),
-        key,
-        &value
-    ).IsNotFound();
+    return true;
 }
 
 bool Init(sol::state* state) {
-    state->set_function(
-        "Data_Create",
-        &Data_Create
+    state->new_usertype<DB>(
+        "DB",
+        "objects", &DB::objects
     );
 
     state->set_function(
-        "Data_Get",
-        &Data_Get
+        "Data_Connect",
+        &Data_Connect
     );
 
     state->set_function(
-        "Data_Set",
-        &Data_Set
-    );
-
-    state->set_function(
-        "Data_Delete",
-        &Data_Delete
-    );
-
-    state->set_function(
-        "Data_IsExists",
-        &Data_IsExists
+        "Data_Exec",
+        &Data_Exec
     );
 
     return true;

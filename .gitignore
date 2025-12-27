@@ -57,3 +57,6 @@ infer-out
 
 # Vscode
 .vscode
+
+# My notes
+.note

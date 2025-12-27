@@ -1,34 +1,29 @@
 ---@meta database
 
 ---@class DB
+---
+---@field objects [string, string][] Key-value array
 DB = {}
 
----@param name string
+---@param path string
 ---
----@return DB
-function Data_Create(name) end
+---Create (or load) sqlite3 database.
+---When you deleting the DB object, connection automatically closes.
+---
+---@return DB? DB or nil when error
+---
+---@see SDL_GetError for read error.
+---@nodiscard
+function Data_Connect(path) end
 
 ---@param db DB
----@param key string
+---@param query string
 ---
----@return string
-function Data_Get(db, key) end
-
----@param db DB
----@param key string
----@param value string
+---Execute the SQL query (or query's).
+---This is unsafe function, because can processed SQL-Injections. 
+---Always validate user's input.
 ---
----@return boolean
-function Data_Set(db, key, value) end
-
----@param db DB
----@param key string
+---@return boolean boolean false when error.
 ---
----@return boolean
-function Data_Delete(db, key) end
-
----@param db DB
----@param key string
----
----@return boolean
-function Data_IsExists(db, key) end
+---@see SDL_GetError for read error.
+function Data_Exec(db, query) end
