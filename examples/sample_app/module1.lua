@@ -1,7 +1,8 @@
-local M = {}
-
-M.name = "main"
-M.version = 0.1
+--- @type Module
+local M = {
+    name = "main",
+    version = 0.1
+}
 
 -- Current - Max
 
@@ -12,7 +13,7 @@ FloatValue = FloatProperty.new(3.14)
 BoolValue = BoolProperty.new(true)
 ColorValue = ImVec4.new(1.0, 0.5, 0.2, 1.0)
 ProgressValue = 0.5
-M.Opened = BoolProperty.new(true)
+Scope.Opened = BoolProperty.new(true)
 
 function M.Begin()
 
@@ -29,7 +30,7 @@ end
 function M.Render(time)
     SetNextWindowPos(0, 0)
     SetNextWindowSize(Scope.WindowSize)
-    Begin("ImGui Demo", M.Opened)
+    Begin("ImGui Demo", Scope.Opened)
 
     Separator("Basic widgets")
 

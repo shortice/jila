@@ -5,16 +5,12 @@ namespace Jila {
 namespace FaIconsComponent {
 
 bool Init(sol::state* state) {
+    #pragma warning(push, 0) // msvc
     state->script(
+        //NOLINTNEXTLINE // clang-tidy
         R"(
             --- @meta fa_font
             --- Font awesome free 7.0.0
-            --- FONT_ICON_FILE_NAME_FAR = "fa-regular-400.woff2"
-            --- FONT_ICON_FILE_NAME_FAS = "fa-solid-900.woff2"
-
-            --- ICON_MIN_FA 0xe005
-            --- ICON_MAX_16_FA 0xf8ff
-            --- ICON_MAX_FA 0xf8ff
 
             ICON_FA_0 = "0"	-- U+0030
             ICON_FA_1 = "1"	-- U+0031
@@ -1425,6 +1421,7 @@ bool Init(sol::state* state) {
             ICON_FA_Z = "Z"	-- U+005a
         )"
     );
+    #pragma warning(pop)
 
     return true;
 }

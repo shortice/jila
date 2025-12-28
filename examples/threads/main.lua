@@ -1,7 +1,8 @@
-local M = {}
-
-M.name = "main"
-M.version = 0.1
+--- @type Module
+local M = {
+    name = "main",
+    version = 0.1
+}
 
 Scope.Int = "0"
 Scope.Running = false

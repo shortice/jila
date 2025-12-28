@@ -11,9 +11,10 @@
 --- @return string
 function SDL_GetError() end
 
---- Get module, else nil.
+--- Get module, if not found returns nil.
+--- 
 --- @param name string Module name.
---- @return table?
+--- @return Module?
 function GetModule(name) end
 
 --- Global variables for storing some data across modules.
