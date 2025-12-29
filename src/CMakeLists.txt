@@ -138,7 +138,7 @@ if(NOT JILA_RELEASE)
 endif()
 
 # Platform-specific properties
-if(WIN32)
+if(WIN32 AND JILA_RELEASE)
     set_target_properties(main PROPERTIES WIN32_EXECUTABLE TRUE)
 endif()
 

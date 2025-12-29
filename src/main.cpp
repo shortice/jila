@@ -1,4 +1,7 @@
+#ifdef JILA_RELEASE
 #define SDL_MAIN_USE_CALLBACKS
+#endif
+
 #include "SDL3/SDL_main.h"
 
 #include "SDL3/SDL_render.h"
@@ -232,3 +235,36 @@ void SDL_AppQuit(void *appstate, SDL_AppResult result) {
 
     delete (Jila::AppState*)appstate;
 }
+
+#ifndef JILA_RELEASE
+
+int main(int argc, char *argv[]) {
+    void* state = NULL;
+
+    if (SDL_AppInit(
+        &state, argc, argv
+    ) != SDL_APP_CONTINUE) std::exit(-1);
+
+    while (true) {
+        SDL_Event event;
+
+        while (SDL_PollEvent(&event)) {
+            if (SDL_AppEvent(
+                state, &event
+            ) != SDL_APP_CONTINUE) goto app_exit;
+        }
+
+        if (SDL_AppIterate(
+            state
+        ) != SDL_APP_CONTINUE) goto app_exit;
+    }
+
+    app_exit:
+
+    // NOTE: maybe set actual app_result from AppIter?
+    SDL_AppQuit(state, SDL_APP_SUCCESS);
+
+    return 0;
+}
+
+#endif
