@@ -9,22 +9,22 @@ SDL_EventType = {
 
 ---
 --- @class SDL_Event
---- @field type number
---- @field window SDL_WindowEvent
---- @field user SDL_UserEvent
+--- @field type number SDL_Event type [readonly]
+--- @field window SDL_WindowEvent [readonly]
+--- @field user SDL_UserEvent [readonly]
 SDL_Event = {}
 
 --- @class SDL_WindowEvent
---- @field type number
---- @field timestamp number
---- @field windowID number
---- @field data1 number
---- @field data2 number
+--- @field type number [readonly]
+--- @field timestamp number [readonly]
+--- @field windowID number [readonly]
+--- @field data1 number [readonly]
+--- @field data2 number [readonly]
 SDL_WindowEvent = {}
 
 --- @class SDL_UserEvent
---- @field type number
---- @field code number
---- @field timestamp number
+--- @field type number [readonly]
+--- @field code number [readonly]
+--- @field timestamp number [readonly]
 SDL_UserEvent = {}
 

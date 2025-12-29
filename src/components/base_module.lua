@@ -5,6 +5,8 @@
 --- @field name string Module name
 --- @field version number Module version
 --- @field scope table? Module variable container
+--- 
+--- Module type (but actual real type is standart lua table)
 Module = {}
 
 --- Called when module initialization.
@@ -31,7 +33,7 @@ function Module.Render(time) end
 
 --- Called when process each event from the Application Window.
 --- 
---- Can accessed only on "main" module..
+--- Can accessed only on "main" module.
 --- 
 --- @param event SDL_Event
 function Module.Event(event) end

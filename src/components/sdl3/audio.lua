@@ -2,11 +2,11 @@
 
 --- Track metdata.
 --- @class AudioMeta
---- @field name string Track name.
---- @field album string Track album.
---- @field artist string Track author.
---- @field copyright string Copyright.
---- @field lenght integer Track lenght.
+--- @field name string Track name [readonly]
+--- @field album string Track album [readonly]
+--- @field artist string Track author [readonly]
+--- @field copyright string Copyright [readonly]
+--- @field lenght integer Track lenght [readonly]
 AudioMeta = {}
 
 --- @class _Mixer

@@ -1,17 +1,18 @@
 ---@meta net
 
 ---@class Response
----@field status_code integer
----@field text string
----@field raw_header string
+---@field status_code integer HTTP status code [readonly]
+---@field text string Raw response text [readonly]
+---@field raw_header string Raw response http header [readonly]
 Response = {}
 
 ---If header not found then return "".
 ---
+---@param res Response
 ---@param key string
 ---
 ---@return string
-function Response:getHeaderValue(key) end
+function Response_GetHeaderValue(res, key) end
 
 ---@param url string
 ---

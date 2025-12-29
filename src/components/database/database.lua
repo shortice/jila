@@ -2,7 +2,7 @@
 
 ---@class DB
 ---
----@field objects [string, string][] Key-value array
+---@field objects [string, string][] Key-value array [readonly]
 DB = {}
 
 ---@param path string

@@ -34,11 +34,11 @@ struct AudioMeta {
 
     static void Bind(sol::state& state) {
         state.new_usertype<AudioMeta>("TrackMeta",
-            "name", &AudioMeta::name,
-            "album", &AudioMeta::album,
-            "artist", &AudioMeta::artist,
-            "copyright", &AudioMeta::copyright,
-            "lenght", &AudioMeta::lenght
+            "name", sol::readonly(&AudioMeta::name),
+            "album", sol::readonly(&AudioMeta::album),
+            "artist", sol::readonly(&AudioMeta::artist),
+            "copyright", sol::readonly(&AudioMeta::copyright),
+            "lenght", sol::readonly(&AudioMeta::lenght)
         );
     }
 

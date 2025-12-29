@@ -142,10 +142,6 @@ if(WIN32 AND JILA_RELEASE)
     set_target_properties(main PROPERTIES WIN32_EXECUTABLE TRUE)
 endif()
 
-if(EMSCRIPTEN)
-    set_target_properties(main PROPERTIES SUFFIX ".html")
-endif()
-
 # Link libraries
 target_link_libraries(main
     PRIVATE

@@ -1,16 +1,16 @@
 ---@meta filesystem
 
 ---@class FsEntry
----@field path string
----@field name string
----@field ext string
----@field isDir boolean
+---@field path string Entry path [readonly]
+---@field name string Entry name [readonly]
+---@field ext string Entry extension [readonly]
+---@field isDir boolean Is this entry is directory? [readonly]
 FsEntry = {}
 
 ---@class FsState
----@field currentEntries FsEntry[]
----@field currentCwd string
----@field includeHidden boolean
+---@field currentEntries FsEntry[] Current entries [readonly]
+---@field currentCwd string Current cwd
+---@field includeHidden boolean Include hidden entries?
 FsState = {}
 
 ---@param currentCwd string

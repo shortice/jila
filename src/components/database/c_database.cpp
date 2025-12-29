@@ -36,7 +36,7 @@ DataBase Data_Connect(
     );
 }
 
-static int callback(
+int callback(
     void *db, 
     int argc, 
     char **argv, 
@@ -64,7 +64,7 @@ bool Data_Exec(DataBase db, std::string sql) {
     }
 
     int rc = sqlite3_exec(
-        db->conn, sql.c_str(), callback, &db, &err
+        db->conn, sql.c_str(), &callback, &db, &err
     );
 
     if (rc != SQLITE_OK) {
@@ -79,7 +79,7 @@ bool Data_Exec(DataBase db, std::string sql) {
 bool Init(sol::state* state) {
     state->new_usertype<DB>(
         "DB",
-        "objects", &DB::objects
+        "objects", sol::readonly(&DB::objects)
     );
 
     state->set_function(

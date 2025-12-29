@@ -21,7 +21,7 @@ struct FsEntry {
 
 struct FsState {
     FsState(std::string currentCwd) : 
-        currentCwd(std::move(currentCwd)), 
+        currentCwd(currentCwd), 
         includeHidden(false) {}
 
     std::vector<FsEntry> currentEntries;
@@ -151,15 +151,15 @@ bool Init(sol::state* state) {
     state->new_usertype<FsEntry>(
         "FsEntry",
         "path", &FsEntry::path,
-        "name", &FsEntry::name,
-        "ext", &FsEntry::ext,
-        "isDir", &FsEntry::isDir
+        "name", sol::readonly(&FsEntry::name),
+        "ext", sol::readonly(&FsEntry::ext),
+        "isDir", sol::readonly(&FsEntry::isDir)
     );
 
     state->new_usertype<FsState>(
         "FsState",
         sol::constructors<FsState(std::string)>(),
-        "currentEntries", &FsState::currentEntries,
+        "currentEntries", sol::readonly(&FsState::currentEntries),
         "currentCwd", &FsState::currentCwd,
         "includeHidden", &FsState::includeHidden
     );

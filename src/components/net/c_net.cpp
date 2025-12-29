@@ -29,7 +29,7 @@ cpr::Response Post(std::string url, std::map<std::string, std::string> params) {
 
 // TODO: make download function
 
-std::string GetHeaderValue(cpr::Response& response, std::string key) {
+std::string Response_GetHeaderValue(cpr::Response& response, std::string key) {
     auto value = response.header.find(key);
 
     if (value == response.header.end()) {
@@ -42,10 +42,14 @@ std::string GetHeaderValue(cpr::Response& response, std::string key) {
 bool Init(sol::state* state) {
     state->new_usertype<cpr::Response>(
         "Response",
-        "status_code", &cpr::Response::status_code,
-        "text", &cpr::Response::text,
-        "getHeaderValue", &GetHeaderValue,
-        "raw_header", &cpr::Response::raw_header
+        "status_code", sol::readonly(&cpr::Response::status_code),
+        "text", sol::readonly(&cpr::Response::text),
+        "raw_header", sol::readonly(&cpr::Response::raw_header)
+    );
+
+    state->set_function(
+        "Response_GetHeaderValue",
+        &Response_GetHeaderValue
     );
 
     state->set_function(

@@ -17,6 +17,7 @@
 // *************************************************************************
 
 #pragma once
+#define ULOG_BUILD_SOURCE_LOCATION 0
 
 #include <stdarg.h>
 #include <stdbool.h>

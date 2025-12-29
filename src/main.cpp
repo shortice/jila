@@ -20,15 +20,6 @@
 #include "engine/component.hpp"
 #include "engine/errors.hpp"
 
-
-#define ICON_MIN_FA 0xe005
-#define ICON_MAX_16_FA 0xf8ff
-#define ICON_MAX_FA 0xf8ff
-
-#ifdef __EMSCRIPTEN__
-#include "../libs/emscripten/emscripten_mainloop_stub.h"
-#endif
-
 const char* getScriptsLocation(char** argv) {
     argv++; // Skip executable path
 

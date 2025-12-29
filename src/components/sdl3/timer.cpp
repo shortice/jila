@@ -8,7 +8,11 @@ namespace Jila {
 // Use SDL_PushEvent in timer callbacks.
 
 SDL_DateTime _SDL_TimeToDateTime(Uint32 time, bool localTime) {
-    SDL_DateTime dt {0, 0, 0, 0, 0, 0, 0, 0, 0};
+    SDL_DateTime dt {
+        0, 0, 0, 0, 
+        0, 0, 0, 
+        0, 0
+    };
 
     SDL_TimeToDateTime(
         SDL_SECONDS_TO_NS(time), &dt, localTime
