@@ -4,32 +4,32 @@
 
 namespace Jila {
 
-bool _ImGui_Button_V1(std::string label) {
+bool _ImGui_Button_V1(std::string_view label) {
     return ImGui::Button(label.data());
 }
 
-bool _ImGui_Button_V2(std::string label, ImVec2 &size) {
+bool _ImGui_Button_V2(std::string_view label, ImVec2 &size) {
     return ImGui::Button(label.data(), size);
 }
 
-void _ImGui_Text(std::string text) {
+void _ImGui_Text(std::string_view text) {
     ImGui::Text("%s", text.data());
 }
 
-void _ImGui_TextWrapped(std::string text) {
+void _ImGui_TextWrapped(std::string_view text) {
     ImGui::TextWrapped("%s", text.data());
 }
 
 bool _ImGui_BeginCombo_V1(
-    std::string label,
-    std::string preview
+    std::string_view label,
+    std::string_view preview
 ) {
     return ImGui::BeginCombo(label.data(), preview.data());
 }
 
 bool _ImGui_BeginCombo_V2(
-    std::string label,
-    std::string preview,
+    std::string_view label,
+    std::string_view preview,
     ImGuiComboFlags_ flags
 ) {
     return ImGui::BeginCombo(
@@ -40,7 +40,7 @@ bool _ImGui_BeginCombo_V2(
 }
 
 bool _ImGui_Selectable_V1(
-    std::string label,
+    std::string_view label,
     BoolProperty& opened
 ) {
     return ImGui::Selectable(
@@ -50,30 +50,34 @@ bool _ImGui_Selectable_V1(
 }
 
 bool _ImGui_Selectable_V2(
-    std::string label,
+    std::string_view label,
     BoolProperty& opened,
     ImGuiSelectableFlags flags
 ) {
     return ImGui::Selectable(label.data(), opened.data, flags);
 }
 
-bool _ImGui_BeginMenu(std::string label) {
+bool _ImGui_BeginMenu(std::string_view label) {
     return ImGui::BeginMenu(label.data());
 }
 
-bool _ImGui_MenuItem_V1(std::string label) {
+bool _ImGui_MenuItem_V1(std::string_view label) {
     return ImGui::MenuItem(label.data());
 }
 
 bool _ImGui_MenuItem_V2(
-    std::string label,
+    std::string_view label,
     BoolProperty& selected
 ) {
-    return ImGui::MenuItem(label.data(), NULL, selected.data);
+    return ImGui::MenuItem(
+        label.data(), 
+        NULL, 
+        selected.data
+    );
 }
 
 bool _ImGui_MenuItem_V3(
-    std::string label,
+    std::string_view label,
     std::string_view shortcut,
     BoolProperty& selected
 ) {
@@ -84,39 +88,41 @@ bool _ImGui_MenuItem_V3(
     );
 }
 
-bool _ImGui_BeginTabBar(std::string label) {
+bool _ImGui_BeginTabBar(std::string_view label) {
     return ImGui::BeginTabBar(label.data());
 }
 
-bool _ImGui_BeginTabItem(std::string label) {
+bool _ImGui_BeginTabItem(std::string_view label) {
     return ImGui::BeginTabItem(label.data());
 }
 
-bool _ImGui_CheckBox(std::string label, BoolProperty& prop) {
+bool _ImGui_CheckBox(std::string_view label, BoolProperty& prop) {
     return ImGui::Checkbox(
         label.data(),
         prop.data
     );
 }
 
-bool _ImGui_TreeNode_V1(std::string label) {
+bool _ImGui_TreeNode_V1(std::string_view label) {
     return ImGui::TreeNode(label.data());
 }
 
-bool _ImGui_CollapsingHeader_V1(std::string label) {
+bool _ImGui_CollapsingHeader_V1(std::string_view label) {
     return ImGui::CollapsingHeader(label.data());
 }
 
-bool _ImGui_CollapsingHeader_V2(std::string label, BoolProperty& opened) {
+bool _ImGui_CollapsingHeader_V2(std::string_view label, BoolProperty& opened) {
     return ImGui::CollapsingHeader(label.data(), opened.data);
 }
 
 bool _ImGui_CollapsingHeader_V3(
-    std::string label,
+    std::string_view label,
     BoolProperty& opened,
     ImGuiTreeNodeFlags flags
 ) {
-    return ImGui::CollapsingHeader(label.data(), opened.data, flags);
+    return ImGui::CollapsingHeader(
+        label.data(), opened.data, flags
+    );
 }
 
 void _ImGui_ProgressBar(float fraction, ImVec2& size_arg) {
@@ -131,8 +137,8 @@ void _ImGui_Bullet() {
     ImGui::Bullet();
 }
 
-bool _ImGui_BeginTable(const std::string& str_id, int column) {
-    return ImGui::BeginTable(str_id.c_str(), column);
+bool _ImGui_BeginTable(std::string_view str_id, int column) {
+    return ImGui::BeginTable(str_id.data(), column);
 }
 
 void _ImGui_EndTable() {
@@ -147,15 +153,15 @@ bool _ImGui_TableNextColumn() {
     return ImGui::TableNextColumn();
 }
 
-void _ImGui_TableSetupColumn(const std::string& label) {
-    ImGui::TableSetupColumn(label.c_str());
+void _ImGui_TableSetupColumn(std::string_view label) {
+    ImGui::TableSetupColumn(label.data());
 }
 
 void _ImGui_TableHeadersRow() {
     ImGui::TableHeadersRow();
 }
 
-bool _ImGui_BeginModal_V1(const std::string& label) {
+bool _ImGui_BeginModal_V1(std::string_view label) {
     return ImGui::BeginPopupModal(
         label.data(),
         NULL,
@@ -163,15 +169,19 @@ bool _ImGui_BeginModal_V1(const std::string& label) {
     );
 }
 
-bool _ImGui_BeginModal_V2(const std::string& label, BoolProperty& opened) {
-    return ImGui::BeginPopupModal(label.data(), opened.data, ImGuiWindowFlags_NoResize);
+bool _ImGui_BeginModal_V2(std::string_view label, BoolProperty& opened) {
+    return ImGui::BeginPopupModal(
+        label.data(), 
+        opened.data, 
+        ImGuiWindowFlags_NoResize
+    );
 }
 
-void _ImGui_OpenPopup(const std::string& label) {
+void _ImGui_OpenPopup(std::string_view label) {
     ImGui::OpenPopup(label.data());
 }
 
-bool _ImGui_BeginListBox(const std::string& label) {
+bool _ImGui_BeginListBox(std::string_view label) {
     return ImGui::BeginListBox(label.data());
 }
 

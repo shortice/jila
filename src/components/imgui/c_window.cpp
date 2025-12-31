@@ -4,19 +4,19 @@
 
 namespace Jila {
 
-bool _ImGui_Begin_V1(std::string name) {
+bool _ImGui_Begin_V1(std::string_view name) {
     return ImGui::Begin(name.data());
 }
 
 bool _ImGui_Begin_V2(
-    std::string name,
+    std::string_view name,
     BoolProperty& opened
 ) {
     return ImGui::Begin(name.data(), opened.data);
 }
 
 bool _ImGui_Begin_V3(
-    std::string name,
+    std::string_view name,
     BoolProperty& opened,
     ImGuiWindowFlags flags
 ) {
@@ -24,22 +24,22 @@ bool _ImGui_Begin_V3(
 }
 
 bool _ImGui_Begin_V4(
-    std::string name,
+    std::string_view name,
     ImGuiWindowFlags flags
 ) {
     return ImGui::Begin(name.data(), NULL, flags);
 }
 
-bool _ImGui_BeginChild_V1(std::string id) {
+bool _ImGui_BeginChild_V1(std::string_view id) {
     return ImGui::BeginChild(id.data());
 }
 
-bool _ImGui_BeginChild_V2(std::string id, ImVec2& size) {
+bool _ImGui_BeginChild_V2(std::string_view id, ImVec2& size) {
     return ImGui::BeginChild(id.data(), size);
 }
 
 bool _ImGui_BeginChild_V3(
-    std::string id,
+    std::string_view id,
     ImVec2& size,
     ImGuiChildFlags childFlags
 ) {
@@ -47,7 +47,7 @@ bool _ImGui_BeginChild_V3(
 }
 
 bool _ImGui_BeginChild_V4(
-    std::string id,
+    std::string_view id,
     ImVec2& size,
     ImGuiChildFlags childFlags,
     ImGuiWindowFlags windowFlags

@@ -30,11 +30,11 @@ void _ImGui_SameLine_V2(float xOffset) {
     ImGui::SameLine(xOffset);
 }
 
-ImVec2 _ImGui_CalcTextSize_V1(std::string label) {
+ImVec2 _ImGui_CalcTextSize_V1(std::string_view label) {
     return ImGui::CalcTextSize(label.data());
 }
 
-void _ImGui_Separator_V2(std::string text) {
+void _ImGui_Separator_V2(std::string_view text) {
     ImGui::SeparatorText(text.data());
 }
 
