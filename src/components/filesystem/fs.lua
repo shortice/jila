@@ -16,7 +16,7 @@ FsState = {}
 ---@param currentCwd string
 ---
 ---@return FsState
-function FsState.new(currentCwd) end
+function Create_FS_State(currentCwd) end
 
 --- @param state FsState
 function Fs_GetFolders(state) end

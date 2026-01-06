@@ -1,18 +1,18 @@
 #include "imgui.h"
 #include "components/properties/c_properties.hpp"
-#include "components/imgui/с_input.hpp"
+#include "components/imgui/c_input.hpp"
 
 namespace Jila {
 
 bool _ImGui_SliderInt_V1(
     std::string_view label,
-    IntProperty& property,
+    IntProperty& Property,
     int v_min,
     int v_max
 ) {
     return ImGui::SliderInt(
         label.data(),
-        property.data,
+        Property.data,
         v_min,
         v_max
     );
@@ -20,13 +20,13 @@ bool _ImGui_SliderInt_V1(
 
 bool _ImGui_SliderInt_V2(
     std::string_view label,
-    IntProperty& property,
+    IntProperty& Property,
     int v_min, int v_max,
     std::string_view format
 ) {
     return ImGui::SliderInt(
         label.data(),
-        property.data,
+        Property.data,
         v_min,
         v_max,
         format.data()
@@ -35,7 +35,7 @@ bool _ImGui_SliderInt_V2(
 
 bool _ImGui_SliderInt_V3(
     std::string_view label,
-    IntProperty& property,
+    IntProperty& Property,
     int v_min,
     int v_max,
     std::string_view format,
@@ -43,7 +43,7 @@ bool _ImGui_SliderInt_V3(
 ) {
     return ImGui::SliderInt(
         label.data(),
-        property.data,
+        Property.data,
         v_min,
         v_max,
         format.data(),
@@ -53,64 +53,64 @@ bool _ImGui_SliderInt_V3(
 
 bool _ImGui_InputText_V1(
     std::string_view label,
-    CharProperty& property
+    CharProperty& Property
 ) {
     return ImGui::InputText(
         label.data(),
-        property.str,
-        property.size,
+        Property.str.data(),
+        Property.size,
         ImGuiInputTextFlags_AllowTabInput
     );
 }
 
 bool _ImGui_InputText_V2(
     std::string_view label,
-    CharProperty& property,
+    CharProperty& Property,
     ImGuiInputTextFlags flags
 ) {
     return ImGui::InputText(
         label.data(),
-        property.str,
-        property.size,
+        Property.str.data(),
+        Property.size,
         flags
     );
 }
 
 bool _ImGui_InputTextMultiline_V1(
     std::string_view label,
-    CharProperty& property
+    CharProperty& Property
 ) {
     return ImGui::InputTextMultiline(
         label.data(),
-        property.str,
-        property.size,
+        Property.str.data(),
+        Property.size,
         ImVec2()
     );
 }
 
 bool _ImGui_InputTextMultiline_V2(
     std::string_view label,
-    CharProperty& property,
+    CharProperty& Property,
     ImVec2& size
 ) {
     return ImGui::InputTextMultiline(
         label.data(),
-        property.str,
-        property.size,
+        Property.str.data(),
+        Property.size,
         size
     );
 }
 
 bool _ImGui_InputTextMultiline_V3(
     std::string_view label,
-    CharProperty& property,
+    CharProperty& Property,
     ImVec2& size,
     ImGuiInputTextFlags flags
 ) {
     return ImGui::InputTextMultiline(
         label.data(),
-        property.str,
-        property.size,
+        Property.str.data(),
+        Property.size,
         size,
         flags
     );
@@ -118,35 +118,35 @@ bool _ImGui_InputTextMultiline_V3(
 
 bool _ImGui_InputInt_V1(
     std::string_view label,
-    IntProperty& property
+    IntProperty& Property
 ) {
     return ImGui::InputInt(
         label.data(),
-        property.data
+        Property.data
     );
 }
 
 bool _ImGui_InputInt_V2(
     std::string_view label,
-    IntProperty& property,
+    IntProperty& Property,
     int step
 ) {
     return ImGui::InputInt(
         label.data(),
-        property.data,
+        Property.data,
         step
     );
 }
 
 bool _ImGui_InputInt_V3(
     std::string_view label,
-    IntProperty& property,
+    IntProperty& Property,
     int step,
     int step_fast
 ) {
     return ImGui::InputInt(
         label.data(),
-        property.data,
+        Property.data,
         step,
         step_fast
     );
@@ -154,13 +154,13 @@ bool _ImGui_InputInt_V3(
 
 bool _ImGui_SliderFloat_V1(
     std::string_view label,
-    FloatProperty& property,
+    FloatProperty& Property,
     float v_min,
     float v_max
 ) {
     return ImGui::SliderFloat(
         label.data(),
-        property.data,
+        Property.data,
         v_min,
         v_max
     );
@@ -168,13 +168,13 @@ bool _ImGui_SliderFloat_V1(
 
 bool _ImGui_SliderFloat_V2(
     std::string_view label,
-    FloatProperty& property,
+    FloatProperty& Property,
     float v_min, float v_max,
     std::string_view format
 ) {
     return ImGui::SliderFloat(
         label.data(),
-        property.data,
+        Property.data,
         v_min,
         v_max,
         format.data()
@@ -183,7 +183,7 @@ bool _ImGui_SliderFloat_V2(
 
 bool _ImGui_SliderFloat_V3(
     std::string_view label,
-    FloatProperty& property,
+    FloatProperty& Property,
     float v_min,
     float v_max,
     std::string_view format,
@@ -191,7 +191,7 @@ bool _ImGui_SliderFloat_V3(
 ) {
     return ImGui::SliderFloat(
         label.data(),
-        property.data,
+        Property.data,
         v_min,
         v_max,
         format.data(),
@@ -201,27 +201,27 @@ bool _ImGui_SliderFloat_V3(
 
 bool _ImGui_DragFloat_V1(
     std::string_view label,
-    FloatProperty& property
+    FloatProperty& Property
 ) {
-    return ImGui::DragFloat(label.data(), property.data);
+    return ImGui::DragFloat(label.data(), Property.data);
 }
 
 bool _ImGui_DragFloat_V2(
     std::string_view label,
-    FloatProperty& property,
+    FloatProperty& Property,
     float speed
 ) {
-    return ImGui::DragFloat(label.data(), property.data, speed);
+    return ImGui::DragFloat(label.data(), Property.data, speed);
 }
 
 bool _ImGui_DragFloat_V3(
     std::string_view label,
-    FloatProperty& property,
+    FloatProperty& Property,
     float speed,
     float v_min,
     float v_max
 ) {
-    return ImGui::DragFloat(label.data(), property.data, speed, v_min, v_max);
+    return ImGui::DragFloat(label.data(), Property.data, speed, v_min, v_max);
 }
 
 bool _ImGui_ColorEdit3_V1(std::string_view label, ImVec4& color) {

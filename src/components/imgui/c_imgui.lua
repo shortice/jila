@@ -6,9 +6,9 @@
 --- @field y integer
 ImVec2 = {}
 
---- @overload fun(x: integer, y: integer): ImVec2
+--- @overload fun(x: number, y: number): ImVec2
 --- @return ImVec2
-function ImVec2.new() end
+function Create_ImVec2() end
 
 --- @class ImVec4
 --- @field x number
@@ -19,4 +19,4 @@ ImVec4 = {}
 
 --- @overload fun(x: number, y: number, z: number, w: number): ImVec4
 --- @return ImVec4
-function ImVec4.new() end
+function Create_ImVec4() end

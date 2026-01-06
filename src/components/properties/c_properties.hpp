@@ -29,18 +29,14 @@ namespace Jila {
 };
     
 struct CharProperty {
-    
-    char* str;
+    std::string str;
     size_t size;
     
     CharProperty(size_t size);
     
-    CharProperty(std::string _str);
+    CharProperty(std::string_view _str);
     
-    inline std::string toStr() const;
-    
-    ~CharProperty();
-    
+    std::string_view toStr() const;
 };
     
 typedef _Property<int>     IntProperty;
@@ -51,11 +47,17 @@ typedef _Property<bool>    BoolProperty;
     
 template<typename T>
 void BindProperty(std::string name, sol::state& state) {
+    state.set_function(
+        "Create_" + name + "_Property", 
+        [](T value) { 
+            return _Property<T>(value); 
+        }
+    );
+
     state.new_usertype<
         _Property<T>
     >(
-    name+ "Property",
-        sol::constructors<_Property<T>(T)>(),
+    name + "Property",
         "value", sol::property(
           &_Property<T>::Value,
           &_Property<T>::SetValue

@@ -7,7 +7,7 @@
 #include "components/imgui/c_utils.hpp"
 #include "components/imgui/c_widgets.hpp"
 #include "components/imgui/c_window.hpp"
-#include "components/imgui/с_input.hpp"
+#include "components/imgui/c_input.hpp"
 
 
 namespace Jila {
@@ -15,18 +15,32 @@ namespace Jila {
 namespace ImGuiComponent {
 
 bool Init(sol::state* state) {
+    state->set_function("Create_ImVec2", sol::overload(
+        [](float x, float y) { 
+            return ImVec2(x, y); 
+        },
+        []() { 
+            return ImVec2(); 
+        }
+    ));
+
     state -> new_usertype<ImVec2>(
         "ImVec2",
-        sol::constructors<ImVec2(float, float), ImVec2()>(),
         "x", &ImVec2::x,
         "y", &ImVec2::y
     );
 
+    state->set_function("Create_ImVec4", sol::overload(
+        [](float x, float y, float z, float w) { 
+            return ImVec4(x, y, z, w);
+        },
+        []() { 
+            return ImVec4(); 
+        }
+    ));
+
     state -> new_usertype<ImVec4>(
         "ImVec4",
-        sol::constructors<
-            ImVec4(float, float, float, float), ImVec4()
-        >(),
         "x", &ImVec4::x,
         "y", &ImVec4::y,
         "z", &ImVec4::z,

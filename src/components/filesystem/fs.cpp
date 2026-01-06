@@ -156,9 +156,15 @@ bool Init(sol::state* state) {
         "isDir", sol::readonly(&FsEntry::isDir)
     );
 
+    state->set_function(
+        "Create_FS_State", 
+        [](std::string currentCwd) { 
+            return FsState(currentCwd); 
+        }
+    );
+
     state->new_usertype<FsState>(
         "FsState",
-        sol::constructors<FsState(std::string)>(),
         "currentEntries", sol::readonly(&FsState::currentEntries),
         "currentCwd", &FsState::currentCwd,
         "includeHidden", &FsState::includeHidden

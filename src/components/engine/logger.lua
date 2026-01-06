@@ -2,28 +2,22 @@
 
 ---
 ---@class Logger
+---@field name string Logger name
 Logger = {}
 
---- Конструктор объекта Logger.
----@param name string Имя логгера.
----@return Logger Новый экземпляр Logger.
-function Logger.new(name) end
+--- The Logger constructor
+---@param name string Logger name
+---@return Logger
+function Create_Logger(name) end
 
----@type string Имя данного логгера.
-Logger.name = nil
-
---- Записывает предупреждающее сообщение.
----@param message string Сообщение для логирования.
+---@param message string Message
 function Logger:Warn(message) end
 
---- Записывает сообщение об ошибке.
----@param message string Сообщение для логирования.
+---@param message string Message
 function Logger:Error(message) end
 
---- Записывает отладочное сообщение.
----@param message string Сообщение для логирования.
+---@param message string Message
 function Logger:Debug(message) end
 
---- Записывает информационное сообщение.
----@param message string Сообщение для логирования.
+---@param message string Message
 function Logger:Info(message) end

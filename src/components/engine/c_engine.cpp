@@ -8,8 +8,15 @@ namespace Jila {
 namespace EngineComponent {
 
 bool Init(sol::state* state) {
+    state->set_function(
+        "Create_Logger", 
+        [](std::string name) { 
+            return Logger(name); 
+        }
+    );
+
     state->new_usertype<Logger>(
-        "Logger", sol::constructors<Logger(std::string)>(),
+        "Logger", 
         "name", sol::property(&Logger::name),
         "Warn", &Logger::warn,
         "Error", &Logger::error,

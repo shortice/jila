@@ -6,14 +6,14 @@ local M = {
 
 -- Current - Max
 
-Prop = CharProperty.new(50)
+Prop = Create_Char_Property(50)
 
-IntValue = IntProperty.new(42)
-FloatValue = FloatProperty.new(3.14)
-BoolValue = BoolProperty.new(true)
-ColorValue = ImVec4.new(1.0, 0.5, 0.2, 1.0)
+IntValue = Create_Int_Property(42)
+FloatValue = Create_Float_Property(3.14)
+BoolValue = Create_Bool_Property(true)
+ColorValue = Create_ImVec4(1.0, 0.5, 0.2, 1.0)
 ProgressValue = 0.5
-Scope.Opened = BoolProperty.new(true)
+Scope.Opened = Create_Bool_Property(true)
 
 function M.Begin()
 
@@ -70,7 +70,7 @@ function M.Render(time)
     Separator("Progress bar and styles")
 
     -- Progress bar
-    ProgressBar(ProgressValue, ImVec2.new(200, 30))
+    ProgressBar(ProgressValue, Create_ImVec2(200, 30))
     SameLine()
     Text("Progress: " .. tostring(ProgressValue))
 
