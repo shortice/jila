@@ -60,3 +60,7 @@ infer-out
 
 # My notes
 .note
+
+# Sqlite
+*.sqlite
+*.db
