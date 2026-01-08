@@ -99,7 +99,7 @@ bool _ImGui_BeginTabItem(std::string_view label) {
 bool _ImGui_CheckBox(std::string_view label, BoolProperty& prop) {
     return ImGui::Checkbox(
         label.data(),
-        prop.data
+        &prop.data
     );
 }
 
@@ -121,16 +121,16 @@ bool _ImGui_CollapsingHeader_V3(
     ImGuiTreeNodeFlags flags
 ) {
     return ImGui::CollapsingHeader(
-        label.data(), opened.data, flags
+        label.data(), &opened.data, flags
     );
 }
 
-void _ImGui_ProgressBar(float fraction, ImVec2& size_arg) {
-    ImGui::ProgressBar(fraction, size_arg);
+void _ImGui_ProgressBar(FloatProperty& fraction, ImVec2& size_arg) {
+    ImGui::ProgressBar(fraction.data, size_arg);
 }
 
-void _ImGui_ProgressBar_V2(float fraction) {
-    ImGui::ProgressBar(fraction);
+void _ImGui_ProgressBar_V2(FloatProperty& fraction) {
+    ImGui::ProgressBar(fraction.data);
 }
 
 void _ImGui_Bullet() {
@@ -172,7 +172,7 @@ bool _ImGui_BeginModal_V1(std::string_view label) {
 bool _ImGui_BeginModal_V2(std::string_view label, BoolProperty& opened) {
     return ImGui::BeginPopupModal(
         label.data(), 
-        opened.data, 
+        &opened.data, 
         ImGuiWindowFlags_NoResize
     );
 }

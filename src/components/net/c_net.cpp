@@ -3,6 +3,7 @@
 #include "cpr/cpr.h"
 #include "cpr/response.h"
 #include "sol/sol.hpp"
+#include "lua_modules/_json.h"
 
 namespace Jila {
 
@@ -14,32 +15,40 @@ cpr::Response Get(std::string url) {
     );
 }
 
-cpr::Response Post(std::string url, std::map<std::string, std::string> params) {
-    cpr::Parameters _params;
-
-    for (auto _ : params) {
-        _params.Add({_.first, _.second});
-    }
-
+cpr::Response Post_V1(std::string_view url) {
     return cpr::Post(
-        cpr::Url{url},
-        _params
+        cpr::Url{url}
     );
 }
 
-// TODO: make download function
+cpr::Response Post_V2(std::string_view url, std::string_view json) {
+    return cpr::Post(
+        cpr::Url{url},
+        cpr::Body{json},
+        cpr::Header{{"Content-Type", "application/json"}}
+    );
+}
 
-std::string Response_GetHeaderValue(cpr::Response& response, std::string key) {
+std::optional<std::string> Response_GetHeaderValue(
+    cpr::Response& response, std::string key
+) {
     auto value = response.header.find(key);
 
     if (value == response.header.end()) {
-        return "";
+        return std::nullopt;
     }
 
     return value->second;
 }
 
 bool Init(sol::state* state) {
+    (*state)["json"] = state->script(
+        std::string(
+            __json_lua, 
+            __json_lua + __json_lua_len
+        )
+    ); // json module
+    
     state->new_usertype<cpr::Response>(
         "Response",
         "status_code", sol::readonly(&cpr::Response::status_code),
@@ -59,7 +68,10 @@ bool Init(sol::state* state) {
 
     state->set_function(
         "Post",
-        &Post
+        sol::overload(
+            &Post_V1,
+            &Post_V2
+        )
     );
 
     return true;

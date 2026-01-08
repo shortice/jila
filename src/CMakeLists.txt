@@ -59,6 +59,7 @@ set(JILA_IMGUI_SOURCES
     "${JILA_EXTERNAL_DIR}/imgui/imgui_draw.cpp"
     "${JILA_EXTERNAL_DIR}/imgui/imgui_tables.cpp"
     "${JILA_EXTERNAL_DIR}/imgui/imgui_widgets.cpp"
+    "${JILA_EXTERNAL_DIR}/imgui/misc/cpp/imgui_stdlib.cpp"
     "${JILA_EXTERNAL_DIR}/imgui/backends/imgui_impl_sdl3.cpp"
     "${JILA_EXTERNAL_DIR}/imgui/backends/imgui_impl_sdlrenderer3.cpp"
     "${JILA_EXTERNAL_DIR}/imgui/imgui_demo.cpp"
@@ -203,6 +204,7 @@ target_include_directories(main PRIVATE
     ${JILA_EXTERNAL_DIR}
     ${JILA_EXTERNAL_DIR}/imgui
     ${JILA_EXTERNAL_DIR}/imgui/backends
+    ${JILA_EXTERNAL_DIR}/imgui/misc/cpp/
     ${JILA_SOURCE_DIR}
     ${JILA_EXTERNAL_DIR}/efsw/include
 )

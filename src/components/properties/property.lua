@@ -30,6 +30,4 @@ function Create_Bool_Property(value) end
 CharProperty = {}
 
 --- @return CharProperty
---- @overload fun(str: string): CharProperty
---- @overload fun(size: integer): CharProperty
 function Create_Char_Property() end

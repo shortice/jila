@@ -14,7 +14,7 @@ end
 
 function M.BeginMainLoop()
     Scope.WindowSize = SDL_GetWindowSize()
-    Scope.Code = Create_Char_Property(1000)
+    Scope.Code = Create_Char_Property()
     Scope.Sql = Data_Connect("./data.db")
     Scope.Err = "Nothing"
 end

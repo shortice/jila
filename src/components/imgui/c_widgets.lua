@@ -120,12 +120,10 @@ function TreePop() end
 ---@overload fun(label: string, opened: BoolProperty, flags: integer): boolean
 function CollapsingHeader(label) end
 
----@param fraction number
+---@param fraction FloatProperty
+---
+---@overload fun(fraction: FloatProperty, size: ImVec2)
 function ProgressBar(fraction) end
-
----@param fraction number
----@param size ImVec2
-function ProgressBar(fraction, size) end
 
 function Bullet() end
 

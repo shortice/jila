@@ -6,12 +6,12 @@
 ---@field raw_header string Raw response http header [readonly]
 Response = {}
 
----If header not found then return "".
+---If header not found then returns nil.
 ---
 ---@param res Response
 ---@param key string
 ---
----@return string
+---@return string|nil
 function Response_GetHeaderValue(res, key) end
 
 ---@param url string
@@ -20,7 +20,8 @@ function Response_GetHeaderValue(res, key) end
 function Get(url) end
 
 ---@param url string
----@param params table<string, string>
 ---
 ---@return Response
-function Post(url, params) end
+---
+---@overload fun(url: string, json: string): Response
+function Post(url) end

@@ -4,17 +4,6 @@ local M = {
     version = 0.1
 }
 
--- Current - Max
-
-Prop = Create_Char_Property(50)
-
-IntValue = Create_Int_Property(42)
-FloatValue = Create_Float_Property(3.14)
-BoolValue = Create_Bool_Property(true)
-ColorValue = Create_ImVec4(1.0, 0.5, 0.2, 1.0)
-ProgressValue = 0.5
-Scope.Opened = Create_Bool_Property(true)
-
 function M.Begin()
 
 end
@@ -25,6 +14,15 @@ end
 
 function M.BeginMainLoop()
     Scope.WindowSize = SDL_GetWindowSize()
+
+    Scope.Prop = Create_Char_Property()
+
+    Scope.IntValue = Create_Int_Property(42)
+    Scope.FloatValue = Create_Float_Property(3.14)
+    Scope.BoolValue = Create_Bool_Property(true)
+    Scope.ColorValue = Create_ImVec4(1.0, 0.5, 0.2, 1.0)
+    Scope.ProgressValue = Create_Float_Property(0.5)
+    Scope.Opened = Create_Bool_Property(true)
 end
 
 function M.Render(time)
@@ -45,34 +43,58 @@ function M.Render(time)
     end
 
     -- InputInt
-    if InputInt("Integer (InputInt)", IntValue, 1, 10) then
-        print("IntValue changed to: " .. tostring(IntValue.value))
+    if InputInt("Integer (InputInt)", Scope.IntValue, 1, 10) then
+        if Scope.IntValue.value > 1000 then
+            Scope.IntValue.value = 1000
+        end
+
+        if Scope.IntValue.value < -1000 then
+            Scope.IntValue.value = -1000
+        end
+
+        print("IntValue changed to: " .. tostring(Scope.IntValue.value))
     end
 
     -- FloatProperty
-    if SliderFloat("Slider (SliderFloat)", FloatValue, 0.0, 1.0, "%.2f") then
-        print("FloatValue changed to: " .. tostring(FloatValue.value))
+    if SliderFloat("Slider (SliderFloat)", Scope.FloatValue, 0.0, 100, "%.2f") then
+        if Scope.FloatValue.value > 100 then
+            Scope.FloatValue.value = 100
+        end
+
+        if Scope.FloatValue.value < 0 then
+            Scope.FloatValue.value = 0.0
+        end
+
+        print("FloatValue changed to: " .. tostring(Scope.FloatValue.value))
     end
 
-    if DragFloat("Drag Float", FloatValue, 0.01, 0.0, 100.0) then
-        print("FloatValue changed to: " .. tostring(FloatValue.value))
+    if DragFloat("Drag Float", Scope.FloatValue, 0.01, 0.0, 100) then
+        if Scope.FloatValue.value > 100 then
+            Scope.FloatValue.value = 100
+        end
+
+        if Scope.FloatValue.value < 0 then
+            Scope.FloatValue.value = 0.0
+        end
+
+        print("FloatValue changed to: " .. tostring(Scope.FloatValue.value))
     end
 
     -- Color pickers
-    if ColorEdit3("3-color (ColorEdit3)", ColorValue) then
+    if ColorEdit3("3-color (ColorEdit3)", Scope.ColorValue) then
         print("Color changed!")
     end
 
-    if ColorEdit4("4-color (ColorEdit4)", ColorValue, ImGuiColorEditFlags_NoInputs) then
+    if ColorEdit4("4-color (ColorEdit4)", Scope.ColorValue, ImGuiColorEditFlags_NoInputs) then
         print("4-color changed!")
     end
 
     Separator("Progress bar and styles")
 
     -- Progress bar
-    ProgressBar(ProgressValue, Create_ImVec2(200, 30))
+    ProgressBar(Scope.ProgressValue, Create_ImVec2(200, 30))
     SameLine()
-    Text("Progress: " .. tostring(ProgressValue))
+    Text("Progress: " .. tostring(Scope.ProgressValue.value))
 
     Bullet()
     Text("Bullet point")
@@ -94,7 +116,7 @@ function M.Render(time)
 
     if BeginListBox("Test") then
         for i = 1, 10, 1 do
-            if Selectable("Test##" .. tostring(i), BoolValue) then
+            if Selectable("Test##" .. tostring(i), Scope.BoolValue) then
                 print("Hello", i)
             end
         end
@@ -108,7 +130,7 @@ function M.Render(time)
         Text("Left mouse click pos: " .. tostring(mousePos.x) .. ", " .. tostring(mousePos.y))
     end
 
-    ProgressValue = (ProgressValue + 0.001) % 1.0
+    Scope.ProgressValue.value = (Scope.ProgressValue.value + 0.001) % 1.0
 
     ScrollWhenDragging()
     End()

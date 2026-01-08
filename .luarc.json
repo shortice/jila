@@ -1,5 +1,5 @@
 {
   "$schema": "https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json",
   "runtime.version": "LuaJIT",
-  "workspace.library": ["./src/components"]
+  "workspace.library": ["./src/components", "./src/external/lua_modules"]
 }

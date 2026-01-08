@@ -4,9 +4,6 @@ local M = {
     version = 0.1
 }
 
-Scope.Int = "0"
-Scope.Running = false
-
 function M.Begin()
 
 end
@@ -17,6 +14,8 @@ end
 
 function M.BeginMainLoop()
     Scope.WindowSize = SDL_GetWindowSize()
+    Scope.Int = "0"
+    Scope.Running = false
 end
 
 function Lol()

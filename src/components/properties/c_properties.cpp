@@ -2,18 +2,14 @@
 
 namespace Jila {
 
-CharProperty::CharProperty(size_t size) : size(size) {
-    str = std::string(size, '\0');
-}
+CharProperty::CharProperty() {} 
 
-// Hm... I know this don't supports UTF16-32 symbols... but
-// i don't have any problems why i need use this symbols at this moment.
-CharProperty::CharProperty(std::string_view _str) : size(_str.size()) {
+CharProperty::CharProperty(std::string_view _str) {
     str = _str;
 }
-
-std::string_view CharProperty::toStr() const { 
-    return std::string_view(str); 
+    
+std::string_view CharProperty::toStr() const {
+    return str;
 }
 
 namespace PropertiesComponent {
@@ -23,14 +19,16 @@ bool Init(sol::state *state) {
     BindProperty<float>("Float", *state);
     BindProperty<bool>("Bool", *state);
 
-    state->set_function("Create_Char_Property", sol::overload(
-        [](size_t size) { 
-            return CharProperty(size); 
-        },
-        [](std::string str) { 
+    state->set_function("Create_Char_Property",
+        sol::overload(
+            []() {
+                return CharProperty();
+            },
+            [](std::string_view str) { 
             return CharProperty(str); 
-        }
-    ));
+            }
+        )
+    );
 
     state->new_usertype<CharProperty>(
 	    "CharProperty",

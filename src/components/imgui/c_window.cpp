@@ -12,7 +12,7 @@ bool _ImGui_Begin_V2(
     std::string_view name,
     BoolProperty& opened
 ) {
-    return ImGui::Begin(name.data(), opened.data);
+    return ImGui::Begin(name.data(), &opened.data);
 }
 
 bool _ImGui_Begin_V3(
@@ -20,7 +20,7 @@ bool _ImGui_Begin_V3(
     BoolProperty& opened,
     ImGuiWindowFlags flags
 ) {
-    return ImGui::Begin(name.data(), opened.data, flags);
+    return ImGui::Begin(name.data(), &opened.data, flags);
 }
 
 bool _ImGui_Begin_V4(
