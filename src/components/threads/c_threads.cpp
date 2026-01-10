@@ -1,30 +1,10 @@
 #include "components/threads/c_threads.hpp"
 #include <thread>
-#include "SDL3/SDL_stdinc.h"
 #include "SDL3/SDL_events.h"
 #include "SDL3/SDL_timer.h"
 
 namespace Jila {
 
-enum _StatusCode : Uint8 { 
-    STARTING, 
-    RUNNING, 
-    COMPLETED, 
-    ERROR 
-};
-
-template <typename T> T _get(void *var) {
-    T _ = *(T *)var;
-    delete (T *)var;
-    return _;
-}
-    
-struct ThreadMessage {
-    std::string threadName;
-    std::variant<double, std::string, sol::lua_nil_t> var;
-    _StatusCode statusCode;
-};
-    
 void _PushThreadMessage(ThreadMessage *message) {
     SDL_Event event;
     SDL_zero(event);
@@ -68,7 +48,8 @@ void _RunSeparated(
     
     sol::state threaded_state;
     
-    threaded_state.set_function("SDL_Delay", [](int seconds) {
+    threaded_state.set_function(
+        "SDL_Delay", [](int seconds) {
         SDL_Delay(seconds * 1000);
     });
     
@@ -116,7 +97,6 @@ void _RunSeparated(
     
 ThreadMessage _GetThreadMessage(SDL_UserEvent &event) {
     ThreadMessage msg = *(ThreadMessage *)event.data1;
-    delete (ThreadMessage *)event.data1;
     return msg;
 }
     

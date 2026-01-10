@@ -30,10 +30,6 @@ function Go(func, name) end
 --- Extract event from separate thread.
 --- 
 --- SDL_UserEvent code: 1002.
---- 
---- You always need calling this function when you using
---- thread system. Because we allocate some memory when
---- pushing events to main thread from separated thread.
 --- @param event SDL_UserEvent
 --- @return ThreadMessage
 function GetThreadMessage(event) end
