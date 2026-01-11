@@ -25,7 +25,7 @@ bool Init(sol::state *state) {
                 return CharProperty();
             },
             [](std::string_view str) { 
-            return CharProperty(str); 
+                return CharProperty(str); 
             }
         )
     );

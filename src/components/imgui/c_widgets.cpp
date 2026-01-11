@@ -1,4 +1,5 @@
 #include "imgui.h"
+#include "imgui_stdlib.h"
 #include "components/properties/c_properties.hpp"
 #include "components/imgui/c_widgets.hpp"
 
@@ -10,6 +11,29 @@ bool _ImGui_Button_V1(std::string_view label) {
 
 bool _ImGui_Button_V2(std::string_view label, ImVec2 &size) {
     return ImGui::Button(label.data(), size);
+}
+
+void _ImGui_SelectableText(
+    std::string_view label, 
+    CharProperty& text,
+    ImVec2& size
+) {
+    ImGui::PushStyleColor(
+        ImGuiCol_FrameBg,
+        ImGui::GetStyle().Colors[ImGuiCol_WindowBg]
+    );
+
+    ImGui::InputTextMultiline(
+        label.data(),
+        &text.str, // we don't edit text
+        size,
+        (
+            ImGuiInputTextFlags_ReadOnly | 
+            ImGuiInputTextFlags_AutoSelectAll
+        )
+    );
+
+    ImGui::PopStyleColor();
 }
 
 void _ImGui_Text(std::string_view text) {
@@ -206,6 +230,11 @@ void bindImWidgets(sol::state* state) {
     state -> set_function(
         "TextWrapped",
         &_ImGui_TextWrapped
+    );
+
+    state -> set_function(
+        "SelectableText",
+        &_ImGui_SelectableText
     );
 
     state -> set_function(

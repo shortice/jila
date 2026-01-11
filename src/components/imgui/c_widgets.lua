@@ -12,6 +12,11 @@ function Text(text) end
 ---@param text string
 function TextWrapped(text) end
 
+---@param label string
+---@param text CharProperty
+---@param size ImVec2
+function SelectableText(label, text, size) end
+
 --- @param label string
 --- @param preview string
 ---
