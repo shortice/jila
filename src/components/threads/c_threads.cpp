@@ -1,4 +1,5 @@
 #include "components/threads/c_threads.hpp"
+#include "components/net/c_net.hpp"
 #include <thread>
 #include "SDL3/SDL_events.h"
 #include "SDL3/SDL_timer.h"
@@ -62,6 +63,8 @@ void _RunSeparated(
         sol::lib::base, sol::lib::table, 
         sol::lib::math, sol::lib::string
     );
+
+    NetComponent::Init(&threaded_state);
     
     auto m = threaded_state.do_string(
         byteCode.as_string_view(),

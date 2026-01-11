@@ -17,11 +17,14 @@ ThreadMessage = {}
 --- Run the func on separate thread.
 --- 
 --- Careful! This function run on separate Lua VM. 
---- On this VM you can use only functions in 'See'.
---- This is temporary.
+--- On this VM you can use only functions/modules in 'See'.
 --- 
 --- @see PushThreadMessage
 --- @see SDL_Delay
+--- @see Post
+--- @see Get
+--- @see Response_GetHeaderValue
+--- @see json
 ---
 --- @param func fun(): any
 --- @param name string
