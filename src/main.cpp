@@ -20,6 +20,7 @@
 #include "engine/component.hpp"
 #include "engine/errors.hpp"
 #include "components/threads/c_threads.hpp"
+#include "components/imgui/c_io.hpp"
 
 const char* getScriptsLocation(char** argv) {
     argv++; // Skip executable path
@@ -185,6 +186,8 @@ SDL_AppResult SDL_AppIterate(void *appstate) {
         state->renderer
     );
     SDL_RenderPresent(state->renderer);
+
+    Jila::UpdateSelectedText("");
 
     return SDL_APP_CONTINUE;
 }

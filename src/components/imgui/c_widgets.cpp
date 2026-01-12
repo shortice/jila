@@ -2,6 +2,7 @@
 #include "imgui_stdlib.h"
 #include "components/properties/c_properties.hpp"
 #include "components/imgui/c_widgets.hpp"
+#include "components/imgui/c_io.hpp"
 
 namespace Jila {
 
@@ -32,6 +33,7 @@ void _ImGui_SelectableText(
             ImGuiInputTextFlags_AutoSelectAll
         )
     );
+    UpdateSelectedText(text.str.data());
 
     ImGui::PopStyleColor();
 }

@@ -8,6 +8,7 @@
 #include "components/imgui/c_widgets.hpp"
 #include "components/imgui/c_window.hpp"
 #include "components/imgui/c_input.hpp"
+#include "components/imgui/c_io.hpp"
 
 
 namespace Jila {
@@ -54,6 +55,7 @@ bool Init(sol::state* state) {
     Jila::bindImWidgets(state);
     Jila::bindImWindow(state);
     Jila::bindImProps(state);
+    Jila::bindImIO(state);
 
     return true;
 }

@@ -3,6 +3,9 @@
 #include "components/imgui/c_input.hpp"
 #include "imgui_stdlib.h"
 
+// TODO: add logic for UpdateSelectedText() function
+// like _ImGui_SelectableText
+
 namespace Jila {
 
 // TODO: Need args they limits v_max/v_min in InputInt/Drag/InputText/etc
