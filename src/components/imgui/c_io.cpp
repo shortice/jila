@@ -4,14 +4,14 @@
 
 namespace Jila {
 
-std::string selectedText = "";
+static std::string selectedText;
 
 // Called every frame multiple times (Input/SelectableText function count 
 // + 1 for reset state every frame)
 void UpdateSelectedText(std::string_view currentText) {
     // TODO: Try change logic to avoid copying
     if (currentText.empty()) {
-        selectedText = "";
+        selectedText.clear();
         return;
     }
 
@@ -25,6 +25,8 @@ void UpdateSelectedText(std::string_view currentText) {
 
     int start_select = state->GetSelectionEnd();
     int end_select = state->GetSelectionStart();
+
+    if (start_select == end_select) return;
 
     // Because may (start > end)
     // see: imstb_textedit.h file comments in STB_TexteditState struct 

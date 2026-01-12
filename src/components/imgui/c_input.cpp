@@ -1,15 +1,14 @@
 #include "imgui.h"
 #include "components/properties/c_properties.hpp"
 #include "components/imgui/c_input.hpp"
+#include "components/imgui/c_io.hpp"
 #include "imgui_stdlib.h"
-
-// TODO: add logic for UpdateSelectedText() function
-// like _ImGui_SelectableText
 
 namespace Jila {
 
 // TODO: Need args they limits v_max/v_min in InputInt/Drag/InputText/etc
-// Example: if user input size in bytes > int size, they create UB. We don't want this.
+// Example: if user input size in bytes > int size, they create UB. 
+// We don't want this.
 
 bool _ImGui_SliderInt_V1(
     std::string_view label,
@@ -62,11 +61,13 @@ bool _ImGui_InputText_V1(
     std::string_view label,
     CharProperty& property
 ) {
-    return ImGui::InputText(
+    bool _ = ImGui::InputText(
         label.data(),
         &property.str,
         ImGuiInputTextFlags_AllowTabInput
     );
+    UpdateSelectedText(property.str.data());
+    return _;
 }
 
 bool _ImGui_InputText_V2(
@@ -74,22 +75,26 @@ bool _ImGui_InputText_V2(
     CharProperty& property,
     ImGuiInputTextFlags flags
 ) {
-    return ImGui::InputText(
+    bool _ = ImGui::InputText(
         label.data(),
         &property.str,
         flags
     );
+    UpdateSelectedText(property.str.data());
+    return _;
 }
 
 bool _ImGui_InputTextMultiline_V1(
     std::string_view label,
     CharProperty& property
 ) {
-    return ImGui::InputTextMultiline(
+    bool _ = ImGui::InputTextMultiline(
         label.data(),
         &property.str,
         ImVec2()
     );
+    UpdateSelectedText(property.str.data());
+    return _;
 }
 
 bool _ImGui_InputTextMultiline_V2(
@@ -97,11 +102,13 @@ bool _ImGui_InputTextMultiline_V2(
     CharProperty& property,
     ImVec2& size
 ) {
-    return ImGui::InputTextMultiline(
+    bool _ = ImGui::InputTextMultiline(
         label.data(),
         &property.str,
         size
     );
+    UpdateSelectedText(property.str.data());
+    return _;
 }
 
 bool _ImGui_InputTextMultiline_V3(
@@ -110,12 +117,14 @@ bool _ImGui_InputTextMultiline_V3(
     ImVec2& size,
     ImGuiInputTextFlags flags
 ) {
-    return ImGui::InputTextMultiline(
+    bool _ = ImGui::InputTextMultiline(
         label.data(),
         &property.str,
         size,
         flags
     );
+    UpdateSelectedText(property.str.data());
+    return _;
 }
 
 bool _ImGui_InputInt_V1(
