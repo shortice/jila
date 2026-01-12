@@ -28,7 +28,7 @@ function Module.BeginMainLoop() end
 ---
 --- Can accessed only on "main" module..
 --- 
---- @param time integer
+--- @param time integer Represents milliseconds count elapsed since initialize SDL.
 function Module.Render(time) end
 
 --- Called when process each event from the Application Window.
