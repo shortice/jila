@@ -27,6 +27,7 @@ function Create_Bool_Property(value) end
 
 --- @class CharProperty
 --- @field str string
+--- @field value string
 CharProperty = {}
 
 --- @return CharProperty

@@ -32,7 +32,18 @@ bool Init(sol::state *state) {
 
     state->new_usertype<CharProperty>(
 	    "CharProperty",
-	    "str", sol::property(&CharProperty::toStr)
+	    "str", sol::property(
+            &CharProperty::toStr,
+            [](CharProperty& property, std::string_view _str) {
+                property.str = _str;
+            }
+        ),
+        "value", sol::property(
+            &CharProperty::toStr,
+            [](CharProperty& property, std::string_view _str) {
+                property.str = _str;
+            }
+        )
 	);
 
     return true;
