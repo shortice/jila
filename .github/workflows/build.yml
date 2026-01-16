@@ -37,8 +37,10 @@ jobs:
       - name: Setup Clang on Linux
         if: runner.os == 'Linux'
         run: |
-          sudo apt-get update
-          sudo apt-get install -y clang lld ninja-build
+          wget https://apt.llvm.org/llvm.sh
+          chmod +x llvm.sh
+          sudo ./llvm.sh 21
+          sudo apt-get install -y ninja-build
 
       - name: Install SDL3 deps
         shell: bash
