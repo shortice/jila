@@ -64,7 +64,9 @@ void _RunSeparated(
         sol::lib::math, sol::lib::string
     );
 
+    #ifdef JILA_NET
     NetComponent::Init(&threaded_state);
+    #endif
     
     auto m = threaded_state.do_string(
         byteCode.as_string_view(),

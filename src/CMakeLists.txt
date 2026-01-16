@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.17)
 project(Jila LANGUAGES CXX C)
 
-# Set C++ standard
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
@@ -76,6 +75,8 @@ if(JILA_RELEASE)
     # TODO: need execute script for .lua files to one .cpp
     # or maybe other? Like .res file contains all code? I need think.
     list(APPEND JILA_LIB_SOURCES "${JILA_APP_DIR}/jila_app.cpp")
+else()
+    list(APPEND JILA_LIB_SOURCES "${JILA_EXTERNAL_DIR}/tracy/public/TracyClient.cpp")
 endif()
 
 if(JILA_DATABASE)
@@ -99,19 +100,13 @@ else()
     )
 endif()
 
+if (NOT JILA_RELEASE)
+    target_compile_definitions(main PRIVATE TRACY_ENABLE)
+endif()
+
 # Compiler configuration
 if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
-    set(CMAKE_CXX_FLAGS_DEBUG "-g -O0")
-    set(CMAKE_C_FLAGS_DEBUG "-g -O0")
-    
-    if(JILA_RELEASE)
-        set(CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG")
-        set(CMAKE_C_FLAGS_RELEASE "-O3 -DNDEBUG")
-    endif()
-
-    target_compile_options(main PRIVATE -Wall 
-        -Wextra -Wpedantic -Wno-unused-parameter -Wno-newline-eof
-    )
+    target_compile_options(main PRIVATE -Wno-unused-parameter -Wno-newline-eof)
 else()
     message(FATAL_ERROR "Unsupported compiler.")
 endif()
@@ -168,20 +163,23 @@ endif()
 
 include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/luajit.cmake)
 
-# Android curl configuration
-if(ANDROID AND JILA_NET)
-    # TODO: Fix curl build for Android. SSL dont work.
-    find_package(curl REQUIRED CONFIG COMPONENTS HTTP HTTPS)
-    target_link_libraries(main PRIVATE curl::curl_static)
-endif()
-
 if(JILA_NET)
-    add_subdirectory(${JILA_EXTERNAL_DIR}/cpr)
+    set(CURL_USE_LIBPSL OFF)
+    # TODO: options for use SSL in Linux/Android
 
-    target_link_libraries(main
-        PRIVATE
-        cpr::cpr
-    )
+    if(WIN32)
+        set(CURL_USE_SCHANNEL ON)
+    endif()
+
+    add_subdirectory(${JILA_EXTERNAL_DIR}/curl)
+
+    if(ANDROID)
+        # TODO: Fix curl build for Android. SSL dont work.
+        target_link_libraries(main PRIVATE CURL::libcurl)
+    else()
+        target_link_libraries(main PRIVATE CURL::libcurl)
+    endif()
+
     target_compile_definitions(main PRIVATE JILA_NET)
 endif()
 

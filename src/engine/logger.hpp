@@ -14,15 +14,15 @@ struct Logger {
     Logger();
     Logger(std::string name);
 
-    void warn(std::string message);
+    void warn(std::string_view message);
 
-    void error(std::string message);
+    void error(std::string_view message);
 
-    void debug(std::string message);
+    void debug(std::string_view message);
     
-    void info(std::string message);
+    void info(std::string_view message);
 
-    static Logger& named(std::string name);
+    static Logger& named(std::string_view name);
 };
 
 }

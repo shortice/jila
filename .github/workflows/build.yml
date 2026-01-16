@@ -14,16 +14,17 @@ jobs:
       matrix:
         include:
           - os: ubuntu-latest
-            generator: "Unix Makefiles" 
+            generator: "Ninja" 
             build_type: Release
             cc: clang
             cxx: clang++
+            extra_flags: "-DJILA_ALL=ON -DSDLMIXER_VENDORED=OFF -DSDLIMAGE_VENDORED=OFF"
           - os: windows-latest
-            generator: "Visual Studio 17 2022"
+            generator: "Ninja"
             build_type: Release
             cc: clang-cl
             cxx: clang-cl
-            extra_flags: "-T ClangCL"
+            extra_flags: "-DJILA_ALL=ON -DSDLMIXER_VENDORED=OFF -DSDLIMAGE_VENDORED=OFF"
 
     runs-on: ${{ matrix.os }}
 
@@ -58,7 +59,7 @@ jobs:
             -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} \
             -G "${{ matrix.generator }}" \
             ${{ matrix.extra_flags }} \
-            ${{ runner.os == 'Linux' && format('-DCMAKE_C_COMPILER={0} -DCMAKE_CXX_COMPILER={1}', matrix.cc, matrix.cxx) || '' }}
+            -DCMAKE_C_COMPILER=${{ matrix.c }} -DCMAKE_CXX_COMPILER=${{ maxtrix.cxx }}
 
       - name: Build Project
         shell: bash

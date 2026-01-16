@@ -13,9 +13,12 @@
 [submodule "src/external/efsw"]
 	path = src/external/efsw
 	url = https://github.com/SpartanJ/efsw
-[submodule "src/external/cpr"]
-	path = src/external/cpr
-	url = https://github.com/libcpr/cpr
 [submodule "src/external/LuaJIT"]
 	path = src/external/LuaJIT
 	url = https://github.com/LuaJIT/LuaJIT
+[submodule "src/external/tracy"]
+	path = src/external/tracy
+	url = https://github.com/wolfpld/tracy
+[submodule "src/external/curl"]
+	path = src/external/curl
+	url = https://github.com/curl/curl

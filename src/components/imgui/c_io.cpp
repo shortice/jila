@@ -4,40 +4,42 @@
 
 namespace Jila {
 
-static std::string selectedText;
+static std::string_view selectedText;
 
 // Called every frame multiple times (Input/SelectableText function count 
 // + 1 for reset state every frame)
 void UpdateSelectedText(std::string_view currentText) {
-    // TODO: Try change logic to avoid copying
     if (currentText.empty()) {
-        selectedText.clear();
+        selectedText = {};
         return;
     }
 
     ImGuiContext& g = *GImGui;
+
+    if (g.ActiveId == 0 || g.ActiveId != g.LastItemData.ID) {
+        return;
+    }
 
     ImGuiInputTextState* state = ImGui::GetInputTextState(g.ActiveId);
 
     if (!state) return;
 
     if (!state->HasSelection()) return;
-
-    int start_select = state->GetSelectionEnd();
-    int end_select = state->GetSelectionStart();
+    
+    int start_select = state->GetSelectionStart();
+    int end_select = state->GetSelectionEnd();
 
     if (start_select == end_select) return;
 
-    // Because may (start > end)
-    // see: imstb_textedit.h file comments in STB_TexteditState struct 
-    // select_start/select_end fields
-    // [END]            [START]
+    // Ensure start < end
     if (start_select > end_select) {
         int temp = start_select;
-
         start_select = end_select;
         end_select = temp;
-        // [START]      [END]
+    }
+
+    if (selectedText.size() == (size_t)(end_select - start_select)) {
+        return;
     }
 
     selectedText = currentText.substr(
@@ -49,16 +51,14 @@ void bindImIO(sol::state* state) {
     state->set_function(
         "GetClipboardText",
         []() {
-            (std::string_view)ImGui::GetClipboardText();
+            return (std::string_view)ImGui::GetClipboardText();
         }
     );
 
     state->set(
         "GetSelectedText",
         []() {
-            return std::string_view(
-                selectedText.data()
-            );
+        	return selectedText;
         }
     );
 }

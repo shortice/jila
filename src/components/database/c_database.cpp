@@ -16,11 +16,11 @@ struct DB {
 typedef std::shared_ptr<DB> DataBase;
 
 DataBase Data_Connect(
-    std::string path
+    std::string_view path
 ) {
     sqlite3* db;
 
-    int rc = sqlite3_open(path.c_str(), &db);
+    int rc = sqlite3_open(path.data(), &db);
 
     if (rc) {
         sqlite3_close(db);
@@ -56,7 +56,7 @@ int callback(
     return 0;
 }
 
-bool Data_Exec(DataBase db, std::string sql) {
+bool Data_Exec(DataBase db, std::string_view sql) {
     char* err = 0;
 
     if (db->objects.size() > 0) {
@@ -64,7 +64,7 @@ bool Data_Exec(DataBase db, std::string sql) {
     }
 
     int rc = sqlite3_exec(
-        db->conn, sql.c_str(), &callback, &db, &err
+        db->conn, sql.data(), &callback, &db, &err
     );
 
     if (rc != SQLITE_OK) {

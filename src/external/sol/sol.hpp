@@ -20,8 +20,8 @@
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 // This file was generated with a script.
-// Generated 2025-06-19 16:53:04.092157 UTC
-// This header was generated with sol v3.5.0 (revision c1f95a77)
+// Generated 2026-01-13 14:01:33.084195 UTC
+// This header was generated with sol  (revision c1f95a7)
 // https://github.com/ThePhD/sol2
 
 #ifndef SOL_SINGLE_INCLUDE_SOL_HPP
@@ -874,7 +874,7 @@
 		#define _MOVE(...) static_cast<__typeof( __VA_ARGS__ )&&>( __VA_ARGS__ )
 	#else
 		#include <type_traits>
-
+		
 		#define _MOVE(...) static_cast<::std::remove_reference_t<( __VA_ARGS__ )>&&>( __VA_OPT__(,) )
 	#endif
 #endif
@@ -1026,7 +1026,7 @@
 #if defined(SOL_FUNC_DECL)
 	#define SOL_FUNC_DECL_I_ SOL_FUNC_DECL
 #elif SOL_IS_ON(SOL_HEADER_ONLY)
-	#define SOL_FUNC_DECL_I_
+	#define SOL_FUNC_DECL_I_ 
 #elif SOL_IS_ON(SOL_DLL)
 	#if SOL_IS_ON(SOL_COMPILER_VCXX)
 		#if SOL_IS_ON(SOL_BUILD)
@@ -1062,7 +1062,7 @@
 #if defined(SOL_HIDDEN_FUNC_DECL)
 	#define SOL_HIDDEN_FUNC_DECL_I_ SOL_HIDDEN_FUNC_DECL
 #elif SOL_IS_ON(SOL_HEADER_ONLY)
-	#define SOL_HIDDEN_FUNC_DECL_I_
+	#define SOL_HIDDEN_FUNC_DECL_I_ 
 #elif SOL_IS_ON(SOL_DLL)
 	#if SOL_IS_ON(SOL_COMPILER_VCXX)
 		#if SOL_IS_ON(SOL_BUILD)
@@ -1084,9 +1084,9 @@
 #elif SOL_IS_ON(SOL_DLL)
 	#if SOL_IS_ON(SOL_COMPILER_VCXX)
 		#if SOL_IS_ON(SOL_BUILD)
-			#define SOL_HIDDEN_FUNC_DEFN_I_
+			#define SOL_HIDDEN_FUNC_DEFN_I_ 
 		#else
-			#define SOL_HIDDEN_FUNC_DEFN_I_
+			#define SOL_HIDDEN_FUNC_DEFN_I_ 
 		#endif
 	#elif SOL_IS_ON(SOL_COMPILER_GCC) || SOL_IS_ON(SOL_COMPILER_CLANG)
 		#define SOL_HIDDEN_FUNC_DEFN_I_ __attribute__((visibility("hidden")))
@@ -3267,9 +3267,9 @@ extern "C" {
 #ifndef COMPAT53_API
 #  if defined(COMPAT53_INCLUDE_SOURCE) && COMPAT53_INCLUDE_SOURCE
 #    if defined(__GNUC__) || defined(__clang__)
-#      define COMPAT53_API __attribute__((__unused__)) static inline
+#      define COMPAT53_API __attribute__((__unused__)) static inline 
 #    else
-#      define COMPAT53_API static inline
+#      define COMPAT53_API static inline 
 #    endif /* Clang/GCC */
 #  else /* COMPAT53_INCLUDE_SOURCE */
 /* we are not including source, so everything is extern */
@@ -19729,11 +19729,7 @@ namespace sol { namespace function_detail {
 		}
 
 		template <bool is_yielding, bool no_trampoline>
-		static int call(lua_State* L)
-		#ifndef __ANDROID__
-		noexcept(std::is_nothrow_copy_assignable_v<T>)
-		#endif
-		{
+		static int call(lua_State* L) noexcept(std::is_nothrow_copy_assignable_v<T>) {
 			int nr;
 			if constexpr (no_trampoline) {
 				nr = real_call(L);
@@ -19773,11 +19769,7 @@ namespace sol { namespace function_detail {
 		}
 
 		template <bool is_yielding, bool no_trampoline>
-		static int call(lua_State* L)
-		#ifndef __ANDROID__
-		noexcept(std::is_nothrow_copy_assignable_v<T>)
-		#endif
-		{
+		static int call(lua_State* L) noexcept(std::is_nothrow_copy_assignable_v<T>) {
 			int nr;
 			if constexpr (no_trampoline) {
 				nr = real_call(L);
@@ -23002,7 +22994,7 @@ namespace sol {
 				using it_base = detail::ebco<iterator, 0>;
 				using sen_base = detail::ebco<sentinel, 1>;
 				reference keep_alive;
-
+				
 				iter(lua_State* L_, int stack_index_, iterator it_, sentinel sen_) noexcept
 				: it_base(std::move(it_)), sen_base(std::move(sen_)), keep_alive(sol::main_thread(L_, L_), stack_index_) {
 				}
@@ -23508,7 +23500,7 @@ namespace sol {
 						{ "erase", &meta_usertype_container::erase_call },
 						std::is_pointer<T>::value ? luaL_Reg{ nullptr, nullptr } : luaL_Reg{ "__gc", &detail::usertype_alloc_destroy<T> },
 						{ nullptr, nullptr }
-						// clang-format on
+						// clang-format on 
 					} };
 
 					if (luaL_newmetatable(L, metakey) == 1) {
