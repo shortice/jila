@@ -16,8 +16,8 @@ jobs:
           - os: ubuntu-latest
             generator: "Ninja"
             build_type: Release
-            cc: clang
-            cxx: clang++
+            cc: clang-21
+            cxx: clang++-21
             extra_flags: "-DJILA_ALL=ON -DSDLMIXER_VENDORED=OFF -DSDLIMAGE_VENDORED=OFF"
           - os: windows-latest
             generator: "Ninja"
