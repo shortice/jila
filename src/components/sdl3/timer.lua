@@ -30,3 +30,10 @@ function SDL_DateTimeToTime(dateTime) end
 ---
 --- @see SDL_GetError for read error.
 function SDL_GetCurrentTime() end
+
+
+---@param localTime boolean
+---@return SDL_DateTime SDL_DateTime year is 0 if failing.
+---
+--- @see SDL_GetError for read error.
+function SDL_GetCurrentDateTime(localTime) end

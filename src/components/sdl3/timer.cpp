@@ -7,16 +7,18 @@ namespace Jila {
 // TODO: make a timer bindings.
 // Use SDL_PushEvent in timer callbacks.
 
-SDL_DateTime _SDL_TimeToDateTime(Uint32 time, bool localTime) {
-    SDL_DateTime dt {
-        0, 0, 0, 0, 
-        0, 0, 0, 
-        0, 0
-    };
+static SDL_DateTime DEFAULT_NULL {
+    0, 0, 0, 0, 
+    0, 0, 0, 
+    0, 0
+};
 
-    SDL_TimeToDateTime(
+SDL_DateTime _SDL_TimeToDateTime(Uint32 time, bool localTime) {
+    SDL_DateTime dt = DEFAULT_NULL;
+
+    if (!SDL_TimeToDateTime(
         SDL_SECONDS_TO_NS(time), &dt, localTime
-    );
+    )) return DEFAULT_NULL;
 
     return dt;
 }
@@ -37,6 +39,16 @@ Uint32 _SDL_GetCurrentTime() {
     if (!SDL_GetCurrentTime(&time)) return 0;
 
     return SDL_NS_TO_SECONDS(time);
+}
+
+SDL_DateTime _SDL_GetCurrentDateTime(bool localTime) {
+    Uint32 time = _SDL_GetCurrentTime();
+
+    if (!time) return DEFAULT_NULL;
+
+    return _SDL_TimeToDateTime(
+        time, localTime
+    );
 }
 
 void bindSdlTimer(sol::state* state) {
@@ -64,6 +76,11 @@ void bindSdlTimer(sol::state* state) {
     state->set_function(
         "SDL_GetCurrentTime",
         &_SDL_GetCurrentTime
+    );
+
+    state->set_function(
+        "SDL_GetCurrentDateTime",
+        &_SDL_GetCurrentDateTime
     );
 }
 
