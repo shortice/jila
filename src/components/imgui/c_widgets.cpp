@@ -3,6 +3,7 @@
 #include "components/properties/c_properties.hpp"
 #include "components/imgui/c_widgets.hpp"
 #include "components/imgui/c_io.hpp"
+#include "components/sdl3/images.hpp"
 
 namespace Jila {
 
@@ -15,7 +16,7 @@ bool _ImGui_Button_V2(std::string_view label, ImVec2 &size) {
 }
 
 void _ImGui_SelectableText(
-    std::string_view label, 
+    std::string_view label,
     CharProperty& text,
     ImVec2& size
 ) {
@@ -29,7 +30,7 @@ void _ImGui_SelectableText(
         &text.str, // we don't edit text
         size,
         (
-            ImGuiInputTextFlags_ReadOnly | 
+            ImGuiInputTextFlags_ReadOnly |
             ImGuiInputTextFlags_AutoSelectAll
         )
     );
@@ -96,8 +97,8 @@ bool _ImGui_MenuItem_V2(
     BoolProperty& selected
 ) {
     return ImGui::MenuItem(
-        label.data(), 
-        NULL, 
+        label.data(),
+        NULL,
         selected.data
     );
 }
@@ -197,8 +198,8 @@ bool _ImGui_BeginModal_V1(std::string_view label) {
 
 bool _ImGui_BeginModal_V2(std::string_view label, BoolProperty& opened) {
     return ImGui::BeginPopupModal(
-        label.data(), 
-        &opened.data, 
+        label.data(),
+        &opened.data,
         ImGuiWindowFlags_NoResize
     );
 }
@@ -213,6 +214,25 @@ bool _ImGui_BeginListBox(std::string_view label) {
 
 void _ImGui_EndListBox() {
     ImGui::EndListBox();
+}
+
+void _ImGui_Image(Texture texture, ImVec2& imageSize) {
+    ImGui::Image(
+        (intptr_t)texture.get(),
+        imageSize
+    );
+}
+
+bool _ImGui_ImageButton_V1(
+    std::string_view label,
+    Texture texture,
+    ImVec2& imageSize
+) {
+    return ImGui::ImageButton(
+        label.data(),
+        (intptr_t)texture.get(),
+        imageSize
+    );
 }
 
 void bindImWidgets(sol::state* state) {
@@ -412,6 +432,18 @@ void bindImWidgets(sol::state* state) {
     state->set_function(
         "EndListBox",
         &_ImGui_EndListBox
+    );
+
+    state -> set_function(
+        "Image",
+        &_ImGui_Image
+    );
+
+    state -> set_function(
+        "ImageButton",
+        sol::overload(
+            &_ImGui_ImageButton_V1
+        )
     );
 }
 

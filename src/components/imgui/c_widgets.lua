@@ -138,3 +138,12 @@ function Bullet() end
 function BeginListBox(label) end
 
 function EndListBox() end
+
+--- @param texture SDL_Texture
+--- @param imageSize ImVec2
+function Image(texture, imageSize) end
+
+--- @param label string
+--- @param texture SDL_Texture
+--- @param imageSize ImVec2
+function ImageButton(label, texture, imageSize) end
