@@ -1,23 +1,23 @@
 ---@meta logger
 
 ---
----@class Logger
----@field name string Logger name
-Logger = {}
+---@class Jila_Logger
+---@field name string Jila_Logger name
+Jila_Logger = {}
 
---- The Logger constructor
----@param name string Logger name
----@return Logger
+--- The Jila_Logger constructor
+---@param name string Jila_Logger name
+---@return Jila_Logger
 function Create_Logger(name) end
 
 ---@param message string Message
-function Logger:Warn(message) end
+function Jila_Logger:Warn(message) end
 
 ---@param message string Message
-function Logger:Error(message) end
+function Jila_Logger:Error(message) end
 
 ---@param message string Message
-function Logger:Debug(message) end
+function Jila_Logger:Debug(message) end
 
 ---@param message string Message
-function Logger:Info(message) end
+function Jila_Logger:Info(message) end

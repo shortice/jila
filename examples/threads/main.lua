@@ -13,7 +13,7 @@ function M.End()
 end
 
 function M.BeginMainLoop()
-    Scope.WindowSize = SDL_GetWindowSize()
+    Scope.WindowSize = Jila_GetWindowSize()
     Scope.Int = "0"
     Scope.Running = false
 end
@@ -23,40 +23,40 @@ function Lol()
 
     while i < 999999 do
         i = i + 1
-        PushThreadMessage("Lol", i)
-        SDL_Delay(0.1)
+        Jila_PushThreadMessage("Lol", i)
+        Jila_Sleep(0.1)
     end
 end
 
 function M.Render(time)
-    SetNextWindowPos(0, 0)
-    SetNextWindowSize(Scope.WindowSize)
-    Begin("Threads")
+    ImSetNextWindowPos(0, 0)
+    ImSetNextWindowSize(Scope.WindowSize)
+    ImBegin("Threads")
 
-    if Button("Start thread") then
+    if ImButton("Start thread") then
         if Scope.Running == false then
-            Go(Lol, "Lol")
+            Jila_Go(Lol, "Lol")
 
             Scope.Running = true
         end
     end
 
-    Separator("Result in thread:")
-    Text(Scope.Int)
+    ImSeparator("Result in thread:")
+    ImText(Scope.Int)
 
-    End()
+    ImEnd()
 end
 
----@param event SDL_Event
+---@param event Jila_Event
 function M.Event(event)
-    if event.type == SDL_EventType.SDL_EVENT_WINDOW_PIXEL_SIZE_CHANGED then
+    if event.type == Jila_EventType.Jila_EVENT_WINDOW_PIXEL_SIZE_CHANGED then
         Scope.WindowSize.x = event.window.data1
         Scope.WindowSize.y = event.window.data2
     end
 
-    if event.type == SDL_EventType.SDL_EVENT_USER then
+    if event.type == Jila_EventType.Jila_EVENT_USER then
         if event.user.code == 1002 then
-            local th = GetThreadMessage(event.user)
+            local th = Jila_GetThreadMessage(event.user)
 
             Scope.Int = tostring(th.var)
         end

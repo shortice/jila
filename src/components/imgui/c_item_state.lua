@@ -1,7 +1,7 @@
 ---@meta c_item_state
 
 ---@return boolean
-function IsItemHovered() end
+function ImIsItemHovered() end
 
 ---@param key_code integer
 ---@param repeat_ boolean
@@ -9,12 +9,12 @@ function IsItemHovered() end
 ---@return boolean
 ---
 ---@overload fun(key_code: integer): boolean
-function IsKeyPressed(key_code, repeat_) end
+function ImIsKeyPressed(key_code, repeat_) end
 
 ---@param mouse_button integer
 ---
 ---@return boolean
-function IsMouseDown(mouse_button) end
+function ImIsMouseDown(mouse_button) end
 
 ---@return boolean
-function IsDoubleClicked() end
+function ImIsDoubleClicked() end

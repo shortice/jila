@@ -1,22 +1,22 @@
 ---@meta database
 
----@class DB
+---@class Jila_DB
 ---
 ---@field objects [string, string][] Key-value array [readonly]
-DB = {}
+Jila_DB = {}
 
 ---@param path string
 ---
 ---Create (or load) sqlite3 database.
 ---When you deleting the DB object, connection automatically closes.
 ---
----@return DB? DB or nil when error
+---@return Jila_DB? DB or nil when error
 ---
----@see SDL_GetError for read error.
+--- @see Jila_GetError for read error.
 ---@nodiscard
-function Data_Connect(path) end
+function Jila_Data_Connect(path) end
 
----@param db DB
+---@param db Jila_DB
 ---@param query string
 ---
 ---Execute the SQL query (or query's).
@@ -25,5 +25,5 @@ function Data_Connect(path) end
 ---
 ---@return boolean boolean false when error.
 ---
----@see SDL_GetError for read error.
-function Data_Exec(db, query) end
+--- @see Jila_GetError for read error.
+function Jila_Data_Exec(db, query) end

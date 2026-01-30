@@ -149,13 +149,13 @@ bool Kv_IsExist(KvDataBase db, std::string key) {
 }
 
 void bindKv(sol::state* state) {
-    state->new_usertype<Proxy<sqlite3>>("KvDB");
+    state->new_usertype<Proxy<sqlite3>>("Jila_KvDB");
 
-    state->set_function("Kv_Connect", &Kv_Connect);
-    state->set_function("Kv_Set", &Kv_Set);
-    state->set_function("Kv_Get", &Kv_Get);
-    state->set_function("Kv_Delete", &Kv_Delete);
-    state->set_function("Kv_IsExist", &Kv_IsExist);
+    state->set_function("Jila_Kv_Connect", &Kv_Connect);
+    state->set_function("Jila_Kv_Set", &Kv_Set);
+    state->set_function("Jila_Kv_Get", &Kv_Get);
+    state->set_function("Jila_Kv_Delete", &Kv_Delete);
+    state->set_function("Jila_Kv_IsExist", &Kv_IsExist);
 }
 
 }

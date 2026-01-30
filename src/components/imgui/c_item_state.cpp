@@ -17,14 +17,14 @@ namespace Jila {
 
 void bindImState(sol::state* state) {
     state -> set_function(
-        "IsItemHovered",
+        "ImIsItemHovered",
         []() {
             return ImGui::IsItemHovered();
         }
     );
 
     state->set_function(
-        "IsKeyPressed",
+        "ImIsKeyPressed",
         sol::overload(
             &_ImGui_IsKeyPressed_V1,
             &_ImGui_IsKeyPressed_V2
@@ -32,12 +32,12 @@ void bindImState(sol::state* state) {
     );
 
     state->set_function(
-        "IsMouseDown",
+        "ImIsMouseDown",
         &_ImGui_IsMouseDown
     );
 
     state -> set_function(
-        "IsDoubleClicked",
+        "ImIsDoubleClicked",
         []() {
             return ImGui::IsMouseDoubleClicked(
                 ImGuiMouseButton_Left

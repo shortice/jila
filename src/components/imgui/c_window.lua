@@ -6,9 +6,9 @@
 ---@overload fun(name: string, opened: BoolProperty): boolean
 ---@overload fun(name: string, opened: BoolProperty, flags: integer): boolean
 ---@overload fun(name: string, flags: integer)
-function Begin(name) end
+function ImBegin(name) end
 
-function End() end
+function ImEnd() end
 
 ---@param id string
 ---@return boolean
@@ -16,6 +16,6 @@ function End() end
 ---@overload fun(id: string, size: ImVec2): boolean
 ---@overload fun(id: string, size: ImVec2, child_flags: integer): boolean
 ---@overload fun(id: string, size: ImVec2, child_flags: integer, window_flags: integer): boolean
-function BeginChild(id) end
+function ImBeginChild(id) end
 
-function EndChild() end
+function ImEndChild() end

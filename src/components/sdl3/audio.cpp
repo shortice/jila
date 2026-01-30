@@ -33,7 +33,7 @@ struct AudioMeta {
     Sint64 lenght; // seconds
 
     static void Bind(sol::state& state) {
-        state.new_usertype<AudioMeta>("TrackMeta",
+        state.new_usertype<AudioMeta>("Jila_TrackMeta",
             "name", sol::readonly(&AudioMeta::name),
             "album", sol::readonly(&AudioMeta::album),
             "artist", sol::readonly(&AudioMeta::artist),
@@ -175,76 +175,76 @@ Sint64 _SDL_GetTrackPosistion(Track track) {
 
 void bindSdlAudio(sol::state* state) {
     state -> set_function(
-        "SDL_InitMixer",
+        "Jila_InitMixer",
         &_SDL_InitMixer
     );
 
     state -> set_function(
-        "SDL_QuitMixer",
+        "Jila_QuitMixer",
         &_SDL_QuitMixer
     );
 
     AudioMeta::Bind(*state);
 
     state -> set_function(
-        "SDL_CreateAudio",
+        "Jila_CreateAudio",
         &_SDL_CreateAudio
     );
 
     state -> set_function(
-        "SDL_CreateTrack",
+        "Jila_CreateTrack",
         &_SDL_CreateTrack
     );
 
     state -> set_function(
-        "SDL_SetTrackAudio",
+        "Jila_SetTrackAudio",
         &_SDL_SetTrackAudio
     );
 
     state -> set_function(
-        "SDL_TrackIsPlayed",
+        "Jila_TrackIsPlayed",
         &_SDL_TrackIsPlaying
     );
 
     state -> set_function(
-        "SDL_PlayTrack",
+        "Jila_PlayTrack",
         &_SDL_PlayTrack
     );
 
     state -> set_function(
-        "SDL_StopTrack",
+        "Jila_StopTrack",
         &_SDL_StopTrack
     );
 
     state -> set_function(
-        "SDL_PauseTrack",
+        "Jila_PauseTrack",
         &_SDL_PauseTrack
     );
 
     state -> set_function(
-        "SDL_ResumeTrack",
+        "Jila_ResumeTrack",
         &_SDL_ResumeTrack
     );
 
     // TODO: implement track/audio hooks
 
     state -> set_function(
-        "SDL_SetTrackPosition",
+        "Jila_SetTrackPosition",
         &_SDL_SetTrackPosition
     );
 
     state -> set_function(
-        "SDL_SetMixerVolume",
+        "Jila_SetMixerVolume",
         &_SDL_SetMixerVolume
     );
 
     state -> set_function(
-        "SDL_GetAudioMeta",
+        "Jila_GetAudioMeta",
         &_SDL_GetAudioMeta
     );
 
     state -> set_function(
-        "SDL_GetTrackPosition",
+        "Jila_GetTrackPosition",
         &_SDL_GetTrackPosistion
     );
 }

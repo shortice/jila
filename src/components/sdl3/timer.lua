@@ -1,6 +1,6 @@
 ---@meta timer
 
----@class SDL_DateTime
+---@class Jila_DateTime
 ---@field second integer
 ---@field minute integer
 ---@field hour integer
@@ -8,32 +8,32 @@
 ---@field day_of_week integer
 ---@field month integer
 ---@field year integer
-SDL_DateTime = {}
+Jila_DateTime = {}
 
 ---@param time integer
 ---@param localTime boolean
 ---
----@return SDL_DateTime SDL_DateTime year is 0 if failing.
+---@return Jila_DateTime SDL_DateTime year is 0 if failing.
 ---
 --- 
---- @see SDL_GetError for read error.
-function SDL_TimeToDateTime(time, localTime) end
+--- @see Jila_GetError for read error.
+function Jila_TimeToDateTime(time, localTime) end
 
----@param dateTime SDL_DateTime
+---@param dateTime Jila_DateTime
 ---
 ---@return integer integer or 0 when error.
 ---
---- @see SDL_GetError for read error.
-function SDL_DateTimeToTime(dateTime) end
+--- @see Jila_GetError for read error.
+function Jila_DateTimeToTime(dateTime) end
 
 ---@return integer integer or 0 when error.
 ---
---- @see SDL_GetError for read error.
-function SDL_GetCurrentTime() end
+--- @see Jila_GetError for read error.
+function Jila_GetCurrentTime() end
 
 
 ---@param localTime boolean
----@return SDL_DateTime SDL_DateTime year is 0 if failing.
+---@return Jila_DateTime SDL_DateTime year is 0 if failing.
 ---
---- @see SDL_GetError for read error.
-function SDL_GetCurrentDateTime(localTime) end
+--- @see Jila_GetError for read error.
+function Jila_GetCurrentDateTime(localTime) end

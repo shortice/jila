@@ -1,21 +1,21 @@
 ---@meta c_kv
 
----@class KvDB
+---@class Jila_KvDB
 ---
-KvDB = {}
+Jila_KvDB = {}
 
 ---@param path string
 ---
 ---Create (or load) sqlite3 database.
----When you deleting the KvDB object, connection automatically closes.
+---When you deleting the Jila_KvDB object, connection automatically closes.
 ---
----@return KvDB? KvDB or nil when error
+---@return Jila_KvDB? Jila_KvDB or nil when error
 ---
----@see SDL_GetError for read error.
+--- @see Jila_GetError for read error.
 ---@nodiscard
-function Kv_Connect(path) end
+function Jila_Kv_Connect(path) end
 
----@param db KvDB
+---@param db Jila_KvDB
 ---@param key string
 ---@param value string
 ---
@@ -25,10 +25,10 @@ function Kv_Connect(path) end
 ---
 ---@return boolean boolean false when error.
 ---
----@see SDL_GetError for read error.
-function Kv_Set(db, key, value) end
+--- @see Jila_GetError for read error.
+function Jila_Kv_Set(db, key, value) end
 
----@param db KvDB
+---@param db Jila_KvDB
 ---@param key string
 ---
 ---Get value from specific key.
@@ -37,22 +37,22 @@ function Kv_Set(db, key, value) end
 ---
 ---@return string string or emptry.
 ---
----@see SDL_GetError for read error.
-function Kv_Get(db, key) end
+--- @see Jila_GetError for read error.
+function Jila_Kv_Get(db, key) end
 
----@param db KvDB
+---@param db Jila_KvDB
 ---@param key string
 ---
 ---Delete key.
 ---
 ---This is safe function and not can SQL-injected.
 ---
-function Kv_Delete(db, key) end
+function Jila_Kv_Delete(db, key) end
 
----@param db KvDB
+---@param db Jila_KvDB
 ---@param key string
 ---
 ---This is safe function and not can SQL-injected.
 ---
 ---@return boolean
-function Kv_IsExist(db, key) end
+function Jila_Kv_IsExist(db, key) end

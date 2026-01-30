@@ -238,7 +238,7 @@ bool _ImGui_ImageButton_V1(
 
 void bindImWidgets(sol::state* state) {
     state -> set_function(
-        "Button",
+        "ImButton",
         sol::overload(
             &_ImGui_Button_V1,
             &_ImGui_Button_V2
@@ -246,22 +246,22 @@ void bindImWidgets(sol::state* state) {
     );
 
     state -> set_function(
-        "Text",
+        "ImText",
         &_ImGui_Text
     );
 
     state -> set_function(
-        "TextWrapped",
+        "ImTextWrapped",
         &_ImGui_TextWrapped
     );
 
     state -> set_function(
-        "SelectableText",
+        "ImSelectableText",
         &_ImGui_SelectableText
     );
 
     state -> set_function(
-        "BeginCombo",
+        "ImBeginCombo",
         sol::overload(
             &_ImGui_BeginCombo_V1,
             &_ImGui_BeginCombo_V2
@@ -269,7 +269,7 @@ void bindImWidgets(sol::state* state) {
     );
 
     state -> set_function(
-        "Selectable",
+        "ImSelectable",
         sol::overload(
             &_ImGui_Selectable_V1,
             &_ImGui_Selectable_V2
@@ -277,27 +277,27 @@ void bindImWidgets(sol::state* state) {
     );
 
     state -> set_function(
-        "EndCombo",
+        "ImEndCombo",
         &ImGui::EndCombo
     );
 
     state -> set_function(
-        "BeginMenuBar",
+        "ImBeginMenuBar",
         &ImGui::BeginMenuBar
     );
 
     state -> set_function(
-        "BeginMainMenuBar",
+        "ImBeginMainMenuBar",
         &ImGui::BeginMainMenuBar
     );
 
     state -> set_function(
-        "BeginMenu",
+        "ImBeginMenu",
         &_ImGui_BeginMenu
     );
 
     state -> set_function(
-        "MenuItem",
+        "ImMenuItem",
         sol::overload(
             &_ImGui_MenuItem_V1,
             &_ImGui_MenuItem_V2,
@@ -306,52 +306,52 @@ void bindImWidgets(sol::state* state) {
     );
 
     state -> set_function(
-        "EndMenu",
+        "ImEndMenu",
         &ImGui::EndMenu
     );
 
     state -> set_function(
-        "EndMenuBar",
+        "ImEndMenuBar",
         &ImGui::EndMenuBar
     );
 
     state -> set_function(
-        "EndMainMenuBar",
+        "ImEndMainMenuBar",
         &ImGui::EndMainMenuBar
     );
 
     state -> set_function(
-        "BeginTabBar",
+        "ImBeginTabBar",
         &_ImGui_BeginTabBar
     );
 
     state -> set_function(
-        "BeginTabItem",
+        "ImBeginTabItem",
         &_ImGui_BeginTabItem
     );
 
     state -> set_function(
-        "EndTabItem",
+        "ImEndTabItem",
         &ImGui::EndTabItem
     );
 
     state -> set_function(
-        "EndTabBar",
+        "ImEndTabBar",
         &ImGui::EndTabBar
     );
 
     state -> set_function(
-        "Checkbox",
+        "ImCheckbox",
         &_ImGui_CheckBox
     );
 
     state -> set_function(
-        "OpenPopup",
+        "ImOpenPopup",
         &_ImGui_OpenPopup
     );
 
     state -> set_function(
-        "BeginModal",
+        "ImBeginModal",
         sol::overload(
             &_ImGui_BeginModal_V1,
             &_ImGui_BeginModal_V2
@@ -359,52 +359,52 @@ void bindImWidgets(sol::state* state) {
     );
 
     state -> set_function(
-        "EndModal",
+        "ImEndModal",
         &ImGui::EndPopup
     );
 
     state->set_function(
-        "BeginTable",
+        "ImBeginTable",
         &_ImGui_BeginTable
     );
 
     state->set_function(
-        "EndTable",
+        "ImEndTable",
         &_ImGui_EndTable
     );
 
     state->set_function(
-        "TableNextRow",
+        "ImTableNextRow",
         &_ImGui_TableNextRow
     );
 
     state->set_function(
-        "TableNextColumn",
+        "ImTableNextColumn",
         &_ImGui_TableNextColumn
     );
 
     state->set_function(
-        "TableSetupColumn",
+        "ImTableSetupColumn",
         &_ImGui_TableSetupColumn
     );
 
     state->set_function(
-        "TableHeadersRow",
+        "ImTableHeadersRow",
         &_ImGui_TableHeadersRow
     );
 
     state->set_function(
-        "TreeNode",
+        "ImTreeNode",
         &_ImGui_TreeNode_V1
     );
 
     state->set_function(
-        "TreePop",
+        "ImTreePop",
         &ImGui::TreePop
     );
 
     state->set_function(
-        "CollapsingHeader",
+        "ImCollapsingHeader",
         sol::overload(
             &_ImGui_CollapsingHeader_V1,
             &_ImGui_CollapsingHeader_V2,
@@ -413,7 +413,7 @@ void bindImWidgets(sol::state* state) {
     );
 
     state->set_function(
-        "ProgressBar",
+        "ImProgressBar",
         sol::overload(
             &_ImGui_ProgressBar_V2,
             &_ImGui_ProgressBar
@@ -421,27 +421,27 @@ void bindImWidgets(sol::state* state) {
     );
 
     state->set_function(
-        "Bullet",
+        "ImBullet",
         &_ImGui_Bullet
     );
 
     state->set_function(
-        "BeginListBox",
+        "ImBeginListBox",
         &_ImGui_BeginListBox
     );
 
     state->set_function(
-        "EndListBox",
+        "ImEndListBox",
         &_ImGui_EndListBox
     );
 
     state -> set_function(
-        "Image",
+        "ImImage",
         &_ImGui_Image
     );
 
     state -> set_function(
-        "ImageButton",
+        "ImImageButton",
         sol::overload(
             &_ImGui_ImageButton_V1
         )

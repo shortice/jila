@@ -201,27 +201,27 @@ bool _SDL_MicroSaveWAV(Micro micro, std::string fileName) {
 
 void bindSdlMicro(sol::state* state) {
     state->set_function(
-        "SDL_CreateMicro",
+        "Jila_CreateMicro",
         &_SDL_CreateMicro
     );
 
     state->set_function(
-        "SDL_MicroPause",
+        "Jila_MicroPause",
         &_SDL_MicroPause
     );
 
     state->set_function(
-        "SDL_MicroResume",
+        "Jila_MicroResume",
         &_SDL_MicroResume
     );
 
     state->set_function(
-        "SDL_MicroPaused",
+        "Jila_MicroPaused",
         &_SDL_MicroPaused
     );
 
     state->set_function(
-        "SDL_MicroSaveWAV",
+        "Jila_MicroSaveWAV",
         &_SDL_MicroSaveWAV
     );
 }

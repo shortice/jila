@@ -64,7 +64,7 @@ bool _ImGui_BeginChild_V4(
 
 void bindImWindow(sol::state* state) {
     state -> set_function(
-        "Begin",
+        "ImBegin",
         sol::overload(
             &_ImGui_Begin_V1,
             &_ImGui_Begin_V2,
@@ -74,12 +74,12 @@ void bindImWindow(sol::state* state) {
     );
 
     state -> set_function(
-        "End",
+        "ImEnd",
         &ImGui::End
     );
 
     state -> set_function(
-        "BeginChild",
+        "ImBeginChild",
         sol::overload(
             &_ImGui_BeginChild_V1,
             &_ImGui_BeginChild_V2,
@@ -89,7 +89,7 @@ void bindImWindow(sol::state* state) {
     );
 
     state -> set_function(
-        "EndChild", &ImGui::EndChild
+        "ImEndChild", &ImGui::EndChild
     );
 }
 

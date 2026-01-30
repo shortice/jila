@@ -3,9 +3,9 @@
 ---Get text from the clipboard.
 ---
 ---@return string
-function GetClipboardText() end
+function ImGetClipboardText() end
 
 ---Get current selected text.
 ---
 ---@return string
-function GetSelectedText() end
+function ImGetSelectedText() end

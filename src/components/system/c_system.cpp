@@ -7,7 +7,7 @@ namespace Jila {
 namespace SystemComponent {
 
 bool Init(sol::state* state) {
-    (*state)["platform"] = std::string(SDL_GetPlatform());
+    (*state)["jila_platform"] = std::string(SDL_GetPlatform());
     bindSysAndroid(state);
 
     return true;

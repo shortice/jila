@@ -13,7 +13,7 @@ function M.End()
 end
 
 function M.BeginMainLoop()
-    Scope.WindowSize = SDL_GetWindowSize()
+    Scope.WindowSize = Jila_GetWindowSize()
     Scope.ParamsCount = 0
 
     ---@type table<number, [CharProperty, CharProperty]>
@@ -23,13 +23,13 @@ end
 
 ---@param number number
 function RenderOneParam(number)
-    TableNextColumn()
-    InputText("##param-" .. number .. "key", Scope.Params[number][1])
-    TableNextColumn()
-    InputText("##param-" .. number .. "value", Scope.Params[number][2])
-    TableNextColumn()
+    ImTableNextColumn()
+    ImInputText("##param-" .. number .. "key", Scope.Params[number][1])
+    ImTableNextColumn()
+    ImInputText("##param-" .. number .. "value", Scope.Params[number][2])
+    ImTableNextColumn()
 
-    if Button(ICON_FA_X .. "##param-" .. number) then
+    if ImButton(ICON_FA_X .. "##param-" .. number) then
         table.remove(Scope.Params, number)
         Scope.ParamsCount = Scope.ParamsCount - 1
     end
@@ -57,24 +57,24 @@ end
 
 ---@param time number
 function M.Render(time)
-    SetNextWindowPos(Create_ImVec2())
-    SetNextWindowSize(Scope.WindowSize)
-    Begin("HTTP API")
+    ImSetNextWindowPos(Create_ImVec2())
+    ImSetNextWindowSize(Scope.WindowSize)
+    ImBegin("HTTP API")
 
-    Text("Params count: " .. tostring(Scope.ParamsCount))
+    ImText("Params count: " .. tostring(Scope.ParamsCount))
 
-    if BeginTable("Params", 3) then
-        TableSetupColumn("Key")
-        TableSetupColumn("Value")
-        TableSetupColumn("Delete?")
-        TableHeadersRow()
+    if ImBeginTable("Params", 3) then
+        ImTableSetupColumn("Key")
+        ImTableSetupColumn("Value")
+        ImTableSetupColumn("Delete?")
+        ImTableHeadersRow()
 
         RenderParams()
 
-        EndTable()
+        ImEndTable()
     end
 
-    if Button("ADD PARAM", Create_ImVec2(Scope.WindowSize.x - 10, 25)) then
+    if ImButton("ADD PARAM", Create_ImVec2(Scope.WindowSize.x - 10, 25)) then
         Scope.ParamsCount = Scope.ParamsCount + 1
 
         Scope.Params[Scope.ParamsCount] = {
@@ -83,8 +83,8 @@ function M.Render(time)
         }
     end
 
-    if Button("POST", Create_ImVec2(Scope.WindowSize.x - 10, 25)) then
-        local res = Post(
+    if ImButton("POST", Create_ImVec2(Scope.WindowSize.x - 10, 25)) then
+        local res = Jila_Post(
             "http://www.httpbin.org/post",
             json.encode(GetParamsAsTable())
         )
@@ -92,15 +92,15 @@ function M.Render(time)
         Scope.Response = res.text .. "\nJSON: " .. json.encode(res_json["data"])
     end
 
-    Separator("Response: ")
-    TextWrapped(Scope.Response)
+    ImSeparator("Response: ")
+    ImTextWrapped(Scope.Response)
 
-    End()
+    ImEnd()
 end
 
----@param event SDL_Event
+---@param event Jila_Event
 function M.Event(event)
-    if event.type == SDL_EventType.SDL_EVENT_WINDOW_PIXEL_SIZE_CHANGED then
+    if event.type == Jila_EventType.Jila_EVENT_WINDOW_PIXEL_SIZE_CHANGED then
         Scope.WindowSize.x = event.window.data1
         Scope.WindowSize.y = event.window.data2
     end

@@ -92,24 +92,24 @@ void bindImProps(sol::state* state) {
     // Global behavior of the widgets.
 
     state -> set_function(
-        "SetNextItemAllowOverlap",
+        "ImSetNextItemAllowOverlap",
         &_ImGui_SetNextItemAllowOverlap
     );
 
     // Styles
 
     state -> set_function(
-        "PushStyleColor",
+        "ImPushStyleColor",
         &_ImGui_PushStyleColor
     );
 
     state -> set_function(
-        "PopStyleColor",
+        "ImPopStyleColor",
         &_ImGui_PopStyleColor
     );
 
     state->set_function(
-        "PushStyleVar",
+        "ImPushStyleVar",
         sol::overload(
             &_ImGui_PushStyleVar_Float,
             &_ImGui_PushStyleVar_Vec2
@@ -117,51 +117,51 @@ void bindImProps(sol::state* state) {
     );
 
     state->set_function(
-        "PopStyleVar",
+        "ImPopStyleVar",
         &_ImGui_PopStyleVar
     );
 
     // Общие свойства
 
     state -> set_function(
-        "SetScrollX",
+        "ImSetScrollX",
         &_ImGui_SetScrollX
     );
 
     state -> set_function(
-        "SetScrollY",
+        "ImSetScrollY",
         &_ImGui_SetScrollY
     );
 
     state -> set_function(
-        "PushItemWidth",
+        "ImPushItemWidth",
         &ImGui::PushItemWidth
     );
 
     state -> set_function(
-        "PopItemWidth",
+        "ImPopItemWidth",
         &ImGui::PopItemWidth
     );
 
     state -> set_function(
-        "SetCursorPos",
+        "ImSetCursorPos",
         &ImGui::SetCursorPos
     );
 
     state->set_function(
-        "GetMousePos",
+        "ImGetMousePos",
         &ImGui::GetMousePos
     );
 
     state->set_function(
-        "GetContentRegionAvail",
+        "ImGetContentRegionAvail",
         &_ImGui_GetContentRegionAvail
     );
 
     // Properties of Window (and ChildWindow)
 
     state -> set_function(
-        "SetNextWindowSize",
+        "ImSetNextWindowSize",
         sol::overload(
             &_ImGui_SetNextWindowSize_V1,
             &_ImGui_SetNextWindowSize_V2
@@ -169,7 +169,7 @@ void bindImProps(sol::state* state) {
     );
 
     state -> set_function(
-        "SetNextWindowPos",
+        "ImSetNextWindowPos",
         sol::overload(
             &_ImGui_SetNextWindowPos_V1,
             &_ImGui_SetNextWindowPos_V2
@@ -177,7 +177,7 @@ void bindImProps(sol::state* state) {
     );
 
     state->set_function(
-        "SetWindowPos",
+        "ImSetWindowPos",
         sol::overload(
             &_ImGui_SetWindowPos_V1,
             &_ImGui_SetWindowPos_V2
@@ -185,7 +185,7 @@ void bindImProps(sol::state* state) {
     );
 
     state->set_function(
-        "SetWindowSize",
+        "ImSetWindowSize",
         sol::overload(
             &_ImGui_SetWindowSize_V1,
             &_ImGui_SetWindowSize_V2
@@ -193,7 +193,7 @@ void bindImProps(sol::state* state) {
     );
 
     state->set_function(
-        "SetWindowCollapsed",
+        "ImSetWindowCollapsed",
         sol::overload(
             &_ImGui_SetWindowCollapsed_V1,
             &_ImGui_SetWindowCollapsed_V2
@@ -201,12 +201,12 @@ void bindImProps(sol::state* state) {
     );
 
     state->set_function(
-        "GetWindowSize",
+        "ImGetWindowSize",
         &ImGui::GetWindowSize
     );
 
     state->set_function(
-        "GetWindowPos",
+        "ImGetWindowPos",
         &ImGui::GetWindowPos
     );
 }

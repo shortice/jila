@@ -53,7 +53,7 @@ SDL_DateTime _SDL_GetCurrentDateTime(bool localTime) {
 
 void bindSdlTimer(sol::state* state) {
     state->new_usertype<SDL_DateTime>(
-        "SDL_DateTime",
+        "Jila_DateTime",
         "second", &SDL_DateTime::second,
         "minute", &SDL_DateTime::minute,
         "hour", &SDL_DateTime::hour,
@@ -64,22 +64,22 @@ void bindSdlTimer(sol::state* state) {
     );
 
     state->set_function(
-        "SDL_TimeToDateTime",
+        "Jila_TimeToDateTime",
         &_SDL_TimeToDateTime
     );
 
     state->set_function(
-        "SDL_DateTimeToTime",
+        "Jila_DateTimeToTime",
         &_SDL_DateTimeToTime
     );
 
     state->set_function(
-        "SDL_GetCurrentTime",
+        "Jila_GetCurrentTime",
         &_SDL_GetCurrentTime
     );
 
     state->set_function(
-        "SDL_GetCurrentDateTime",
+        "Jila_GetCurrentDateTime",
         &_SDL_GetCurrentDateTime
     );
 }

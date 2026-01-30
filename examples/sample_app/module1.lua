@@ -13,7 +13,7 @@ function M.End()
 end
 
 function M.BeginMainLoop()
-    Scope.WindowSize = SDL_GetWindowSize()
+    Scope.WindowSize = Jila_GetWindowSize()
 
     Scope.Prop = Create_Char_Property()
 
@@ -26,24 +26,24 @@ function M.BeginMainLoop()
 end
 
 function M.Render(time)
-    SetNextWindowPos(0, 0)
-    SetNextWindowSize(Scope.WindowSize)
-    Begin("ImGui Demo", Scope.Opened)
+    ImSetNextWindowPos(0, 0)
+    ImSetNextWindowSize(Scope.WindowSize)
+    ImBegin("ImGui Demo", Scope.Opened)
 
-    Separator("Basic widgets")
+    ImSeparator("Basic widgets")
 
     -- TreeNode и CollapsingHeader
-    if TreeNode("Tree and collapsible") then
-        Text("Test")
-        if CollapsingHeader("Collapsing Header") then
-            Text("Test")
+    if ImTreeNode("Tree and collapsible") then
+        ImText("Test")
+        if ImCollapsingHeader("Collapsing Header") then
+            ImText("Test")
         end
 
-        TreePop()
+        ImTreePop()
     end
 
     -- InputInt
-    if InputInt("Integer (InputInt)", Scope.IntValue, 1, 10) then
+    if ImInputInt("Integer (InputInt)", Scope.IntValue, 1, 10) then
         if Scope.IntValue.value > 1000 then
             Scope.IntValue.value = 1000
         end
@@ -56,7 +56,7 @@ function M.Render(time)
     end
 
     -- FloatProperty
-    if SliderFloat("Slider (SliderFloat)", Scope.FloatValue, 0.0, 100, "%.2f") then
+    if ImSliderFloat("Slider (SliderFloat)", Scope.FloatValue, 0.0, 100, "%.2f") then
         if Scope.FloatValue.value > 100 then
             Scope.FloatValue.value = 100
         end
@@ -68,7 +68,7 @@ function M.Render(time)
         print("FloatValue changed to: " .. tostring(Scope.FloatValue.value))
     end
 
-    if DragFloat("Drag Float", Scope.FloatValue, 0.01, 0.0, 100) then
+    if ImDragFloat("Drag Float", Scope.FloatValue, 0.01, 0.0, 100) then
         if Scope.FloatValue.value > 100 then
             Scope.FloatValue.value = 100
         end
@@ -81,64 +81,64 @@ function M.Render(time)
     end
 
     -- Color pickers
-    if ColorEdit3("3-color (ColorEdit3)", Scope.ColorValue) then
+    if ImColorEdit3("3-color (ColorEdit3)", Scope.ColorValue) then
         print("Color changed!")
     end
 
-    if ColorEdit4("4-color (ColorEdit4)", Scope.ColorValue, ImGuiColorEditFlags_NoInputs) then
+    if ImColorEdit4("4-color (ColorEdit4)", Scope.ColorValue, ImGuiColorEditFlags_NoInputs) then
         print("4-color changed!")
     end
 
-    Separator("Progress bar and styles")
+    ImSeparator("Progress bar and styles")
 
     -- Progress bar
-    ProgressBar(Scope.ProgressValue, Create_ImVec2(200, 30))
-    SameLine()
-    Text("Progress: " .. tostring(Scope.ProgressValue.value))
+    ImProgressBar(Scope.ProgressValue, Create_ImVec2(200, 30))
+    ImSameLine()
+    ImText("Progress: " .. tostring(Scope.ProgressValue.value))
 
-    Bullet()
-    Text("Bullet point")
+    ImBullet()
+    ImText("Bullet point")
 
-    SameLine()
+    ImSameLine()
 
-    local windowSize = GetWindowSize()
-    local windowPos = GetWindowPos()
-    Text("Widnow size: " .. tostring(windowSize.x) .. ", " .. tostring(windowSize.y))
-    Text("Window pos: " .. tostring(windowPos.x) .. ", " .. tostring(windowPos.y))
+    local windowSize = ImGetWindowSize()
+    local windowPos = ImGetWindowPos()
+    ImText("Widnow size: " .. tostring(windowSize.x) .. ", " .. tostring(windowSize.y))
+    ImText("Window pos: " .. tostring(windowPos.x) .. ", " .. tostring(windowPos.y))
 
-    local availSpace = GetContentRegionAvail()
-    Text("Available space: " .. tostring(availSpace.x) .. ", " .. tostring(availSpace.y))
+    local availSpace = ImGetContentRegionAvail()
+    ImText("Available space: " .. tostring(availSpace.x) .. ", " .. tostring(availSpace.y))
 
-    Separator("Input")
-    if IsKeyPressed(ImGuiKey_Space) then
-        Text("Typing space!")
+    ImSeparator("Input")
+    if ImIsKeyPressed(ImGuiKey_Space) then
+        ImText("Typing space!")
     end
 
-    if BeginListBox("Test") then
+    if ImBeginListBox("Test") then
         for i = 1, 10, 1 do
-            if Selectable("Test##" .. tostring(i), Scope.BoolValue) then
+            if ImSelectable("Test##" .. tostring(i), Scope.BoolValue) then
                 print("Hello", i)
             end
         end
 
-        ScrollWhenDragging()
-        EndListBox()
+        ImScrollWhenDragging()
+        ImEndListBox()
     end
 
-    if IsMouseDown(ImGuiMouseButton_Left) then
-        local mousePos = GetMousePos()
-        Text("Left mouse click pos: " .. tostring(mousePos.x) .. ", " .. tostring(mousePos.y))
+    if ImIsMouseDown(ImGuiMouseButton_Left) then
+        local mousePos = ImGetMousePos()
+        ImText("Left mouse click pos: " .. tostring(mousePos.x) .. ", " .. tostring(mousePos.y))
     end
 
     Scope.ProgressValue.value = (Scope.ProgressValue.value + 0.001) % 1.0
 
-    ScrollWhenDragging()
-    End()
+    ImScrollWhenDragging()
+    ImEnd()
 end
 
----@param event SDL_Event
+---@param event Jila_Event
 function M.Event(event)
-    if event.type == SDL_EventType.SDL_EVENT_WINDOW_PIXEL_SIZE_CHANGED then
+    if event.type == Jila_EventType.Jila_EVENT_WINDOW_PIXEL_SIZE_CHANGED then
         Scope.WindowSize.x = event.window.data1
         Scope.WindowSize.y = event.window.data2
     end

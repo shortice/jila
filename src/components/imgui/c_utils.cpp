@@ -50,12 +50,12 @@ namespace Jila {
 
 void bindImUtils(sol::state* state) {
     state -> set_function(
-        "ScrollWhenDragging", 
+        "ImScrollWhenDragging", 
         &ScrollWhenDragging
     );
 
     state -> set_function(
-        "SameLine",
+        "ImSameLine",
         sol::overload(
             &_ImGui_SameLine_V1,
             &_ImGui_SameLine_V2
@@ -63,13 +63,13 @@ void bindImUtils(sol::state* state) {
     );
 
     state -> set_function(
-        "CalcTextSize",
+        "ImCalcTextSize",
         &_ImGui_CalcTextSize_V1
     );
 
 
     state -> set_function(
-        "Separator",
+        "ImSeparator",
         sol::overload(
             &ImGui::Separator,
             &_ImGui_Separator_V2
@@ -77,12 +77,12 @@ void bindImUtils(sol::state* state) {
     );
 
     state->set_function(
-        "ShowDemoWindow",
+        "ImShowDemoWindow",
         &_ImGui_ShowDemoWindow
     );
 
     state->set_function(
-        "ShowMetricsWindow",
+        "ImShowMetricsWindow",
         &_ImGui_ShowMetricsWindow
     );
 }

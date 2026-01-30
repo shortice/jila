@@ -16,7 +16,7 @@ bool Init(sol::state* state) {
     );
 
     state->new_usertype<Logger>(
-        "Logger", 
+        "Jila_Logger", 
         "name", sol::property(&Logger::name),
         "Warn", &Logger::warn,
         "Error", &Logger::error,
@@ -25,17 +25,17 @@ bool Init(sol::state* state) {
     );
 
     state->set_function(
-        "GetModule",
+        "Jila_GetModule",
         &LuaModule::GetModuleLuaAPI
     );
 
     state->set_function(
-        "SDL_GetError",
+        "Jila_GetError",
         &SDL_GetError
     );
 
     state->set_function(
-        "SDL_Delay",
+        "Jila_Sleep",
         [](Uint64 seconds) {
             SDL_Delay(seconds * 1000);
         }

@@ -1,13 +1,13 @@
 --- @meta music
 
 --- Track metdata.
---- @class AudioMeta
+--- @class Jila_TrackMeta
 --- @field name string Track name [readonly]
 --- @field album string Track album [readonly]
 --- @field artist string Track author [readonly]
 --- @field copyright string Copyright [readonly]
 --- @field lenght integer Track lenght [readonly]
-AudioMeta = {}
+Jila_TrackMeta = {}
 
 --- @class _Mixer
 _Mixer = {}
@@ -23,15 +23,15 @@ _Track = {}
 --- @return _Mixer?
 --- @overload fun(channels: number, freq: number): _Mixer?
 ---
---- @see SDL_GetError for read error.
+--- @see Jila_GetError for read error.
 ---
 --- @nodiscard
-function SDL_InitMixer() end
+function Jila_InitMixer() end
 
 --- Deinit audio system.
 ---
 --- @param mixer _Mixer
-function SDL_QuitMixer(mixer) end
+function Jila_QuitMixer(mixer) end
 
 --- Loading audio.
 ---
@@ -39,10 +39,10 @@ function SDL_QuitMixer(mixer) end
 --- @param path string Path of the music file.
 --- @return _Audio? Audio or nil when error.
 ---
---- @see SDL_GetError for read error.
+--- @see Jila_GetError for read error.
 ---
 --- @nodiscard
-function SDL_CreateAudio(mixer, path) end
+function Jila_CreateAudio(mixer, path) end
 
 --- Create audio track.
 ---
@@ -50,70 +50,70 @@ function SDL_CreateAudio(mixer, path) end
 ---
 --- @return _Track? Track or nil when error.
 ---
---- @see SDL_GetError for read error.
+--- @see Jila_GetError for read error.
 --- 
 --- @nodiscard
-function SDL_CreateTrack(mixer) end
+function Jila_CreateTrack(mixer) end
 
 --- @param track _Track
 --- @param audio _Audio
 --- 
 --- @return boolean boolean false when error.
 --- 
---- @see SDL_GetError for read error.
-function SDL_SetTrackAudio(track, audio) end
+--- @see Jila_GetError for read error.
+function Jila_SetTrackAudio(track, audio) end
 
 --- @param track _Track
 ---
 --- @return boolean boolean false when error.
 --- 
---- @see SDL_GetError for read error.
-function SDL_PlayTrack(track) end
+--- @see Jila_GetError for read error.
+function Jila_PlayTrack(track) end
 
 --- @param track _Track
 ---
 --- @return boolean boolean false when error.
 --- 
---- @see SDL_GetError for read error.
-function SDL_StopTrack(track) end
+--- @see Jila_GetError for read error.
+function Jila_StopTrack(track) end
 
 --- @param track _Track
 ---
 --- @return boolean boolean false when error.
 --- 
---- @see SDL_GetError for read error.
-function SDL_PauseTrack(track) end
+--- @see Jila_GetError for read error.
+function Jila_PauseTrack(track) end
 
 --- @param track _Track
 ---
 --- @return boolean boolean false when error.
 --- 
---- @see SDL_GetError for read error.
-function SDL_ResumeTrack(track) end
+--- @see Jila_GetError for read error.
+function Jila_ResumeTrack(track) end
 
 --- @param track _Track
 --- @param newPos number New track position
 --- 
 --- @return boolean boolean false when error.
 --- 
---- @see SDL_GetError for read error.
-function SDL_SetTrackPosition(track, newPos) end
+--- @see Jila_GetError for read error.
+function Jila_SetTrackPosition(track, newPos) end
 
 --- @param mixer _Mixer
 --- @param volume number Volume from 0 to 255.
 --- @return boolean boolean false when error.
 --- 
---- @see SDL_GetError for read error.
-function SDL_SetMixerVolume(mixer, volume) end
+--- @see Jila_GetError for read error.
+function Jila_SetMixerVolume(mixer, volume) end
 
 --- @param track _Track
 --- @return boolean
-function SDL_TrackIsPlaying(track) end
+function Jila_TrackIsPlaying(track) end
 
 --- @param audio _Audio
---- @return AudioMeta MusicMeta
-function SDL_GetAudioMeta(audio) end
+--- @return Jila_TrackMeta MusicMeta
+function Jila_GetAudioMeta(audio) end
 
 --- @param track _Track
 --- @return number number
-function SDL_GetTrackPosistion(track) end
+function Jila_GetTrackPosistion(track) end

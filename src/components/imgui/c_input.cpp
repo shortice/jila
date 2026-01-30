@@ -256,7 +256,7 @@ bool _ImGui_ColorEdit4_V2(std::string_view label, ImVec4& color, ImGuiColorEditF
 
 void bindImInput(sol::state* state) {
     state -> set_function(
-        "SliderInt",
+        "ImSliderInt",
         sol::overload(
             &_ImGui_SliderInt_V1,
             &_ImGui_SliderInt_V2,
@@ -265,7 +265,7 @@ void bindImInput(sol::state* state) {
     );
 
     state -> set_function(
-        "InputText",
+        "ImInputText",
         sol::overload(
             &_ImGui_InputText_V1,
             &_ImGui_InputText_V2
@@ -273,7 +273,7 @@ void bindImInput(sol::state* state) {
     );
 
     state -> set_function(
-        "InputTextMultiline",
+        "ImInputTextMultiline",
         sol::overload(
             &_ImGui_InputTextMultiline_V1,
             &_ImGui_InputTextMultiline_V2,
@@ -282,7 +282,7 @@ void bindImInput(sol::state* state) {
     );
 
     state->set_function(
-        "InputInt",
+        "ImInputInt",
         sol::overload(
             &_ImGui_InputInt_V1,
             &_ImGui_InputInt_V2,
@@ -291,7 +291,7 @@ void bindImInput(sol::state* state) {
     );
 
     state->set_function(
-        "SliderFloat",
+        "ImSliderFloat",
         sol::overload(
             &_ImGui_SliderFloat_V1,
             &_ImGui_SliderFloat_V2,
@@ -300,7 +300,7 @@ void bindImInput(sol::state* state) {
     );
 
     state->set_function(
-        "DragFloat",
+        "ImDragFloat",
         sol::overload(
             &_ImGui_DragFloat_V1,
             &_ImGui_DragFloat_V2,
@@ -309,7 +309,7 @@ void bindImInput(sol::state* state) {
     );
 
     state->set_function(
-        "ColorEdit3",
+        "ImColorEdit3",
         sol::overload(
             &_ImGui_ColorEdit3_V1,
             &_ImGui_ColorEdit3_V2
@@ -317,7 +317,7 @@ void bindImInput(sol::state* state) {
     );
 
     state->set_function(
-        "ColorEdit4",
+        "ImColorEdit4",
         sol::overload(
             &_ImGui_ColorEdit4_V1,
             &_ImGui_ColorEdit4_V2

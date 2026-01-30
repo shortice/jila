@@ -8,7 +8,7 @@
 ---
 ---@overload fun(label: string, Property: IntProperty, v_min: integer, v_max: integer, format: string): boolean
 ---@overload fun(label: string, Property: IntProperty, v_min: integer, v_max: integer, format: string, flags: integer): boolean
-function SliderInt(label, Property, v_min, v_max) end
+function ImSliderInt(label, Property, v_min, v_max) end
 
 ---
 ---@param label string
@@ -17,7 +17,7 @@ function SliderInt(label, Property, v_min, v_max) end
 ---@return boolean
 ---
 ---@overload fun(label: string, Property: CharProperty, flags: integer): boolean
-function InputText(label, Property) end
+function ImInputText(label, Property) end
 
 ---
 ---@param label string
@@ -27,7 +27,7 @@ function InputText(label, Property) end
 ---
 ---@overload fun(label: string, Property: CharProperty, size: ImVec2): boolean
 ---@overload fun(label: string, Property: CharProperty, size: ImVec2, flags: integer): boolean
-function InputTextMultiline(label, Property) end
+function ImInputTextMultiline(label, Property) end
 
 ---@param label string
 ---@param Property IntProperty
@@ -36,7 +36,7 @@ function InputTextMultiline(label, Property) end
 ---
 ---@overload fun(label: string, Property: IntProperty, step: integer): boolean
 ---@overload fun(label: string, Property: IntProperty, step: integer, step_fast: integer): boolean
-function InputInt(label, Property) end
+function ImInputInt(label, Property) end
 
 ---@param label string
 ---@param Property FloatProperty
@@ -47,7 +47,7 @@ function InputInt(label, Property) end
 ---
 ---@overload fun(label: string, Property: FloatProperty, v_min: number, v_max: number, format: string): boolean
 ---@overload fun(label: string, Property: FloatProperty, v_min: number, v_max: number, format: string, flags: integer): boolean
-function SliderFloat(label, Property, v_min, v_max) end
+function ImSliderFloat(label, Property, v_min, v_max) end
 
 ---@param label string
 ---@param Property FloatProperty
@@ -56,7 +56,7 @@ function SliderFloat(label, Property, v_min, v_max) end
 ---
 ---@overload fun(label: string, Property: FloatProperty, speed: number): boolean
 ---@overload fun(label: string, Property: FloatProperty, speed: number, v_min: number, v_max: number): boolean
-function DragFloat(label, Property) end
+function ImDragFloat(label, Property) end
 
 ---@param label string
 ---@param color ImVec4
@@ -64,7 +64,7 @@ function DragFloat(label, Property) end
 ---@return boolean
 ---
 ---@overload fun(label: string, color: ImVec4, flags: integer): boolean
-function ColorEdit3(label, color) end
+function ImColorEdit3(label, color) end
 
 ---@param label string
 ---@param color ImVec4
@@ -72,4 +72,4 @@ function ColorEdit3(label, color) end
 ---@return boolean
 ---
 ---@overload fun(label: string, color: ImVec4, flags: integer): boolean
-function ColorEdit4(label, color) end
+function ImColorEdit4(label, color) end

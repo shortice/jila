@@ -49,14 +49,14 @@ void UpdateSelectedText(std::string_view currentText) {
 
 void bindImIO(sol::state* state) {
     state->set_function(
-        "GetClipboardText",
+        "ImGetClipboardText",
         []() {
             return (std::string_view)ImGui::GetClipboardText();
         }
     );
 
     state->set(
-        "GetSelectedText",
+        "ImGetSelectedText",
         []() {
         	return selectedText;
         }

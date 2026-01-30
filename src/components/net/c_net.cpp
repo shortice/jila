@@ -146,24 +146,24 @@ bool Init(sol::state* state) {
     ); // json module
     
     state->new_usertype<Response>(
-        "Response",
+        "Jila_Response",
         "status_code", sol::readonly(&Response::status_code),
         "text", sol::readonly(&Response::text),
         "raw_header", sol::readonly(&Response::raw_header)
     );
 
     state->set_function(
-        "Response_GetHeaderValue",
+        "Jila_Response_GetHeaderValue",
         &Response_GetHeaderValue
     );
 
     state->set_function(
-        "Get",
+        "Jila_Get",
         &Get
     );
 
     state->set_function(
-        "Post",
+        "Jila_Post",
         sol::overload(
             &Post_V1,
             &Post_V2

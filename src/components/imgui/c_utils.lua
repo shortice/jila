@@ -1,20 +1,20 @@
 ---@meta c_utils
 
 ---@overload fun(xOffset: integer)
-function SameLine() end
+function ImSameLine() end
 
 --- Please use this when calling Render function.
 ---
 ---
 --- @param text string
 --- @return ImVec2
-function CalcTextSize(text) end
+function ImCalcTextSize(text) end
 
 ---@overload fun(label: string)
-function Separator() end
+function ImSeparator() end
 
-function ShowDemoWindow() end
+function ImShowDemoWindow() end
 
-function ShowMetricsWindow() end
+function ImShowMetricsWindow() end
 
-function ScrollWhenDragging() end
+function ImScrollWhenDragging() end

@@ -149,7 +149,7 @@ std::string Fs_GetHomePath() {
 
 bool Init(sol::state* state) {
     state->new_usertype<FsEntry>(
-        "FsEntry",
+        "Jila_FsEntry",
         "path", &FsEntry::path,
         "name", sol::readonly(&FsEntry::name),
         "ext", sol::readonly(&FsEntry::ext),
@@ -164,19 +164,19 @@ bool Init(sol::state* state) {
     );
 
     state->new_usertype<FsState>(
-        "FsState",
+        "Jila_FsState",
         "currentEntries", sol::readonly(&FsState::currentEntries),
         "currentCwd", &FsState::currentCwd,
         "includeHidden", &FsState::includeHidden
     );
 
     state->set_function(
-        "Fs_GetFolders",
+        "Jila_Fs_GetFolders",
         &Fs_GetFolders
     );
 
     state->set_function(
-        "Fs_GetAllFiles",
+        "Jila_Fs_GetAllFiles",
         sol::overload(
             [](FsState& state, bool recursive) {
                 return Fs_GetAllFiles(state, recursive, {});
@@ -196,7 +196,7 @@ bool Init(sol::state* state) {
     );
 
     state->set_function(
-        "Fs_GetHomePath",
+        "Jila_Fs_GetHomePath",
         &Fs_GetHomePath
     );
 

@@ -30,11 +30,11 @@ ImVec2 _SDL_GetTextureSize(Texture texture) {
 
 void bindSdlImages(sol::state* state) {
     state -> set_function(
-        "SDL_CreateImageTexture", &_SDL_CreateImageTexture
+        "Jila_CreateImageTexture", &_SDL_CreateImageTexture
     );
 
     state -> set_function(
-        "SDL_GetTextureSize", &_SDL_GetTextureSize
+        "Jila_GetTextureSize", &_SDL_GetTextureSize
     );
 }
 

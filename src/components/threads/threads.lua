@@ -1,48 +1,48 @@
 ---@meta threads
 
---- @enum ThreadStatusCode
-StatusCode = {
+--- @enum Jila_ThreadStatusCode
+Jila_ThreadStatusCode = {
     COMPLETED = 2,
     ERROR = 3,
     RUNNING = 1,
     STARTING = 0
 }
 
---- @class ThreadMessage
+--- @class Jila_ThreadMessage
 --- @field threadName string
---- @field statusCode ThreadStatusCode
+--- @field statusCode Jila_ThreadStatusCode
 --- @field var number|string|nil
-ThreadMessage = {}
+Jila_ThreadMessage = {}
 
 --- Run the func on separate thread.
 --- 
 --- Careful! This function run on separate Lua VM. 
 --- On this VM you can use only functions/modules in 'See'.
 --- 
---- @see PushThreadMessage
---- @see SDL_Delay
---- @see Post
---- @see Get
---- @see Response_GetHeaderValue
+--- @see Jila_PushThreadMessage
+--- @see Jila_Sleep
+--- @see Jila_Post
+--- @see Jila_Get
+--- @see Jila_Response_GetHeaderValue
 --- @see json
 ---
 --- @param func fun(): any
 --- @param name string
-function Go(func, name) end
+function Jila_Go(func, name) end
 
 --- Extract event from separate thread.
 --- 
 --- SDL_UserEvent code: 1002.
---- @param event SDL_UserEvent
---- @return ThreadMessage
-function GetThreadMessage(event) end
+--- @param event Jila_UserEvent
+--- @return Jila_ThreadMessage
+function Jila_GetThreadMessage(event) end
 
 ---Push event to main thread.
 --- 
 ---@param threadName string
 ---@param message number|string|nil
-function PushThreadMessage(threadName, message) end
+function Jila_PushThreadMessage(threadName, message) end
 
 --- This function can call on main thread.
 --- @param time number
-function SDL_Delay(time) end
+function Jila_Sleep(time) end

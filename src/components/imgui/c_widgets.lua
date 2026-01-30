@@ -4,18 +4,18 @@
 ---@return boolean
 ---
 ---@overload fun(label: string, size: ImVec2): boolean
-function Button(label) end
+function ImButton(label) end
 
 ---@param text string
-function Text(text) end
+function ImText(text) end
 
 ---@param text string
-function TextWrapped(text) end
+function ImTextWrapped(text) end
 
 ---@param label string
 ---@param text CharProperty
 ---@param size ImVec2
-function SelectableText(label, text, size) end
+function ImSelectableText(label, text, size) end
 
 --- @param label string
 --- @param preview string
@@ -23,7 +23,7 @@ function SelectableText(label, text, size) end
 --- @return boolean
 ---
 --- @overload fun(label: string, preview: string, flags: integer): boolean
-function BeginCombo(label, preview) end
+function ImBeginCombo(label, preview) end
 
 --- @param label string
 --- @param opened BoolProperty
@@ -32,20 +32,20 @@ function BeginCombo(label, preview) end
 ---
 --- @overload fun(label: string, opened: BoolProperty, flags: integer): boolean
 --- @overload fun(label: string, opened: BoolProperty, flags: integer, size: ImVec2): boolean
-function Selectable(label, opened) end
+function ImSelectable(label, opened) end
 
-function EndCombo() end
-
----@return boolean
-function BeginMenuBar() end
+function ImEndCombo() end
 
 ---@return boolean
-function BeginMainMenuBar() end
+function ImBeginMenuBar() end
+
+---@return boolean
+function ImBeginMainMenuBar() end
 
 --- @param label string
 ---
 --- @return boolean
-function BeginMenu(label) end
+function ImBeginMenu(label) end
 
 ---@param label string
 ---
@@ -53,69 +53,69 @@ function BeginMenu(label) end
 ---
 ---@overload fun(label: string, selected: BoolProperty): boolean
 ---@overload fun(label: string, shortcut: string, selected: BoolProperty): boolean
-function MenuItem(label) end
+function ImMenuItem(label) end
 
-function EndMenu() end
+function ImEndMenu() end
 
-function EndMenuBar() end
+function ImEndMenuBar() end
 
-function EndMainMenuBar() end
-
----@param label string
----
----@return boolean
-function BeginTabBar(label) end
+function ImEndMainMenuBar() end
 
 ---@param label string
 ---
 ---@return boolean
-function BeginTabItem(label) end
+function ImBeginTabBar(label) end
 
-function EndTabItem() end
+---@param label string
+---
+---@return boolean
+function ImBeginTabItem(label) end
 
-function EndTabBar() end
+function ImEndTabItem() end
+
+function ImEndTabBar() end
 
 ---@param label string
 ---@param prop BoolProperty
 ---
 ---@return boolean
-function Checkbox(label, prop) end
+function ImCheckbox(label, prop) end
 
 ---@param label string
-function OpenPopup(label) end
+function ImOpenPopup(label) end
 
 ---@param label string
 ---
 ---@return boolean
 ---
 ---@overload fun(label: string, opened: BoolProperty): boolean
-function BeginModal(label) end
+function ImBeginModal(label) end
 
-function EndModal() end
+function ImEndModal() end
 
 ---@param str_id string
 ---@param column integer
 ---@return boolean
-function BeginTable(str_id, column) end
+function ImBeginTable(str_id, column) end
 
-function EndTable() end
+function ImEndTable() end
 
-function TableNextRow() end
+function ImTableNextRow() end
 
 ---@return boolean
-function TableNextColumn() end
+function ImTableNextColumn() end
 
 ---@param label string
-function TableSetupColumn(label) end
+function ImTableSetupColumn(label) end
 
-function TableHeadersRow() end
+function ImTableHeadersRow() end
 
 ---@param label string
 ---
 ---@return boolean
-function TreeNode(label, opened) end
+function ImTreeNode(label, opened) end
 
-function TreePop() end
+function ImTreePop() end
 
 ---@param label string
 ---
@@ -123,27 +123,27 @@ function TreePop() end
 ---
 ---@overload fun(label: string, opened: BoolProperty): boolean
 ---@overload fun(label: string, opened: BoolProperty, flags: integer): boolean
-function CollapsingHeader(label) end
+function ImCollapsingHeader(label) end
 
 ---@param fraction FloatProperty
 ---
 ---@overload fun(fraction: FloatProperty, size: ImVec2)
-function ProgressBar(fraction) end
+function ImProgressBar(fraction) end
 
-function Bullet() end
+function ImBullet() end
 
 ---@param label string
 ---
 ---@return boolean
-function BeginListBox(label) end
+function ImBeginListBox(label) end
 
-function EndListBox() end
+function ImEndListBox() end
 
---- @param texture SDL_Texture
+--- @param texture Jila_Texture
 --- @param imageSize ImVec2
-function Image(texture, imageSize) end
+function ImImage(texture, imageSize) end
 
 --- @param label string
---- @param texture SDL_Texture
+--- @param texture Jila_Texture
 --- @param imageSize ImVec2
-function ImageButton(label, texture, imageSize) end
+function ImImageButton(label, texture, imageSize) end

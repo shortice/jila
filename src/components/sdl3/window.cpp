@@ -6,7 +6,7 @@ namespace Jila {
 void bindSdlWindow(sol::state* state) {
     // SDL_SetWindowTitle
     state -> set_function(
-        "SDL_SetWindowTitle",
+        "Jila_SetWindowTitle",
         [](std::string_view title) -> bool {
             return SDL_SetWindowTitle(
                 GetState() -> window, title.data()
@@ -16,7 +16,7 @@ void bindSdlWindow(sol::state* state) {
 
     // SDL_GetWindowSize
     state -> set_function(
-        "SDL_GetWindowSize",
+        "Jila_GetWindowSize",
         []() -> ImVec2 {
             int w = 0, h = 0;
             SDL_GetWindowSize(GetState() -> window, &w, &h);
@@ -25,7 +25,7 @@ void bindSdlWindow(sol::state* state) {
     );
 
     state -> set_function(
-        "SDL_GetWindowSafeArea",
+        "Jila_GetWindowSafeArea",
         []() -> ImVec4 {
             SDL_Rect rect {0, 0, 0, 0};
             SDL_GetWindowSafeArea(GetState() -> window, &rect);
@@ -35,7 +35,7 @@ void bindSdlWindow(sol::state* state) {
 
     // SDL_SetWindowSize
     state -> set_function(
-        "SDL_SetWindowSize",
+        "Jila_SetWindowSize",
         [](ImVec2 size) -> bool {
             return SDL_SetWindowSize(GetState() -> window, size.x, size.y);
         }

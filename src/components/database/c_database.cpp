@@ -79,17 +79,17 @@ bool Data_Exec(DataBase db, std::string_view sql) {
 
 bool Init(sol::state* state) {
     state->new_usertype<DB>(
-        "DB",
+        "Jila_DB",
         "objects", sol::readonly(&DB::objects)
     );
 
     state->set_function(
-        "Data_Connect",
+        "Jila_Data_Connect",
         &Data_Connect
     );
 
     state->set_function(
-        "Data_Exec",
+        "Jila_Data_Exec",
         &Data_Exec
     );
 

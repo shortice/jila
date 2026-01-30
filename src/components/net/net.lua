@@ -1,27 +1,27 @@
 ---@meta net
 
----@class Response
+---@class Jila_Response
 ---@field status_code integer HTTP status code [readonly]
 ---@field text string Raw response text [readonly]
 ---@field raw_header string Raw response http header [readonly]
-Response = {}
+Jila_Response = {}
 
 ---If header not found then returns nil.
 ---
----@param res Response
+---@param res Jila_Response
 ---@param key string
 ---
 ---@return string|nil
-function Response_GetHeaderValue(res, key) end
+function Jila_Response_GetHeaderValue(res, key) end
 
 ---@param url string
 ---
----@return Response
-function Get(url) end
+---@return Jila_Response
+function Jila_Get(url) end
 
 ---@param url string
 ---
----@return Response
+---@return Jila_Response
 ---
----@overload fun(url: string, json: string): Response
-function Post(url) end
+---@overload fun(url: string, json: string): Jila_Response
+function Jila_Post(url) end

@@ -50,12 +50,12 @@ void _RunSeparated(
     sol::state threaded_state;
     
     threaded_state.set_function(
-        "SDL_Delay", [](int seconds) {
+        "Jila_Sleep", [](int seconds) {
         SDL_Delay(seconds * 1000);
     });
     
     threaded_state.set_function(
-        "PushThreadMessage", 
+        "Jila_PushThreadMessage", 
         &_PushThreadMessageLua
     );
     
@@ -116,7 +116,7 @@ namespace ThreadsComponent {
 
 bool Init(sol::state *state) {
     state -> new_enum(
-        "ThreadStatusCode",
+        "Jila_ThreadStatusCode",
         "STARTING", _StatusCode::STARTING,
         "COMPLETED", _StatusCode::COMPLETED,
         "ERROR", _StatusCode::ERROR,
@@ -124,19 +124,19 @@ bool Init(sol::state *state) {
     );
 
     state -> new_usertype<ThreadMessage>(
-        "ThreadMessage",
+        "Jila_ThreadMessage",
         "threadName", sol::readonly(&ThreadMessage::threadName),
         "statusCode", sol::readonly(&ThreadMessage::statusCode),
         "var", sol::readonly(&ThreadMessage::var)
     );
 
     state -> set_function(
-        "Go",
+        "Jila_Go",
         &_Go
     );
 
     state -> set_function(
-        "GetThreadMessage",
+        "Jila_GetThreadMessage",
         &_GetThreadMessage
     );
 

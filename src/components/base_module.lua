@@ -35,5 +35,5 @@ function Module.Render(time) end
 --- 
 --- Can accessed only on "main" module.
 --- 
---- @param event SDL_Event
+--- @param event Jila_Event
 function Module.Event(event) end
