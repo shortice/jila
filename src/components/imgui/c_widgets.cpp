@@ -31,7 +31,8 @@ void _ImGui_SelectableText(
         size,
         (
             ImGuiInputTextFlags_ReadOnly |
-            ImGuiInputTextFlags_AutoSelectAll
+            ImGuiInputTextFlags_AutoSelectAll |
+            ImGuiInputTextFlags_WordWrap
         )
     );
     UpdateSelectedText(text.str.data());

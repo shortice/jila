@@ -91,7 +91,8 @@ bool _ImGui_InputTextMultiline_V1(
     bool _ = ImGui::InputTextMultiline(
         label.data(),
         &property.str,
-        ImVec2()
+        ImVec2(),
+        ImGuiInputTextFlags_WordWrap
     );
     UpdateSelectedText(property.str.data());
     return _;
@@ -105,7 +106,8 @@ bool _ImGui_InputTextMultiline_V2(
     bool _ = ImGui::InputTextMultiline(
         label.data(),
         &property.str,
-        size
+        size,
+        ImGuiInputTextFlags_WordWrap
     );
     UpdateSelectedText(property.str.data());
     return _;
@@ -121,7 +123,8 @@ bool _ImGui_InputTextMultiline_V3(
         label.data(),
         &property.str,
         size,
-        flags
+        flags | ImGuiInputTextFlags_WordWrap
+        // TODO: ^
     );
     UpdateSelectedText(property.str.data());
     return _;
