@@ -12,4 +12,15 @@ Current cycle position: 1
 
 ## Where about documentation?
 * Don't know at this moment, but planning working on this after first beta release;
-* But! You can play and test this library. Check how build on Windows/Linux in github CI .yml configuration;
+* But! You can play and test this library. Check how build on Windows/Linux in github CI .yml configuration. Or just use new CLI installed by this command:
+
+    ```sh
+    pip install git+https://github.com/shortice/jila
+    ```
+
+    Then:
+
+    ```sh
+    jila install
+    ```
+
