@@ -1,5 +1,6 @@
 #ifdef JILA_DATABASE
 #include "components/database/c_database.hpp"
+#include "components/database/c_kv.hpp"
 #include "misc.hpp"
 #include "SDL3/SDL_error.h"
 #include "sqlite3/sqlite3.h"
@@ -91,6 +92,8 @@ bool Init(sol::state* state) {
         "Data_Exec",
         &Data_Exec
     );
+
+    bindKv(state);
 
     return true;
 }
