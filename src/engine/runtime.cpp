@@ -62,7 +62,7 @@ void loadFiles(LuaRuntime* runtime) {
 
         if (path.extension() != ".lua") continue;
         std::string _path = path.string();
-        // Windows std::filesystem::path::c_str is wchar, not char...
+        // NOTE: Windows std::filesystem::path::c_str is wchar, not char...
 
         LuaModule::LoadFrom(_path.c_str(), NULL, runtime->state);
     }
