@@ -65,16 +65,16 @@ set(JILA_IMGUI_SOURCES
 )
 
 # Collect Lua sources
-file(GLOB JILA_LUA_SOURCES "${JILA_EXTERNAL_DIR}/Lua/*.c")
+file(GLOB JILA_LUA_SOURCES "${JILA_EXTERNAL_DIR}/lua/*.c")
 list(REMOVE_ITEM JILA_LUA_SOURCES
-    "${JILA_EXTERNAL_DIR}/Lua/lua.c"
-    "${JILA_EXTERNAL_DIR}/Lua/luac.c"
-    "${JILA_EXTERNAL_DIR}/Lua/onelua.c"
-    "${JILA_EXTERNAL_DIR}/Lua/ltests.c"
+    "${JILA_EXTERNAL_DIR}/lua/lua.c"
+    "${JILA_EXTERNAL_DIR}/lua/luac.c"
+    "${JILA_EXTERNAL_DIR}/lua/onelua.c"
+    "${JILA_EXTERNAL_DIR}/lua/ltests.c"
 )
 
 add_library(lua STATIC ${JILA_LUA_SOURCES})
-target_include_directories(lua PUBLIC "${JILA_EXTERNAL_DIR}/Lua")
+target_include_directories(lua PUBLIC "${JILA_EXTERNAL_DIR}/lua")
 
 # Collect library sources
 file(GLOB_RECURSE JILA_LIB_SOURCES
