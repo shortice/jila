@@ -16,9 +16,7 @@ KvDataBase Kv_Connect(std::string_view path) {
     
     if (rc != SQLITE_OK) {
         SDL_SetError("SQLite Error: %s", sqlite3_errmsg(db));
-        if (db) {
-            sqlite3_close(db);
-        }
+        sqlite3_close(db);
         return nullptr;
     }
 

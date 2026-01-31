@@ -11,10 +11,10 @@ IOStream _SDL_IO_Open(
         path.data(), mode.data()
     );
 
-    return MakeSafeMemory<SDL_IOStream>(
-        s,
-        [](SDL_IOStream* s) {
-            if (s) SDL_CloseIO(s);
+    return MakeSafeMemory<Proxy<SDL_IOStream>>(
+        new Proxy<SDL_IOStream>{s},
+        [](Proxy<SDL_IOStream>* s) {
+            if (s) SDL_CloseIO(s->proxy);
         }
     );
 }
@@ -23,12 +23,18 @@ size_t _SDL_IO_Write(
     IOStream stream,
     std::string_view data
 ) {
-    return SDL_WriteIO(stream.get(), data.data(), data.size());
+    return SDL_WriteIO(
+        stream.get()->proxy, data.data(), 
+        data.size()
+    );
 }
 
 std::string _SDL_IO_Read(IOStream stream, size_t size) {
     std::string buffer(size, '\0');
-    size_t nr = SDL_ReadIO(stream.get(), buffer.data(), size);
+    size_t nr = SDL_ReadIO(
+        stream.get()->proxy, buffer.data(),
+        size
+    );
     buffer.resize(nr);
     return buffer;
 }
@@ -38,15 +44,18 @@ long long _SDL_IO_Seek(
     long long offset, 
     int whence
 ) {
-    return SDL_SeekIO(stream.get(), offset, (SDL_IOWhence)whence);
+    return SDL_SeekIO(
+        stream.get()->proxy, offset,
+        (SDL_IOWhence)whence
+    );
 }
 
 long long _SDL_IO_Tell(IOStream stream) {
-    return SDL_TellIO(stream.get());
+    return SDL_TellIO(stream.get()->proxy);
 }
 
 long long _SDL_IO_GetSize(IOStream stream) {
-    return SDL_GetIOSize(stream.get());
+    return SDL_GetIOSize(stream.get()->proxy);
 }
 
 void bindSdlFio(sol::state* state) {

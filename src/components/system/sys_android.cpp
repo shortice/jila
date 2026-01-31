@@ -1,6 +1,7 @@
 #include "components/system/sys_android.hpp"
 #ifdef __ANDROID__
 #include "SDL3/SDL_events.h"
+#include "SDL3/SDL_system.h"
 #endif
 
 namespace Jila {
@@ -30,9 +31,9 @@ void _PermissionCallback(
 bool android_RequestPermission(std::string permission) {
     return SDL_RequestAndroidPermission(
         permission.data(), 
-        &_PermissionCallBack, 
+        &_PermissionCallback, 
         NULL
-    ) != -1;
+    );
 }
 #endif
 
@@ -42,7 +43,7 @@ void bindSysAndroid(sol::state* state) {
     state -> set_function(
         "android_RequestPermission",
         &android_RequestPermission
-    )
+    );
     #endif
 }
 

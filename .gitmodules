@@ -13,12 +13,15 @@
 [submodule "src/external/efsw"]
 	path = src/external/efsw
 	url = https://github.com/SpartanJ/efsw
-[submodule "src/external/LuaJIT"]
-	path = src/external/LuaJIT
-	url = https://github.com/LuaJIT/LuaJIT
 [submodule "src/external/tracy"]
 	path = src/external/tracy
 	url = https://github.com/wolfpld/tracy
 [submodule "src/external/curl"]
 	path = src/external/curl
 	url = https://github.com/curl/curl
+[submodule "src/external/jila-android"]
+	path = src/external/jila-android
+	url = https://github.com/shortice/jila-android
+[submodule "src/external/lua"]
+	path = src/external/lua
+	url = https://github.com/Lua/lua

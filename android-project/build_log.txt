@@ -1,0 +1,1265 @@
+Initialized native services in: C:\Users\Shortice\.gradle\native
+Initialized jansi services in: C:\Users\Shortice\.gradle\native
+Found daemon DaemonInfo{pid=6672, address=[19793e99-7b75-4c32-b035-dbac39089e75 port:58654, addresses:[/127.0.0.1]], state=Idle, lastBusy=1769000509468, context=DefaultDaemonContext[uid=f2320b11-734f-4e81-849d-45c62bdf4e8d,javaHome=C:\Users\Shortice\.vscode-oss\extensions\redhat.java-1.51.0-win32-x64\jre\21.0.9-win32-x86_64,javaVersion=21,javaVendor=Eclipse Adoptium,daemonRegistryDir=C:\Users\Shortice\.gradle\daemon,pid=6672,idleTimeout=10800000,priority=NORMAL,applyInstrumentationAgent=true,nativeServicesMode=ENABLED,daemonOpts=-Dfile.encoding=UTF-8,-Duser.country=RU,-Duser.language=ru,-Duser.variant]} however its context does not match the desired criteria.
+JVM is incompatible.
+Wanted: DaemonRequestContext{jvmCriteria=C:\Program Files\Microsoft\jdk-21.0.9.10-hotspot (no JDK specified, using current Java home), daemonOpts=[-Xmx1536m, -Dfile.encoding=UTF-8, -Duser.country=RU, -Duser.language=ru, -Duser.variant], applyInstrumentationAgent=true, nativeServicesMode=ENABLED, priority=NORMAL}
+Actual: DefaultDaemonContext[uid=f2320b11-734f-4e81-849d-45c62bdf4e8d,javaHome=C:\Users\Shortice\.vscode-oss\extensions\redhat.java-1.51.0-win32-x64\jre\21.0.9-win32-x86_64,javaVersion=21,javaVendor=Eclipse Adoptium,daemonRegistryDir=C:\Users\Shortice\.gradle\daemon,pid=6672,idleTimeout=10800000,priority=NORMAL,applyInstrumentationAgent=true,nativeServicesMode=ENABLED,daemonOpts=-Dfile.encoding=UTF-8,-Duser.country=RU,-Duser.language=ru,-Duser.variant]
+
+  Looking for a different daemon...
+Found daemon DaemonInfo{pid=16336, address=[58001af8-a007-4b48-b0f1-e25c8d808644 port:52669, addresses:[/127.0.0.1]], state=Idle, lastBusy=1769012234076, context=DefaultDaemonContext[uid=957b5b17-5bd4-4891-aa93-bd37be2d638a,javaHome=C:\Users\Shortice\.antigravity\extensions\redhat.java-1.51.0-win32-x64\jre\21.0.9-win32-x86_64,javaVersion=21,javaVendor=Eclipse Adoptium,daemonRegistryDir=C:\Users\Shortice\.gradle\daemon,pid=16336,idleTimeout=10800000,priority=NORMAL,applyInstrumentationAgent=true,nativeServicesMode=ENABLED,daemonOpts=-Dfile.encoding=UTF-8,-Duser.country=RU,-Duser.language=ru,-Duser.variant]} however its context does not match the desired criteria.
+JVM is incompatible.
+Wanted: DaemonRequestContext{jvmCriteria=C:\Program Files\Microsoft\jdk-21.0.9.10-hotspot (no JDK specified, using current Java home), daemonOpts=[-Xmx1536m, -Dfile.encoding=UTF-8, -Duser.country=RU, -Duser.language=ru, -Duser.variant], applyInstrumentationAgent=true, nativeServicesMode=ENABLED, priority=NORMAL}
+Actual: DefaultDaemonContext[uid=957b5b17-5bd4-4891-aa93-bd37be2d638a,javaHome=C:\Users\Shortice\.antigravity\extensions\redhat.java-1.51.0-win32-x64\jre\21.0.9-win32-x86_64,javaVersion=21,javaVendor=Eclipse Adoptium,daemonRegistryDir=C:\Users\Shortice\.gradle\daemon,pid=16336,idleTimeout=10800000,priority=NORMAL,applyInstrumentationAgent=true,nativeServicesMode=ENABLED,daemonOpts=-Dfile.encoding=UTF-8,-Duser.country=RU,-Duser.language=ru,-Duser.variant]
+
+  Looking for a different daemon...
+The client will now receive all logging from the daemon (pid: 4524). The daemon log file: C:\Users\Shortice\.gradle\daemon\8.12\daemon-4524.out.log
+Starting 7th build in daemon [uptime: 26 mins 40.88 secs, performance: 100%, GC rate: 0.00/s, heap usage: 0% of 1.5 GiB]
+Using 2 worker leases.
+Now considering [C:\Users\Shortice\Documents\GitHub\jila\android-project] as hierarchies to watch
+Watching the file system is configured to be enabled if available
+File system watching is active
+Starting Build
+Settings evaluated using settings file 'C:\Users\Shortice\Documents\GitHub\jila\android-project\settings.gradle'.
+Projects loaded. Root project using build file 'C:\Users\Shortice\Documents\GitHub\jila\android-project\build.gradle'.
+Included projects: [root project 'android-project', project ':app', project ':jila-android']
+
+> Configure project :
+Evaluating root project 'android-project' using build file 'C:\Users\Shortice\Documents\GitHub\jila\android-project\build.gradle'.
+
+> Configure project :app
+Evaluating project ':app' using build file 'C:\Users\Shortice\Documents\GitHub\jila\android-project\app\build.gradle'.
+Resolved plugin [id: 'com.android.application']
+Using default execution profile
+C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+C/C++: android.ndkPath from module build.gradle is not set
+C/C++: ndk.dir in local.properties is not set
+C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+C/C++: sdkFolder is C:\Users\Shortice\Documents\Android
+C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+C/C++: android.ndkPath from module build.gradle is not set
+C/C++: ndk.dir in local.properties is not set
+C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+C/C++: sdkFolder is C:\Users\Shortice\Documents\Android
+C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+C/C++: android.ndkPath from module build.gradle is not set
+C/C++: ndk.dir in local.properties is not set
+C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+C/C++: sdkFolder is C:\Users\Shortice\Documents\Android
+C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+C/C++: android.ndkPath from module build.gradle is not set
+C/C++: ndk.dir in local.properties is not set
+C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+C/C++: sdkFolder is C:\Users\Shortice\Documents\Android
+C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+C/C++: android.ndkPath from module build.gradle is not set
+C/C++: ndk.dir in local.properties is not set
+C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+C/C++: sdkFolder is C:\Users\Shortice\Documents\Android
+C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+C/C++: android.ndkPath from module build.gradle is not set
+C/C++: ndk.dir in local.properties is not set
+C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+C/C++: sdkFolder is C:\Users\Shortice\Documents\Android
+C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+C/C++: android.ndkPath from module build.gradle is not set
+C/C++: ndk.dir in local.properties is not set
+C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+C/C++: sdkFolder is C:\Users\Shortice\Documents\Android
+C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+C/C++: android.ndkPath from module build.gradle is not set
+C/C++: ndk.dir in local.properties is not set
+C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+C/C++: sdkFolder is C:\Users\Shortice\Documents\Android
+C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+C/C++: android.ndkPath from module build.gradle is not set
+C/C++: ndk.dir in local.properties is not set
+C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+C/C++: sdkFolder is C:\Users\Shortice\Documents\Android
+C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+C/C++: android.ndkPath from module build.gradle is not set
+C/C++: ndk.dir in local.properties is not set
+C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+C/C++: sdkFolder is C:\Users\Shortice\Documents\Android
+C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+C/C++: android.ndkPath from module build.gradle is not set
+C/C++: ndk.dir in local.properties is not set
+C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+C/C++: sdkFolder is C:\Users\Shortice\Documents\Android
+C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+C/C++: android.ndkPath from module build.gradle is not set
+C/C++: ndk.dir in local.properties is not set
+C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+C/C++: sdkFolder is C:\Users\Shortice\Documents\Android
+C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+C/C++: android.ndkPath from module build.gradle is not set
+C/C++: ndk.dir in local.properties is not set
+C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+C/C++: sdkFolder is C:\Users\Shortice\Documents\Android
+
+> Configure project :jila-android
+Evaluating project ':jila-android' using build file 'C:\Users\Shortice\Documents\GitHub\jila\src\external\jila-android\jila-android\build.gradle'.
+Resolved plugin [id: 'com.android.library']
+Using default execution profile
+C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+C/C++: android.ndkPath from module build.gradle is not set
+C/C++: ndk.dir in local.properties is not set
+C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+C/C++: sdkFolder is C:\Users\Shortice\Documents\Android
+C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+C/C++: android.ndkPath from module build.gradle is not set
+C/C++: ndk.dir in local.properties is not set
+C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+C/C++: sdkFolder is C:\Users\Shortice\Documents\Android
+C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+C/C++: android.ndkPath from module build.gradle is not set
+C/C++: ndk.dir in local.properties is not set
+C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+C/C++: sdkFolder is C:\Users\Shortice\Documents\Android
+C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+C/C++: android.ndkPath from module build.gradle is not set
+C/C++: ndk.dir in local.properties is not set
+C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+C/C++: sdkFolder is C:\Users\Shortice\Documents\Android
+C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+C/C++: android.ndkPath from module build.gradle is not set
+C/C++: ndk.dir in local.properties is not set
+C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+C/C++: sdkFolder is C:\Users\Shortice\Documents\Android
+C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+C/C++: android.ndkPath from module build.gradle is not set
+C/C++: ndk.dir in local.properties is not set
+C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+C/C++: sdkFolder is C:\Users\Shortice\Documents\Android
+C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+C/C++: android.ndkPath from module build.gradle is not set
+C/C++: ndk.dir in local.properties is not set
+C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+C/C++: sdkFolder is C:\Users\Shortice\Documents\Android
+C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+C/C++: android.ndkPath from module build.gradle is not set
+C/C++: ndk.dir in local.properties is not set
+C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+C/C++: sdkFolder is C:\Users\Shortice\Documents\Android
+C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+C/C++: android.ndkPath from module build.gradle is not set
+C/C++: ndk.dir in local.properties is not set
+C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+C/C++: sdkFolder is C:\Users\Shortice\Documents\Android
+C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+C/C++: android.ndkPath from module build.gradle is not set
+C/C++: ndk.dir in local.properties is not set
+C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+C/C++: sdkFolder is C:\Users\Shortice\Documents\Android
+C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+C/C++: android.ndkPath from module build.gradle is not set
+C/C++: ndk.dir in local.properties is not set
+C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+C/C++: sdkFolder is C:\Users\Shortice\Documents\Android
+C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+C/C++: android.ndkPath from module build.gradle is not set
+C/C++: ndk.dir in local.properties is not set
+C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+C/C++: sdkFolder is C:\Users\Shortice\Documents\Android
+C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+C/C++: android.ndkPath from module build.gradle is not set
+C/C++: ndk.dir in local.properties is not set
+C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+C/C++: sdkFolder is C:\Users\Shortice\Documents\Android
+All projects evaluated.
+Task name matched 'assembleDebug'
+Selected primary task 'assembleDebug' from project :
+file or directory 'C:\Users\Shortice\Documents\GitHub\jila\src\external\jila-android\jila-android\libs', not found
+file or directory 'C:\Users\Shortice\Documents\GitHub\jila\src\external\jila-android\jila-android\libs', not found
+file or directory 'C:\Users\Shortice\Documents\GitHub\jila\src\external\jila-android\jila-android\libs', not found
+file or directory 'C:\Users\Shortice\Documents\GitHub\jila\src\external\jila-android\jila-android\libs', not found
+Tasks to be executed: [task ':app:preBuild', task ':app:preDebugBuild', task ':app:mergeDebugNativeDebugMetadata', task ':app:javaPreCompileDebug', task ':jila-android:preBuild', task ':jila-android:preDebugBuild', task ':jila-android:writeDebugAarMetadata', task ':app:checkDebugAarMetadata', task ':app:generateDebugResValues', task ':jila-android:generateDebugResValues', task ':jila-android:generateDebugResources', task ':jila-android:packageDebugResources', task ':app:mapDebugSourceSetPaths', task ':app:generateDebugResources', task ':app:mergeDebugResources', task ':app:packageDebugResources', task ':app:parseDebugLocalResources', task ':app:createDebugCompatibleScreenManifests', task ':app:extractDeepLinksDebug', task ':jila-android:extractDeepLinksDebug', task ':jila-android:processDebugManifest', task ':app:processDebugMainManifest', task ':app:processDebugManifest', task ':app:processDebugManifestForPackage', task ':jila-android:compileDebugLibraryResources', task ':jila-android:parseDebugLocalResources', task ':jila-android:generateDebugRFile', task ':app:processDebugResources', task ':jila-android:javaPreCompileDebug', task ':jila-android:compileDebugJavaWithJavac', task ':jila-android:bundleLibCompileToJarDebug', task ':app:compileDebugJavaWithJavac', task ':app:mergeDebugShaders', task ':app:compileDebugShaders', task ':jila-android:configureCMakeDebug[arm64-v8a]', task ':jila-android:configureCMakeDebug[armeabi-v7a]', task ':jila-android:generateJsonModelDebug', task ':jila-android:prefabDebugConfigurePackage', task ':app:configureCMakeDebug[arm64-v8a]', task ':jila-android:buildCMakeDebug[arm64-v8a]', task ':jila-android:buildCMakeDebug[armeabi-v7a]', task ':jila-android:externalNativeBuildDebug', task ':jila-android:prefabDebugPackage', task ':app:buildCMakeDebug[arm64-v8a]', task ':jila-android:mergeDebugJniLibFolders', task ':jila-android:mergeDebugNativeLibs', task ':jila-android:copyDebugJniLibsProjectOnly', task ':app:externalNativeBuildDebug', task ':app:generateDebugAssets', task ':jila-android:mergeDebugShaders', task ':jila-android:compileDebugShaders', task ':jila-android:generateDebugAssets', task ':jila-android:packageDebugAssets', task ':app:mergeDebugAssets', task ':app:compressDebugAssets', task ':app:processDebugJavaRes', task ':jila-android:processDebugJavaRes', task ':app:mergeDebugJavaResource', task ':app:checkDebugDuplicateClasses', task ':app:desugarDebugFileDependencies', task ':app:mergeExtDexDebug', task ':jila-android:bundleLibRuntimeToJarDebug', task ':app:mergeLibDexDebug', task ':app:dexBuilderDebug', task ':app:mergeProjectDexDebug', task ':app:mergeDebugJniLibFolders', task ':app:mergeDebugNativeLibs', task ':app:stripDebugDebugSymbols', task ':app:validateSigningDebug', task ':app:writeDebugAppMetadata', task ':app:writeDebugSigningConfigVersions', task ':app:packageDebug', task ':app:createDebugApkListingFileRedirect', task ':app:assembleDebug', task ':jila-android:stripDebugDebugSymbols', task ':jila-android:copyDebugJniLibsProjectAndLocalJars', task ':jila-android:extractDebugAnnotations', task ':jila-android:extractDeepLinksForAarDebug', task ':jila-android:mergeDebugGeneratedProguardFiles', task ':jila-android:mergeDebugConsumerProguardFiles', task ':jila-android:prepareDebugArtProfile', task ':jila-android:prepareLintJarForPublish', task ':jila-android:mergeDebugJavaResource', task ':jila-android:syncDebugLibJars', task ':jila-android:bundleDebugAar', task ':jila-android:assembleDebug']
+Tasks that were excluded: []
+work action org.gradle.api.internal.artifacts.transform.DefaultTransformUpstreamDependenciesResolver$FinalizeTransformDependenciesFromSelectedArtifacts$CalculateFinalDependencies@60413481 (Thread[#246,included builds,5,main]) started.
+work action Dependencies for project :jila-android {artifactType=android-classes-jar, dexing-component-attributes=ComponentSpecificParameters(minSdkVersion=21, debuggable=true, enableCoreLibraryDesugaring=false, enableGlobalSynthetics=false, enableApiModeling=false, dependenciesClassesAreInstrumented=false, asmTransformComponent=null, useJacocoTransformInstrumentation=false, enableDesugaring=true, needsClasspath=true, useFullClasspath=false, componentIfUsingFullClasspath=null)} (Thread[#247,Execution worker,5,main]) started.
+file or directory 'C:\Users\Shortice\Documents\GitHub\jila\android-project\app\libs', not found
+file or directory 'C:\Users\Shortice\Documents\GitHub\jila\src\external\jila-android\jila-android\libs', not found
+work action Parameters of DexingWithClasspathTransform (Thread[#247,Execution worker,5,main]) started.
+Resolve mutations for :app:preBuild (Thread[#247,Execution worker,5,main]) started.
+:app:preBuild (Thread[#247,Execution worker,5,main]) started.
+
+> Task :app:preBuild UP-TO-DATE
+Skipping task ':app:preBuild' as it has no actions.
+Resolve mutations for :app:preDebugBuild (Thread[#246,included builds,5,main]) started.
+:app:preDebugBuild (Thread[#246,included builds,5,main]) started.
+
+> Task :app:preDebugBuild UP-TO-DATE
+Skipping task ':app:preDebugBuild' as it has no actions.
+Resolve mutations for :app:mergeDebugNativeDebugMetadata (Thread[#246,included builds,5,main]) started.
+:app:mergeDebugNativeDebugMetadata (Thread[#246,included builds,5,main]) started.
+
+> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+Skipping task ':app:mergeDebugNativeDebugMetadata' as it has no source files and no previous output files.
+Resolve mutations for :app:javaPreCompileDebug (Thread[#246,included builds,5,main]) started.
+:app:javaPreCompileDebug (Thread[#246,included builds,5,main]) started.
+
+> Task :app:javaPreCompileDebug UP-TO-DATE
+Caching disabled for task ':app:javaPreCompileDebug' because:
+  Build cache is disabled
+Skipping task ':app:javaPreCompileDebug' as it is up-to-date.
+Resolve mutations for :jila-android:preBuild (Thread[#246,included builds,5,main]) started.
+:jila-android:preBuild (Thread[#246,included builds,5,main]) started.
+
+> Task :jila-android:preBuild UP-TO-DATE
+Skipping task ':jila-android:preBuild' as it has no actions.
+Resolve mutations for :jila-android:preDebugBuild (Thread[#246,included builds,5,main]) started.
+:jila-android:preDebugBuild (Thread[#246,included builds,5,main]) started.
+
+> Task :jila-android:preDebugBuild UP-TO-DATE
+Skipping task ':jila-android:preDebugBuild' as it has no actions.
+Resolve mutations for :jila-android:writeDebugAarMetadata (Thread[#246,included builds,5,main]) started.
+:jila-android:writeDebugAarMetadata (Thread[#246,included builds,5,main]) started.
+
+> Task :jila-android:writeDebugAarMetadata UP-TO-DATE
+Caching disabled for task ':jila-android:writeDebugAarMetadata' because:
+  Build cache is disabled
+  Caching has been disabled for the task
+Skipping task ':jila-android:writeDebugAarMetadata' as it is up-to-date.
+work action resolve aar-metadata.properties (project :jila-android) (Thread[#246,included builds,5,main]) started.
+Resolve mutations for :app:checkDebugAarMetadata (Thread[#246,included builds,5,main]) started.
+:app:checkDebugAarMetadata (Thread[#246,included builds,5,main]) started.
+
+> Task :app:checkDebugAarMetadata UP-TO-DATE
+file or directory 'C:\Users\Shortice\Documents\GitHub\jila\android-project\app\libs', not found
+file or directory 'C:\Users\Shortice\Documents\GitHub\jila\src\external\jila-android\jila-android\libs', not found
+file or directory 'C:\Users\Shortice\Documents\GitHub\jila\android-project\app\libs', not found
+file or directory 'C:\Users\Shortice\Documents\GitHub\jila\src\external\jila-android\jila-android\libs', not found
+file or directory 'C:\Users\Shortice\Documents\GitHub\jila\android-project\app\libs', not found
+file or directory 'C:\Users\Shortice\Documents\GitHub\jila\src\external\jila-android\jila-android\libs', not found
+file or directory 'C:\Users\Shortice\Documents\GitHub\jila\android-project\app\libs', not found
+file or directory 'C:\Users\Shortice\Documents\GitHub\jila\src\external\jila-android\jila-android\libs', not found
+Caching disabled for task ':app:checkDebugAarMetadata' because:
+  Build cache is disabled
+  Caching has been disabled for the task
+Skipping task ':app:checkDebugAarMetadata' as it is up-to-date.
+Resolve mutations for :app:generateDebugResValues (Thread[#246,included builds,5,main]) started.
+:app:generateDebugResValues (Thread[#246,included builds,5,main]) started.
+
+> Task :app:generateDebugResValues UP-TO-DATE
+Caching disabled for task ':app:generateDebugResValues' because:
+  Build cache is disabled
+Skipping task ':app:generateDebugResValues' as it is up-to-date.
+Resolve mutations for :jila-android:generateDebugResValues (Thread[#246,included builds,5,main]) started.
+:jila-android:generateDebugResValues (Thread[#246,included builds,5,main]) started.
+
+> Task :jila-android:generateDebugResValues UP-TO-DATE
+Caching disabled for task ':jila-android:generateDebugResValues' because:
+  Build cache is disabled
+Skipping task ':jila-android:generateDebugResValues' as it is up-to-date.
+Resolve mutations for :jila-android:generateDebugResources (Thread[#246,included builds,5,main]) started.
+:jila-android:generateDebugResources (Thread[#246,included builds,5,main]) started.
+
+> Task :jila-android:generateDebugResources UP-TO-DATE
+Caching disabled for task ':jila-android:generateDebugResources' because:
+  Build cache is disabled
+Skipping task ':jila-android:generateDebugResources' as it is up-to-date.
+Resolve mutations for :jila-android:packageDebugResources (Thread[#246,included builds,5,main]) started.
+:jila-android:packageDebugResources (Thread[#246,included builds,5,main]) started.
+
+> Task :jila-android:packageDebugResources UP-TO-DATE
+Caching disabled for task ':jila-android:packageDebugResources' because:
+  Build cache is disabled
+Skipping task ':jila-android:packageDebugResources' as it is up-to-date.
+work action resolve packageDebugResources (project :jila-android) (Thread[#246,included builds,5,main]) started.
+Resolve mutations for :app:mapDebugSourceSetPaths (Thread[#246,included builds,5,main]) started.
+:app:mapDebugSourceSetPaths (Thread[#246,included builds,5,main]) started.
+
+> Task :app:mapDebugSourceSetPaths UP-TO-DATE
+file or directory 'C:\Users\Shortice\Documents\GitHub\jila\android-project\app\libs', not found
+file or directory 'C:\Users\Shortice\Documents\GitHub\jila\src\external\jila-android\jila-android\libs', not found
+Caching disabled for task ':app:mapDebugSourceSetPaths' because:
+  Build cache is disabled
+  Caching has been disabled for the task
+Skipping task ':app:mapDebugSourceSetPaths' as it is up-to-date.
+Resolve mutations for :app:generateDebugResources (Thread[#246,included builds,5,main]) started.
+:app:generateDebugResources (Thread[#246,included builds,5,main]) started.
+
+> Task :app:generateDebugResources UP-TO-DATE
+Caching disabled for task ':app:generateDebugResources' because:
+  Build cache is disabled
+Skipping task ':app:generateDebugResources' as it is up-to-date.
+Resolve mutations for :app:mergeDebugResources (Thread[#246,included builds,5,main]) started.
+:app:mergeDebugResources (Thread[#246,included builds,5,main]) started.
+
+> Task :app:mergeDebugResources UP-TO-DATE
+file or directory 'C:\Users\Shortice\Documents\GitHub\jila\android-project\app\libs', not found
+file or directory 'C:\Users\Shortice\Documents\GitHub\jila\src\external\jila-android\jila-android\libs', not found
+Caching disabled for task ':app:mergeDebugResources' because:
+  Build cache is disabled
+Skipping task ':app:mergeDebugResources' as it is up-to-date.
+Resolve mutations for :app:packageDebugResources (Thread[#247,Execution worker,5,main]) started.
+:app:packageDebugResources (Thread[#247,Execution worker,5,main]) started.
+
+> Task :app:packageDebugResources UP-TO-DATE
+Caching disabled for task ':app:packageDebugResources' because:
+  Build cache is disabled
+Skipping task ':app:packageDebugResources' as it is up-to-date.
+Resolve mutations for :app:parseDebugLocalResources (Thread[#247,Execution worker,5,main]) started.
+:app:parseDebugLocalResources (Thread[#247,Execution worker,5,main]) started.
+
+> Task :app:parseDebugLocalResources UP-TO-DATE
+Caching disabled for task ':app:parseDebugLocalResources' because:
+  Build cache is disabled
+Skipping task ':app:parseDebugLocalResources' as it is up-to-date.
+Resolve mutations for :app:createDebugCompatibleScreenManifests (Thread[#247,Execution worker,5,main]) started.
+:app:createDebugCompatibleScreenManifests (Thread[#247,Execution worker,5,main]) started.
+
+> Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
+Caching disabled for task ':app:createDebugCompatibleScreenManifests' because:
+  Build cache is disabled
+  Caching has been disabled for the task
+Skipping task ':app:createDebugCompatibleScreenManifests' as it is up-to-date.
+Resolve mutations for :app:extractDeepLinksDebug (Thread[#247,Execution worker,5,main]) started.
+:app:extractDeepLinksDebug (Thread[#247,Execution worker,5,main]) started.
+
+> Task :app:extractDeepLinksDebug UP-TO-DATE
+Caching disabled for task ':app:extractDeepLinksDebug' because:
+  Build cache is disabled
+Skipping task ':app:extractDeepLinksDebug' as it is up-to-date.
+Resolve mutations for :jila-android:extractDeepLinksDebug (Thread[#247,Execution worker,5,main]) started.
+:jila-android:extractDeepLinksDebug (Thread[#247,Execution worker,5,main]) started.
+
+> Task :jila-android:extractDeepLinksDebug UP-TO-DATE
+Caching disabled for task ':jila-android:extractDeepLinksDebug' because:
+  Build cache is disabled
+Skipping task ':jila-android:extractDeepLinksDebug' as it is up-to-date.
+work action resolve navigation.json (project :jila-android) (Thread[#247,Execution worker,5,main]) started.
+Resolve mutations for :jila-android:processDebugManifest (Thread[#247,Execution worker,5,main]) started.
+:jila-android:processDebugManifest (Thread[#247,Execution worker,5,main]) started.
+
+> Task :jila-android:processDebugManifest UP-TO-DATE
+Caching disabled for task ':jila-android:processDebugManifest' because:
+  Build cache is disabled
+Skipping task ':jila-android:processDebugManifest' as it is up-to-date.
+work action resolve AndroidManifest.xml (project :jila-android) (Thread[#247,Execution worker,5,main]) started.
+Resolve mutations for :app:processDebugMainManifest (Thread[#247,Execution worker,5,main]) started.
+:app:processDebugMainManifest (Thread[#247,Execution worker,5,main]) started.
+
+> Task :app:processDebugMainManifest UP-TO-DATE
+file or directory 'C:\Users\Shortice\Documents\GitHub\jila\android-project\app\libs', not found
+file or directory 'C:\Users\Shortice\Documents\GitHub\jila\src\external\jila-android\jila-android\libs', not found
+file or directory 'C:\Users\Shortice\Documents\GitHub\jila\android-project\app\libs', not found
+file or directory 'C:\Users\Shortice\Documents\GitHub\jila\src\external\jila-android\jila-android\libs', not found
+file or directory 'C:\Users\Shortice\Documents\GitHub\jila\android-project\app\libs', not found
+file or directory 'C:\Users\Shortice\Documents\GitHub\jila\src\external\jila-android\jila-android\libs', not found
+file or directory 'C:\Users\Shortice\Documents\GitHub\jila\android-project\app\libs', not found
+file or directory 'C:\Users\Shortice\Documents\GitHub\jila\src\external\jila-android\jila-android\libs', not found
+Caching disabled for task ':app:processDebugMainManifest' because:
+  Build cache is disabled
+Skipping task ':app:processDebugMainManifest' as it is up-to-date.
+Resolve mutations for :app:processDebugManifest (Thread[#247,Execution worker,5,main]) started.
+:app:processDebugManifest (Thread[#247,Execution worker,5,main]) started.
+
+> Task :app:processDebugManifest UP-TO-DATE
+Caching disabled for task ':app:processDebugManifest' because:
+  Build cache is disabled
+Skipping task ':app:processDebugManifest' as it is up-to-date.
+Resolve mutations for :app:processDebugManifestForPackage (Thread[#247,Execution worker,5,main]) started.
+:app:processDebugManifestForPackage (Thread[#247,Execution worker,5,main]) started.
+
+> Task :app:processDebugManifestForPackage UP-TO-DATE
+Custom actions are attached to task ':app:processDebugManifestForPackage'.
+Caching disabled for task ':app:processDebugManifestForPackage' because:
+  Build cache is disabled
+Skipping task ':app:processDebugManifestForPackage' as it is up-to-date.
+Resolve mutations for :jila-android:compileDebugLibraryResources (Thread[#247,Execution worker,5,main]) started.
+:jila-android:compileDebugLibraryResources (Thread[#247,Execution worker,5,main]) started.
+
+> Task :jila-android:compileDebugLibraryResources UP-TO-DATE
+Caching disabled for task ':jila-android:compileDebugLibraryResources' because:
+  Build cache is disabled
+Skipping task ':jila-android:compileDebugLibraryResources' as it is up-to-date.
+work action resolve out (project :jila-android) (Thread[#247,Execution worker,5,main]) started.
+Resolve mutations for :jila-android:parseDebugLocalResources (Thread[#247,Execution worker,5,main]) started.
+:jila-android:parseDebugLocalResources (Thread[#247,Execution worker,5,main]) started.
+
+> Task :jila-android:parseDebugLocalResources UP-TO-DATE
+Caching disabled for task ':jila-android:parseDebugLocalResources' because:
+  Build cache is disabled
+Skipping task ':jila-android:parseDebugLocalResources' as it is up-to-date.
+Resolve mutations for :jila-android:generateDebugRFile (Thread[#246,included builds,5,main]) started.
+:jila-android:generateDebugRFile (Thread[#246,included builds,5,main]) started.
+
+> Task :jila-android:generateDebugRFile UP-TO-DATE
+Caching disabled for task ':jila-android:generateDebugRFile' because:
+  Build cache is disabled
+Skipping task ':jila-android:generateDebugRFile' as it is up-to-date.
+work action resolve package-aware-r.txt (project :jila-android) (Thread[#246,included builds,5,main]) started.
+Resolve mutations for :app:processDebugResources (Thread[#246,included builds,5,main]) started.
+:app:processDebugResources (Thread[#246,included builds,5,main]) started.
+
+> Task :app:processDebugResources UP-TO-DATE
+file or directory 'C:\Users\Shortice\Documents\GitHub\jila\android-project\app\libs', not found
+file or directory 'C:\Users\Shortice\Documents\GitHub\jila\src\external\jila-android\jila-android\libs', not found
+file or directory 'C:\Users\Shortice\Documents\GitHub\jila\android-project\app\libs', not found
+file or directory 'C:\Users\Shortice\Documents\GitHub\jila\src\external\jila-android\jila-android\libs', not found
+file or directory 'C:\Users\Shortice\Documents\GitHub\jila\android-project\app\libs', not found
+Caching disabled for task ':app:processDebugResources' because:
+  Build cache is disabled
+Skipping task ':app:processDebugResources' as it is up-to-date.
+Resolve mutations for :jila-android:javaPreCompileDebug (Thread[#246,included builds,5,main]) started.
+:jila-android:javaPreCompileDebug (Thread[#246,included builds,5,main]) started.
+
+> Task :jila-android:javaPreCompileDebug UP-TO-DATE
+Caching disabled for task ':jila-android:javaPreCompileDebug' because:
+  Build cache is disabled
+Skipping task ':jila-android:javaPreCompileDebug' as it is up-to-date.
+Resolve mutations for :jila-android:compileDebugJavaWithJavac (Thread[#246,included builds,5,main]) started.
+:jila-android:compileDebugJavaWithJavac (Thread[#246,included builds,5,main]) started.
+
+> Task :jila-android:compileDebugJavaWithJavac UP-TO-DATE
+file or directory 'C:\Users\Shortice\Documents\GitHub\jila\src\external\jila-android\jila-android\libs', not found
+file or directory 'C:\Users\Shortice\Documents\GitHub\jila\src\external\jila-android\jila-android\libs', not found
+Custom actions are attached to task ':jila-android:compileDebugJavaWithJavac'.
+Caching disabled for task ':jila-android:compileDebugJavaWithJavac' because:
+  Build cache is disabled
+Skipping task ':jila-android:compileDebugJavaWithJavac' as it is up-to-date.
+Resolve mutations for :jila-android:bundleLibCompileToJarDebug (Thread[#246,included builds,5,main]) started.
+:jila-android:bundleLibCompileToJarDebug (Thread[#246,included builds,5,main]) started.
+
+> Task :jila-android:bundleLibCompileToJarDebug UP-TO-DATE
+Caching disabled for task ':jila-android:bundleLibCompileToJarDebug' because:
+  Build cache is disabled
+  Simple merging task
+Skipping task ':jila-android:bundleLibCompileToJarDebug' as it is up-to-date.
+work action resolve classes.jar (project :jila-android) (Thread[#246,included builds,5,main]) started.
+Resolve mutations for :app:compileDebugJavaWithJavac (Thread[#246,included builds,5,main]) started.
+:app:compileDebugJavaWithJavac (Thread[#246,included builds,5,main]) started.
+
+> Task :app:compileDebugJavaWithJavac UP-TO-DATE
+file or directory 'C:\Users\Shortice\Documents\GitHub\jila\android-project\app\libs', not found
+file or directory 'C:\Users\Shortice\Documents\GitHub\jila\android-project\app\libs', not found
+Custom actions are attached to task ':app:compileDebugJavaWithJavac'.
+Caching disabled for task ':app:compileDebugJavaWithJavac' because:
+  Build cache is disabled
+Skipping task ':app:compileDebugJavaWithJavac' as it is up-to-date.
+Resolve mutations for :app:mergeDebugShaders (Thread[#246,included builds,5,main]) started.
+:app:mergeDebugShaders (Thread[#247,Execution worker,5,main]) started.
+
+> Task :app:mergeDebugShaders UP-TO-DATE
+Caching disabled for task ':app:mergeDebugShaders' because:
+  Build cache is disabled
+  Simple merging task
+Skipping task ':app:mergeDebugShaders' as it is up-to-date.
+Resolve mutations for :app:compileDebugShaders (Thread[#247,Execution worker,5,main]) started.
+:app:compileDebugShaders (Thread[#247,Execution worker,5,main]) started.
+
+> Task :app:compileDebugShaders NO-SOURCE
+Skipping task ':app:compileDebugShaders' as it has no source files and no previous output files.
+Resolve mutations for :jila-android:configureCMakeDebug[arm64-v8a] (Thread[#247,Execution worker,5,main]) started.
+:jila-android:configureCMakeDebug[arm64-v8a] (Thread[#247,Execution worker,5,main]) started.
+
+> Task :jila-android:configureCMakeDebug[arm64-v8a]
+Caching disabled for task ':jila-android:configureCMakeDebug[arm64-v8a]' because:
+  Build cache is disabled
+  Caching has been disabled for the task
+Task ':jila-android:configureCMakeDebug[arm64-v8a]' is not up-to-date because:
+  Task.upToDateWhen is false.
+C/C++: C:\Users\Shortice\Documents\GitHub\jila\src\external\jila-android\jila-android\src\main\cpp\CMakeLists.txt debug|arm64-v8a : Start JSON generation. Platform version: 21 min SDK version: arm64-v8a
+C/C++: C:\Users\Shortice\Documents\GitHub\jila\src\external\jila-android\jila-android\src\main\cpp\CMakeLists.txt debug|arm64-v8a : JSON 'C:\Users\Shortice\Documents\GitHub\jila\src\external\jila-android\jila-android\.cxx\Debug\4u6ei5l5\arm64-v8a\android_gradle_build.json' was up-to-date
+C/C++: C:\Users\Shortice\Documents\GitHub\jila\src\external\jila-android\jila-android\src\main\cpp\CMakeLists.txt debug|arm64-v8a : JSON generation completed without problems
+C/C++: C:\Users\Shortice\Documents\GitHub\jila\src\external\jila-android\jila-android\src\main\cpp\CMakeLists.txt debug|arm64-v8a : Writing build model to C:\Users\Shortice\Documents\GitHub\jila\src\external\jila-android\jila-android\build\intermediates\cxx\Debug\4u6ei5l5\logs\arm64-v8a\build_model.json
+Resolve mutations for :jila-android:configureCMakeDebug[armeabi-v7a] (Thread[#247,Execution worker,5,main]) started.
+:jila-android:configureCMakeDebug[armeabi-v7a] (Thread[#247,Execution worker,5,main]) started.
+
+> Task :jila-android:configureCMakeDebug[armeabi-v7a]
+Caching disabled for task ':jila-android:configureCMakeDebug[armeabi-v7a]' because:
+  Build cache is disabled
+  Caching has been disabled for the task
+Task ':jila-android:configureCMakeDebug[armeabi-v7a]' is not up-to-date because:
+  Task.upToDateWhen is false.
+C/C++: C:\Users\Shortice\Documents\GitHub\jila\src\external\jila-android\jila-android\src\main\cpp\CMakeLists.txt debug|armeabi-v7a : Start JSON generation. Platform version: 21 min SDK version: armeabi-v7a
+C/C++: C:\Users\Shortice\Documents\GitHub\jila\src\external\jila-android\jila-android\src\main\cpp\CMakeLists.txt debug|armeabi-v7a : JSON 'C:\Users\Shortice\Documents\GitHub\jila\src\external\jila-android\jila-android\.cxx\Debug\4u6ei5l5\armeabi-v7a\android_gradle_build.json' was up-to-date
+C/C++: C:\Users\Shortice\Documents\GitHub\jila\src\external\jila-android\jila-android\src\main\cpp\CMakeLists.txt debug|armeabi-v7a : JSON generation completed without problems
+C/C++: C:\Users\Shortice\Documents\GitHub\jila\src\external\jila-android\jila-android\src\main\cpp\CMakeLists.txt debug|armeabi-v7a : Writing build model to C:\Users\Shortice\Documents\GitHub\jila\src\external\jila-android\jila-android\build\intermediates\cxx\Debug\4u6ei5l5\logs\armeabi-v7a\build_model.json
+Resolve mutations for :jila-android:generateJsonModelDebug (Thread[#247,Execution worker,5,main]) started.
+:jila-android:generateJsonModelDebug (Thread[#247,Execution worker,5,main]) started.
+
+> Task :jila-android:generateJsonModelDebug
+Skipping task ':jila-android:generateJsonModelDebug' as it has no actions.
+Resolve mutations for :jila-android:prefabDebugConfigurePackage (Thread[#247,Execution worker,5,main]) started.
+:jila-android:prefabDebugConfigurePackage (Thread[#247,Execution worker,5,main]) started.
+
+> Task :jila-android:prefabDebugConfigurePackage UP-TO-DATE
+Caching disabled for task ':jila-android:prefabDebugConfigurePackage' because:
+  Build cache is disabled
+  Caching has been disabled for the task
+Skipping task ':jila-android:prefabDebugConfigurePackage' as it is up-to-date.
+work action resolve prefab_publication.json (project :jila-android) (Thread[#247,Execution worker,5,main]) started.
+Resolve mutations for :app:configureCMakeDebug[arm64-v8a] (Thread[#247,Execution worker,5,main]) started.
+:app:configureCMakeDebug[arm64-v8a] (Thread[#247,Execution worker,5,main]) started.
+
+> Task :app:configureCMakeDebug[arm64-v8a]
+Caching disabled for task ':app:configureCMakeDebug[arm64-v8a]' because:
+  Build cache is disabled
+  Caching has been disabled for the task
+Task ':app:configureCMakeDebug[arm64-v8a]' is not up-to-date because:
+  Task.upToDateWhen is false.
+C/C++: C:\Users\Shortice\Documents\GitHub\jila\src\CMakeLists.txt debug|arm64-v8a : Start JSON generation. Platform version: 21 min SDK version: arm64-v8a
+C/C++: C:\Users\Shortice\Documents\GitHub\jila\src\CMakeLists.txt debug|arm64-v8a : JSON 'C:\Users\Shortice\Documents\GitHub\jila\android-project\app\.cxx\Debug\6f6t5623\arm64-v8a\android_gradle_build.json' was up-to-date
+C/C++: C:\Users\Shortice\Documents\GitHub\jila\src\CMakeLists.txt debug|arm64-v8a : JSON generation completed without problems
+C/C++: C:\Users\Shortice\Documents\GitHub\jila\src\CMakeLists.txt debug|arm64-v8a : Writing build model to C:\Users\Shortice\Documents\GitHub\jila\android-project\app\build\intermediates\cxx\Debug\6f6t5623\logs\arm64-v8a\build_model.json
+Resolve mutations for :jila-android:buildCMakeDebug[arm64-v8a] (Thread[#247,Execution worker,5,main]) started.
+:jila-android:buildCMakeDebug[arm64-v8a] (Thread[#247,Execution worker,5,main]) started.
+
+> Task :jila-android:buildCMakeDebug[arm64-v8a]
+Caching disabled for task ':jila-android:buildCMakeDebug[arm64-v8a]' because:
+  Build cache is disabled
+  Caching has been disabled for the task
+Task ':jila-android:buildCMakeDebug[arm64-v8a]' is not up-to-date because:
+  Task.upToDateWhen is false.
+C/C++: starting build
+C/C++: reading expected JSONs
+C/C++: done reading expected JSONs
+C/C++: executing build commands for targets that produce .so files or executables
+C/C++: evaluate miniconfig
+C/C++: evaluate library jila-android (arm64-v8a)
+C/C++: building target jila-android because it is required by the build
+C/C++: about to build targets jila-android
+C/C++: Build jila-android
+C/C++: @echo off
+"C:\\Users\\Shortice\\Documents\\Android\\cmake\\3.22.1\\bin\\ninja.exe" ^
+  -C ^
+  "C:\\Users\\Shortice\\Documents\\GitHub\\jila\\src\\external\\jila-android\\jila-android\\.cxx\\Debug\\4u6ei5l5\\arm64-v8a" ^
+  jila-android
+
+Starting process 'command 'C:\Users\Shortice\Documents\Android\cmake\3.22.1\bin\ninja.exe''. Working directory: C:\Users\Shortice\Documents\GitHub\jila\android-project Command: C:\Users\Shortice\Documents\Android\cmake\3.22.1\bin\ninja.exe -C C:\Users\Shortice\Documents\GitHub\jila\src\external\jila-android\jila-android\.cxx\Debug\4u6ei5l5\arm64-v8a jila-android
+Successfully started process 'command 'C:\Users\Shortice\Documents\Android\cmake\3.22.1\bin\ninja.exe''
+C/C++: Received process result: 0
+C/C++: check expected build outputs
+C/C++: build complete
+Resolve mutations for :jila-android:buildCMakeDebug[armeabi-v7a] (Thread[#247,Execution worker,5,main]) started.
+:jila-android:buildCMakeDebug[armeabi-v7a] (Thread[#247,Execution worker,5,main]) started.
+
+> Task :jila-android:buildCMakeDebug[armeabi-v7a]
+Caching disabled for task ':jila-android:buildCMakeDebug[armeabi-v7a]' because:
+  Build cache is disabled
+  Caching has been disabled for the task
+Task ':jila-android:buildCMakeDebug[armeabi-v7a]' is not up-to-date because:
+  Task.upToDateWhen is false.
+C/C++: starting build
+C/C++: reading expected JSONs
+C/C++: done reading expected JSONs
+C/C++: executing build commands for targets that produce .so files or executables
+C/C++: evaluate miniconfig
+C/C++: evaluate library jila-android (armeabi-v7a)
+C/C++: building target jila-android because it is required by the build
+C/C++: about to build targets jila-android
+C/C++: Build jila-android
+C/C++: @echo off
+"C:\\Users\\Shortice\\Documents\\Android\\cmake\\3.22.1\\bin\\ninja.exe" ^
+  -C ^
+  "C:\\Users\\Shortice\\Documents\\GitHub\\jila\\src\\external\\jila-android\\jila-android\\.cxx\\Debug\\4u6ei5l5\\armeabi-v7a" ^
+  jila-android
+
+Starting process 'command 'C:\Users\Shortice\Documents\Android\cmake\3.22.1\bin\ninja.exe''. Working directory: C:\Users\Shortice\Documents\GitHub\jila\android-project Command: C:\Users\Shortice\Documents\Android\cmake\3.22.1\bin\ninja.exe -C C:\Users\Shortice\Documents\GitHub\jila\src\external\jila-android\jila-android\.cxx\Debug\4u6ei5l5\armeabi-v7a jila-android
+Successfully started process 'command 'C:\Users\Shortice\Documents\Android\cmake\3.22.1\bin\ninja.exe''
+C/C++: Received process result: 0
+C/C++: check expected build outputs
+C/C++: build complete
+Resolve mutations for :jila-android:externalNativeBuildDebug (Thread[#247,Execution worker,5,main]) started.
+:jila-android:externalNativeBuildDebug (Thread[#247,Execution worker,5,main]) started.
+
+> Task :jila-android:externalNativeBuildDebug
+Caching disabled for task ':jila-android:externalNativeBuildDebug' because:
+  Build cache is disabled
+  Caching has been disabled for the task
+Task ':jila-android:externalNativeBuildDebug' is not up-to-date because:
+  Task.upToDateWhen is false.
+C/C++: link or copy build outputs to republish point
+C/C++: Not republishing C:\Users\Shortice\Documents\GitHub\jila\src\external\jila-android\jila-android\.cxx\Debug\4u6ei5l5\armeabi-v7a\libjila-android.a because it wasn't an executable type
+C/C++: Not republishing C:\Users\Shortice\Documents\GitHub\jila\src\external\jila-android\jila-android\.cxx\Debug\4u6ei5l5\arm64-v8a\libjila-android.a because it wasn't an executable type
+Resolve mutations for :jila-android:prefabDebugPackage (Thread[#247,Execution worker,5,main]) started.
+:jila-android:prefabDebugPackage (Thread[#247,Execution worker,5,main]) started.
+
+> Task :jila-android:prefabDebugPackage UP-TO-DATE
+Caching disabled for task ':jila-android:prefabDebugPackage' because:
+  Build cache is disabled
+  Caching has been disabled for the task
+Skipping task ':jila-android:prefabDebugPackage' as it is up-to-date.
+work action resolve prefab (project :jila-android) (Thread[#247,Execution worker,5,main]) started.
+Resolve mutations for :app:buildCMakeDebug[arm64-v8a] (Thread[#247,Execution worker,5,main]) started.
+:app:buildCMakeDebug[arm64-v8a] (Thread[#247,Execution worker,5,main]) started.
+
+> Task :app:buildCMakeDebug[arm64-v8a]
+Caching disabled for task ':app:buildCMakeDebug[arm64-v8a]' because:
+  Build cache is disabled
+  Caching has been disabled for the task
+Task ':app:buildCMakeDebug[arm64-v8a]' is not up-to-date because:
+  Task.upToDateWhen is false.
+C/C++: starting build
+C/C++: reading expected JSONs
+C/C++: done reading expected JSONs
+C/C++: executing build commands for targets that produce .so files or executables
+C/C++: evaluate miniconfig
+C/C++: evaluate library buildvm (arm64-v8a)
+C/C++: not building target buildvm because no targets are specified and library build output file is null
+C/C++: evaluate library curl-example-keepalive (arm64-v8a)
+C/C++: building target executable curl-example-keepalive because no targets are specified.
+C/C++: evaluate library libcurl_shared (arm64-v8a)
+C/C++: building target library libcurl_shared because no targets are specified.
+C/C++: evaluate library tunits (arm64-v8a)
+C/C++: building target executable tunits because no targets are specified.
+C/C++: evaluate library curl-example-interface (arm64-v8a)
+C/C++: building target executable curl-example-interface because no targets are specified.
+C/C++: evaluate library curl-example-pop3-dele (arm64-v8a)
+C/C++: building target executable curl-example-pop3-dele because no targets are specified.
+C/C++: evaluate library curl-examples (arm64-v8a)
+C/C++: not building target curl-examples because no targets are specified and library build output file is null
+C/C++: evaluate library curl-example-pop3-noop (arm64-v8a)
+C/C++: building target executable curl-example-pop3-noop because no targets are specified.
+C/C++: evaluate library curl-example-default-scheme (arm64-v8a)
+C/C++: building target executable curl-example-default-scheme because no targets are specified.
+C/C++: evaluate library curl-man (arm64-v8a)
+C/C++: not building target curl-man because no targets are specified and library build output file is null
+C/C++: evaluate library curl-example-imap-lsub (arm64-v8a)
+C/C++: building target executable curl-example-imap-lsub because no targets are specified.
+C/C++: evaluate library curl-example-getredirect (arm64-v8a)
+C/C++: building target executable curl-example-getredirect because no targets are specified.
+C/C++: evaluate library curl-example-pop3-authzid (arm64-v8a)
+C/C++: building target executable curl-example-pop3-authzid because no targets are specified.
+C/C++: evaluate library curl-example-simple (arm64-v8a)
+C/C++: building target executable curl-example-simple because no targets are specified.
+C/C++: evaluate library curl-example-imap-authzid (arm64-v8a)
+C/C++: building target executable curl-example-imap-authzid because no targets are specified.
+C/C++: evaluate library curl-example-headerapi (arm64-v8a)
+C/C++: building target executable curl-example-headerapi because no targets are specified.
+C/C++: evaluate library curl-example-ipv6 (arm64-v8a)
+C/C++: building target executable curl-example-ipv6 because no targets are specified.
+C/C++: evaluate library curl-example-httpcustomheader (arm64-v8a)
+C/C++: building target executable curl-example-httpcustomheader because no targets are specified.
+C/C++: evaluate library test-full (arm64-v8a)
+C/C++: not building target test-full because no targets are specified and library build output file is null
+C/C++: evaluate library curl-example-parseurl (arm64-v8a)
+C/C++: building target executable curl-example-parseurl because no targets are specified.
+C/C++: evaluate library curl-example-https (arm64-v8a)
+C/C++: building target executable curl-example-https because no targets are specified.
+C/C++: evaluate library curl-pytest (arm64-v8a)
+C/C++: not building target curl-pytest because no targets are specified and library build output file is null
+C/C++: evaluate library curl-example-progressfunc (arm64-v8a)
+C/C++: building target executable curl-example-progressfunc because no targets are specified.
+C/C++: evaluate library curl-example-debug (arm64-v8a)
+C/C++: building target executable curl-example-debug because no targets are specified.
+C/C++: evaluate library curl-example-pop3-retr (arm64-v8a)
+C/C++: building target executable curl-example-pop3-retr because no targets are specified.
+C/C++: evaluate library curl-example-websocket-updown (arm64-v8a)
+C/C++: building target executable curl-example-websocket-updown because no targets are specified.
+C/C++: evaluate library curl-example-imap-copy (arm64-v8a)
+C/C++: building target executable curl-example-imap-copy because no targets are specified.
+C/C++: evaluate library curl-example-httpput-postfields (arm64-v8a)
+C/C++: building target executable curl-example-httpput-postfields because no targets are specified.
+C/C++: evaluate library curl-example-maxconnects (arm64-v8a)
+C/C++: building target executable curl-example-maxconnects because no targets are specified.
+C/C++: evaluate library testdeps (arm64-v8a)
+C/C++: not building target testdeps because no targets are specified and library build output file is null
+C/C++: evaluate library curl-example-httpput (arm64-v8a)
+C/C++: building target executable curl-example-httpput because no targets are specified.
+C/C++: evaluate library curl-example-sepheaders (arm64-v8a)
+C/C++: building target executable curl-example-sepheaders because no targets are specified.
+C/C++: evaluate library curl-example-postit2 (arm64-v8a)
+C/C++: building target executable curl-example-postit2 because no targets are specified.
+C/C++: evaluate library curl-example-sftpget (arm64-v8a)
+C/C++: building target executable curl-example-sftpget because no targets are specified.
+C/C++: evaluate library curl-example-resolve (arm64-v8a)
+C/C++: building target executable curl-example-resolve because no targets are specified.
+C/C++: evaluate library curl-example-sftpuploadresume (arm64-v8a)
+C/C++: building target executable curl-example-sftpuploadresume because no targets are specified.
+C/C++: evaluate library curl-example-synctime (arm64-v8a)
+C/C++: building target executable curl-example-synctime because no targets are specified.
+C/C++: evaluate library curl-example-ftpupload (arm64-v8a)
+C/C++: building target executable curl-example-ftpupload because no targets are specified.
+C/C++: evaluate library curl-example-multi-double (arm64-v8a)
+C/C++: building target executable curl-example-multi-double because no targets are specified.
+C/C++: evaluate library curl-example-smtp-authzid (arm64-v8a)
+C/C++: building target executable curl-example-smtp-authzid because no targets are specified.
+C/C++: evaluate library SDL3_mixer-shared (arm64-v8a)
+C/C++: building target library SDL3_mixer-shared because no targets are specified.
+C/C++: evaluate library curl-example-getinmemory (arm64-v8a)
+C/C++: building target executable curl-example-getinmemory because no targets are specified.
+C/C++: evaluate library curl-example-persistent (arm64-v8a)
+C/C++: building target executable curl-example-persistent because no targets are specified.
+C/C++: evaluate library curl-example-websocket-cb (arm64-v8a)
+C/C++: building target executable curl-example-websocket-cb because no targets are specified.
+C/C++: evaluate library curl-example-multi-single (arm64-v8a)
+C/C++: building target executable curl-example-multi-single because no targets are specified.
+C/C++: evaluate library curl-example-http2-serverpush (arm64-v8a)
+C/C++: building target executable curl-example-http2-serverpush because no targets are specified.
+C/C++: evaluate library curl-example-http3 (arm64-v8a)
+C/C++: building target executable curl-example-http3 because no targets are specified.
+C/C++: evaluate library curl-example-threaded (arm64-v8a)
+C/C++: building target executable curl-example-threaded because no targets are specified.
+C/C++: evaluate library curl-example-url2file (arm64-v8a)
+C/C++: building target executable curl-example-url2file because no targets are specified.
+C/C++: evaluate library curl-example-ftpgetinfo (arm64-v8a)
+C/C++: building target executable curl-example-ftpgetinfo because no targets are specified.
+C/C++: evaluate library curlu (arm64-v8a)
+C/C++: not building target library curlu because static libraries are not build by default.
+C/C++: evaluate library curl-example-imap-append (arm64-v8a)
+C/C++: building target executable curl-example-imap-append because no targets are specified.
+C/C++: evaluate library curl-example-imap-store (arm64-v8a)
+C/C++: building target executable curl-example-imap-store because no targets are specified.
+C/C++: evaluate library curl-example-range (arm64-v8a)
+C/C++: building target executable curl-example-range because no targets are specified.
+C/C++: evaluate library curl-example-imap-examine (arm64-v8a)
+C/C++: building target executable curl-example-imap-examine because no targets are specified.
+C/C++: evaluate library libtests (arm64-v8a)
+C/C++: building target executable libtests because no targets are specified.
+C/C++: evaluate library curl-example-imap-delete (arm64-v8a)
+C/C++: building target executable curl-example-imap-delete because no targets are specified.
+C/C++: evaluate library curl-example-multi-debugcallback (arm64-v8a)
+C/C++: building target executable curl-example-multi-debugcallback because no targets are specified.
+C/C++: evaluate library curl-example-unixsocket (arm64-v8a)
+C/C++: building target executable curl-example-unixsocket because no targets are specified.
+C/C++: evaluate library servers (arm64-v8a)
+C/C++: building target executable servers because no targets are specified.
+C/C++: evaluate library units (arm64-v8a)
+C/C++: building target executable units because no targets are specified.
+C/C++: evaluate library curl-example-imap-fetch (arm64-v8a)
+C/C++: building target executable curl-example-imap-fetch because no targets are specified.
+C/C++: evaluate library curl-generate-mk-ca-bundle.1 (arm64-v8a)
+C/C++: not building target curl-generate-mk-ca-bundle.1 because no targets are specified and library build output file is null
+C/C++: evaluate library curl-generate-testcurl.1 (arm64-v8a)
+C/C++: not building target curl-generate-testcurl.1 because no targets are specified and library build output file is null
+C/C++: evaluate library curl-example-sslbackend (arm64-v8a)
+C/C++: building target executable curl-example-sslbackend because no targets are specified.
+C/C++: evaluate library curl-example-imap-list (arm64-v8a)
+C/C++: building target executable curl-example-imap-list because no targets are specified.
+C/C++: evaluate library curl-example-rtsp-options (arm64-v8a)
+C/C++: building target executable curl-example-rtsp-options because no targets are specified.
+C/C++: evaluate library curl-example-http2-pushinmemory (arm64-v8a)
+C/C++: building target executable curl-example-http2-pushinmemory because no targets are specified.
+C/C++: evaluate library curl-example-chkspeed (arm64-v8a)
+C/C++: building target executable curl-example-chkspeed because no targets are specified.
+C/C++: evaluate library curl-example-protofeats (arm64-v8a)
+C/C++: building target executable curl-example-protofeats because no targets are specified.
+C/C++: evaluate library curl_uninstall (arm64-v8a)
+C/C++: not building target curl_uninstall because no targets are specified and library build output file is null
+C/C++: evaluate library test-event (arm64-v8a)
+C/C++: not building target test-event because no targets are specified and library build output file is null
+C/C++: evaluate library curl-example-pop3-stat (arm64-v8a)
+C/C++: building target executable curl-example-pop3-stat because no targets are specified.
+C/C++: evaluate library libluajit (arm64-v8a)
+C/C++: building target library libluajit because no targets are specified.
+C/C++: evaluate library curl-example-imap-multi (arm64-v8a)
+C/C++: building target executable curl-example-imap-multi because no targets are specified.
+C/C++: evaluate library curl (arm64-v8a)
+C/C++: building target executable curl because no targets are specified.
+C/C++: evaluate library curl-examples-build (arm64-v8a)
+C/C++: not building target curl-examples-build because no targets are specified and library build output file is null
+C/C++: evaluate library curl-example-getinfo (arm64-v8a)
+C/C++: building target executable curl-example-getinfo because no targets are specified.
+C/C++: evaluate library curl-example-multi-formadd (arm64-v8a)
+C/C++: building target executable curl-example-multi-formadd because no targets are specified.
+C/C++: evaluate library curl-example-http-options (arm64-v8a)
+C/C++: building target executable curl-example-http-options because no targets are specified.
+C/C++: evaluate library curl-example-pop3-ssl (arm64-v8a)
+C/C++: building target executable curl-example-pop3-ssl because no targets are specified.
+C/C++: evaluate library curl-example-getreferrer (arm64-v8a)
+C/C++: building target executable curl-example-getreferrer because no targets are specified.
+C/C++: evaluate library curlinfo (arm64-v8a)
+C/C++: building target executable curlinfo because no targets are specified.
+C/C++: evaluate library clean-certs (arm64-v8a)
+C/C++: not building target clean-certs because no targets are specified and library build output file is null
+C/C++: evaluate library curl-generate-curl-config.1 (arm64-v8a)
+C/C++: not building target curl-generate-curl-config.1 because no targets are specified and library build output file is null
+C/C++: evaluate library minilua (arm64-v8a)
+C/C++: not building target minilua because no targets are specified and library build output file is null
+C/C++: evaluate library curl-example-ftp-wildcard (arm64-v8a)
+C/C++: building target executable curl-example-ftp-wildcard because no targets are specified.
+C/C++: evaluate library curl-example-pop3-uidl (arm64-v8a)
+C/C++: building target executable curl-example-pop3-uidl because no targets are specified.
+C/C++: evaluate library curl-example-sendrecv (arm64-v8a)
+C/C++: building target executable curl-example-sendrecv because no targets are specified.
+C/C++: evaluate library curl-example-ftpuploadfrommem (arm64-v8a)
+C/C++: building target executable curl-example-ftpuploadfrommem because no targets are specified.
+C/C++: evaluate library curl-example-simplepost (arm64-v8a)
+C/C++: building target executable curl-example-simplepost because no targets are specified.
+C/C++: evaluate library curl-generate-wcurl.1 (arm64-v8a)
+C/C++: not building target curl-generate-wcurl.1 because no targets are specified and library build output file is null
+C/C++: evaluate library curl-example-10-at-a-time (arm64-v8a)
+C/C++: building target executable curl-example-10-at-a-time because no targets are specified.
+C/C++: evaluate library curl-example-anyauthput (arm64-v8a)
+C/C++: building target executable curl-example-anyauthput because no targets are specified.
+C/C++: evaluate library curl-example-externalsocket (arm64-v8a)
+C/C++: building target executable curl-example-externalsocket because no targets are specified.
+C/C++: evaluate library curl-example-smtp-expn (arm64-v8a)
+C/C++: building target executable curl-example-smtp-expn because no targets are specified.
+C/C++: evaluate library curl-example-multi-legacy (arm64-v8a)
+C/C++: building target executable curl-example-multi-legacy because no targets are specified.
+C/C++: evaluate library curl-example-address-scope (arm64-v8a)
+C/C++: building target executable curl-example-address-scope because no targets are specified.
+C/C++: evaluate library curl-example-localport (arm64-v8a)
+C/C++: building target executable curl-example-localport because no targets are specified.
+C/C++: evaluate library luajit (arm64-v8a)
+C/C++: building target executable luajit because no targets are specified.
+C/C++: evaluate library curl-example-http3-present (arm64-v8a)
+C/C++: building target executable curl-example-http3-present because no targets are specified.
+C/C++: evaluate library curl-example-websocket (arm64-v8a)
+C/C++: building target executable curl-example-websocket because no targets are specified.
+C/C++: evaluate library curl-example-ftp-delete (arm64-v8a)
+C/C++: building target executable curl-example-ftp-delete because no targets are specified.
+C/C++: evaluate library curl-example-pop3-multi (arm64-v8a)
+C/C++: building target executable curl-example-pop3-multi because no targets are specified.
+C/C++: evaluate library curl-example-pop3-top (arm64-v8a)
+C/C++: building target executable curl-example-pop3-top because no targets are specified.
+C/C++: evaluate library curl-example-urlapi (arm64-v8a)
+C/C++: building target executable curl-example-urlapi because no targets are specified.
+C/C++: evaluate library curl-example-altsvc (arm64-v8a)
+C/C++: building target executable curl-example-altsvc because no targets are specified.
+C/C++: evaluate library curltool (arm64-v8a)
+C/C++: not building target library curltool because static libraries are not build by default.
+C/C++: evaluate library curl-example-multi-app (arm64-v8a)
+C/C++: building target executable curl-example-multi-app because no targets are specified.
+C/C++: evaluate library curl-example-connect-to (arm64-v8a)
+C/C++: building target executable curl-example-connect-to because no targets are specified.
+C/C++: evaluate library curl-example-http2-upload (arm64-v8a)
+C/C++: building target executable curl-example-http2-upload because no targets are specified.
+C/C++: evaluate library curl-example-ftpuploadresume (arm64-v8a)
+C/C++: building target executable curl-example-ftpuploadresume because no targets are specified.
+C/C++: evaluate library curl-generate-runtests.1 (arm64-v8a)
+C/C++: not building target curl-generate-runtests.1 because no targets are specified and library build output file is null
+C/C++: evaluate library SDL3_image-shared (arm64-v8a)
+C/C++: building target library SDL3_image-shared because no targets are specified.
+C/C++: evaluate library curl-example-multi-post (arm64-v8a)
+C/C++: building target executable curl-example-multi-post because no targets are specified.
+C/C++: evaluate library curl-example-http-post (arm64-v8a)
+C/C++: building target executable curl-example-http-post because no targets are specified.
+C/C++: evaluate library lj_gen_folddef (arm64-v8a)
+C/C++: not building target lj_gen_folddef because no targets are specified and library build output file is null
+C/C++: evaluate library test-ci (arm64-v8a)
+C/C++: not building target test-ci because no targets are specified and library build output file is null
+C/C++: evaluate library curl-listcats (arm64-v8a)
+C/C++: not building target curl-listcats because no targets are specified and library build output file is null
+C/C++: evaluate library curl-pytest-ci (arm64-v8a)
+C/C++: not building target curl-pytest-ci because no targets are specified and library build output file is null
+C/C++: evaluate library curl-example-imap-create (arm64-v8a)
+C/C++: building target executable curl-example-imap-create because no targets are specified.
+C/C++: evaluate library curl-opts-man (arm64-v8a)
+C/C++: not building target curl-opts-man because no targets are specified and library build output file is null
+C/C++: evaluate library curl-example-imap-tls (arm64-v8a)
+C/C++: building target executable curl-example-imap-tls because no targets are specified.
+C/C++: evaluate library curl-example-postit2-formadd (arm64-v8a)
+C/C++: building target executable curl-example-postit2-formadd because no targets are specified.
+C/C++: evaluate library curl-example-certinfo (arm64-v8a)
+C/C++: building target executable curl-example-certinfo because no targets are specified.
+C/C++: evaluate library curl-example-smtp-mime (arm64-v8a)
+C/C++: building target executable curl-example-smtp-mime because no targets are specified.
+C/C++: evaluate library curl-example-smtp-tls (arm64-v8a)
+C/C++: building target executable curl-example-smtp-tls because no targets are specified.
+C/C++: evaluate library curl-optiontable (arm64-v8a)
+C/C++: not building target curl-optiontable because no targets are specified and library build output file is null
+C/C++: evaluate library curl-example-pop3-tls (arm64-v8a)
+C/C++: building target executable curl-example-pop3-tls because no targets are specified.
+C/C++: evaluate library curlu-unitprotos (arm64-v8a)
+C/C++: not building target curlu-unitprotos because no targets are specified and library build output file is null
+C/C++: evaluate library curl-example-fileupload (arm64-v8a)
+C/C++: building target executable curl-example-fileupload because no targets are specified.
+C/C++: evaluate library curl-example-post-callback (arm64-v8a)
+C/C++: building target executable curl-example-post-callback because no targets are specified.
+C/C++: evaluate library curl-example-ftpsget (arm64-v8a)
+C/C++: building target executable curl-example-ftpsget because no targets are specified.
+C/C++: evaluate library curl-example-pop3-list (arm64-v8a)
+C/C++: building target executable curl-example-pop3-list because no targets are specified.
+C/C++: evaluate library curl-listhelp (arm64-v8a)
+C/C++: not building target curl-listhelp because no targets are specified and library build output file is null
+C/C++: evaluate library curl-example-postinmemory (arm64-v8a)
+C/C++: building target executable curl-example-postinmemory because no targets are specified.
+C/C++: evaluate library main (arm64-v8a)
+C/C++: building target library main because no targets are specified.
+C/C++: evaluate library curl-example-simplessl (arm64-v8a)
+C/C++: building target executable curl-example-simplessl because no targets are specified.
+C/C++: evaluate library curl-example-smtp-multi (arm64-v8a)
+C/C++: building target executable curl-example-smtp-multi because no targets are specified.
+C/C++: evaluate library test-am (arm64-v8a)
+C/C++: not building target test-am because no targets are specified and library build output file is null
+C/C++: evaluate library tests (arm64-v8a)
+C/C++: not building target tests because no targets are specified and library build output file is null
+C/C++: evaluate library buildvm_arch_h (arm64-v8a)
+C/C++: not building target buildvm_arch_h because no targets are specified and library build output file is null
+C/C++: evaluate library curl-example-smtp-mail (arm64-v8a)
+C/C++: building target executable curl-example-smtp-mail because no targets are specified.
+C/C++: evaluate library test-torture (arm64-v8a)
+C/C++: not building target test-torture because no targets are specified and library build output file is null
+C/C++: evaluate library SDL_uclibc (arm64-v8a)
+C/C++: not building target library SDL_uclibc because static libraries are not build by default.
+C/C++: evaluate library test-quiet (arm64-v8a)
+C/C++: not building target test-quiet because no targets are specified and library build output file is null
+C/C++: evaluate library build-certs (arm64-v8a)
+C/C++: not building target build-certs because no targets are specified and library build output file is null
+C/C++: evaluate library curl-ca-firefox (arm64-v8a)
+C/C++: not building target curl-ca-firefox because no targets are specified and library build output file is null
+C/C++: evaluate library curl-example-http2-download (arm64-v8a)
+C/C++: building target executable curl-example-http2-download because no targets are specified.
+C/C++: evaluate library curl-example-imap-ssl (arm64-v8a)
+C/C++: building target executable curl-example-imap-ssl because no targets are specified.
+C/C++: evaluate library curl-example-ftpget (arm64-v8a)
+C/C++: building target executable curl-example-ftpget because no targets are specified.
+C/C++: evaluate library generate-curl.1 (arm64-v8a)
+C/C++: not building target generate-curl.1 because no targets are specified and library build output file is null
+C/C++: evaluate library curl-example-cookie_interface (arm64-v8a)
+C/C++: building target executable curl-example-cookie_interface because no targets are specified.
+C/C++: evaluate library curl-example-smtp-vrfy (arm64-v8a)
+C/C++: building target executable curl-example-smtp-vrfy because no targets are specified.
+C/C++: evaluate library lj_gen_headers (arm64-v8a)
+C/C++: not building target lj_gen_headers because no targets are specified and library build output file is null
+C/C++: evaluate library curl-example-netrc (arm64-v8a)
+C/C++: building target executable curl-example-netrc because no targets are specified.
+C/C++: evaluate library curl-example-all (arm64-v8a)
+C/C++: not building target curl-example-all because no targets are specified and library build output file is null
+C/C++: evaluate library curl-example-log_failed_transfers (arm64-v8a)
+C/C++: building target executable curl-example-log_failed_transfers because no targets are specified.
+C/C++: evaluate library curl-ca-bundle (arm64-v8a)
+C/C++: not building target curl-ca-bundle because no targets are specified and library build output file is null
+C/C++: evaluate library curl-example-imap-search (arm64-v8a)
+C/C++: building target executable curl-example-imap-search because no targets are specified.
+C/C++: evaluate library SDL3_test (arm64-v8a)
+C/C++: not building target library SDL3_test because static libraries are not build by default.
+C/C++: evaluate library curl-example-block_ip (arm64-v8a)
+C/C++: building target executable curl-example-block_ip because no targets are specified.
+C/C++: evaluate library curl-example-smtp-ssl (arm64-v8a)
+C/C++: building target executable curl-example-smtp-ssl because no targets are specified.
+C/C++: evaluate library curl-example-ftpgetresp (arm64-v8a)
+C/C++: building target executable curl-example-ftpgetresp because no targets are specified.
+C/C++: evaluate library curl-example-hsts-preload (arm64-v8a)
+C/C++: building target executable curl-example-hsts-preload because no targets are specified.
+C/C++: evaluate library SDL3-shared (arm64-v8a)
+C/C++: building target library SDL3-shared because no targets are specified.
+C/C++: evaluate library curl-example-imap-noop (arm64-v8a)
+C/C++: building target executable curl-example-imap-noop because no targets are specified.
+C/C++: evaluate library curl-example-shared-connection-cache (arm64-v8a)
+C/C++: building target executable curl-example-shared-connection-cache because no targets are specified.
+C/C++: evaluate library test-nonflaky (arm64-v8a)
+C/C++: not building target test-nonflaky because no targets are specified and library build output file is null
+C/C++: about to build targets SDL3-shared, SDL3_image-shared, SDL3_mixer-shared, curl, curl-example-10-at-a-time, curl-example-address-scope, curl-example-altsvc, curl-example-anyauthput, curl-example-block_ip, curl-example-certinfo, curl-example-chkspeed, curl-example-connect-to, curl-example-cookie_interface, curl-example-debug, curl-example-default-scheme, curl-example-externalsocket, curl-example-fileupload, curl-example-ftp-delete, curl-example-ftp-wildcard, curl-example-ftpget, curl-example-ftpgetinfo, curl-example-ftpgetresp, curl-example-ftpsget, curl-example-ftpupload, curl-example-ftpuploadfrommem, curl-example-ftpuploadresume, curl-example-getinfo, curl-example-getinmemory, curl-example-getredirect, curl-example-getreferrer, curl-example-headerapi, curl-example-hsts-preload, curl-example-http-options, curl-example-http-post, curl-example-http2-download, curl-example-http2-pushinmemory, curl-example-http2-serverpush, curl-example-http2-upload, curl-example-http3, curl-example-http3-present, curl-example-httpcustomheader, curl-example-httpput, curl-example-httpput-postfields, curl-example-https, curl-example-imap-append, curl-example-imap-authzid, curl-example-imap-copy, curl-example-imap-create, curl-example-imap-delete, curl-example-imap-examine, curl-example-imap-fetch, curl-example-imap-list, curl-example-imap-lsub, curl-example-imap-multi, curl-example-imap-noop, curl-example-imap-search, curl-example-imap-ssl, curl-example-imap-store, curl-example-imap-tls, curl-example-interface, curl-example-ipv6, curl-example-keepalive, curl-example-localport, curl-example-log_failed_transfers, curl-example-maxconnects, curl-example-multi-app, curl-example-multi-debugcallback, curl-example-multi-double, curl-example-multi-formadd, curl-example-multi-legacy, curl-example-multi-post, curl-example-multi-single, curl-example-netrc, curl-example-parseurl, curl-example-persistent, curl-example-pop3-authzid, curl-example-pop3-dele, curl-example-pop3-list, curl-example-pop3-multi, curl-example-pop3-noop, curl-example-pop3-retr, curl-example-pop3-ssl, curl-example-pop3-stat, curl-example-pop3-tls, curl-example-pop3-top, curl-example-pop3-uidl, curl-example-post-callback, curl-example-postinmemory, curl-example-postit2, curl-example-postit2-formadd, curl-example-progressfunc, curl-example-protofeats, curl-example-range, curl-example-resolve, curl-example-rtsp-options, curl-example-sendrecv, curl-example-sepheaders, curl-example-sftpget, curl-example-sftpuploadresume, curl-example-shared-connection-cache, curl-example-simple, curl-example-simplepost, curl-example-simplessl, curl-example-smtp-authzid, curl-example-smtp-expn, curl-example-smtp-mail, curl-example-smtp-mime, curl-example-smtp-multi, curl-example-smtp-ssl, curl-example-smtp-tls, curl-example-smtp-vrfy, curl-example-sslbackend, curl-example-synctime, curl-example-threaded, curl-example-unixsocket, curl-example-url2file, curl-example-urlapi, curl-example-websocket, curl-example-websocket-cb, curl-example-websocket-updown, curlinfo, libcurl_shared, libluajit, libtests, luajit, main, servers, tunits, units
+C/C++: Build multiple targets curl-example-keepalive_arm64-v8a libcurl_shared_arm64-v8a tunits_arm64-v8a curl-example-interface_arm64-v8a curl-example-pop3-dele_arm64-v8a curl-example-pop3-noop_arm64-v8a curl-example-default-scheme_arm64-v8a curl-example-imap-lsub_arm64-v8a curl-example-getredirect_arm64-v8a curl-example-pop3-authzid_arm64-v8a curl-example-simple_arm64-v8a curl-example-imap-authzid_arm64-v8a curl-example-headerapi_arm64-v8a curl-example-ipv6_arm64-v8a curl-example-httpcustomheader_arm64-v8a curl-example-parseurl_arm64-v8a curl-example-https_arm64-v8a curl-example-progressfunc_arm64-v8a curl-example-debug_arm64-v8a curl-example-pop3-retr_arm64-v8a curl-example-websocket-updown_arm64-v8a curl-example-imap-copy_arm64-v8a curl-example-httpput-postfields_arm64-v8a curl-example-maxconnects_arm64-v8a curl-example-httpput_arm64-v8a curl-example-sepheaders_arm64-v8a curl-example-postit2_arm64-v8a curl-example-sftpget_arm64-v8a curl-example-resolve_arm64-v8a curl-example-sftpuploadresume_arm64-v8a curl-example-synctime_arm64-v8a curl-example-ftpupload_arm64-v8a curl-example-multi-double_arm64-v8a curl-example-smtp-authzid_arm64-v8a SDL3_mixer-shared_arm64-v8a curl-example-getinmemory_arm64-v8a curl-example-persistent_arm64-v8a curl-example-websocket-cb_arm64-v8a curl-example-multi-single_arm64-v8a curl-example-http2-serverpush_arm64-v8a curl-example-http3_arm64-v8a curl-example-threaded_arm64-v8a curl-example-url2file_arm64-v8a curl-example-ftpgetinfo_arm64-v8a curl-example-imap-append_arm64-v8a curl-example-imap-store_arm64-v8a curl-example-range_arm64-v8a curl-example-imap-examine_arm64-v8a libtests_arm64-v8a curl-example-imap-delete_arm64-v8a curl-example-multi-debugcallback_arm64-v8a curl-example-unixsocket_arm64-v8a servers_arm64-v8a units_arm64-v8a curl-example-imap-fetch_arm64-v8a curl-example-sslbackend_arm64-v8a curl-example-imap-list_arm64-v8a curl-example-rtsp-options_arm64-v8a curl-example-http2-pushinmemory_arm64-v8a curl-example-chkspeed_arm64-v8a curl-example-protofeats_arm64-v8a curl-example-pop3-stat_arm64-v8a libluajit_arm64-v8a curl-example-imap-multi_arm64-v8a curl_arm64-v8a curl-example-getinfo_arm64-v8a curl-example-multi-formadd_arm64-v8a curl-example-http-options_arm64-v8a curl-example-pop3-ssl_arm64-v8a curl-example-getreferrer_arm64-v8a curlinfo_arm64-v8a curl-example-ftp-wildcard_arm64-v8a curl-example-pop3-uidl_arm64-v8a curl-example-sendrecv_arm64-v8a curl-example-ftpuploadfrommem_arm64-v8a curl-example-simplepost_arm64-v8a curl-example-10-at-a-time_arm64-v8a curl-example-anyauthput_arm64-v8a curl-example-externalsocket_arm64-v8a curl-example-smtp-expn_arm64-v8a curl-example-multi-legacy_arm64-v8a curl-example-address-scope_arm64-v8a curl-example-localport_arm64-v8a luajit_arm64-v8a curl-example-http3-present_arm64-v8a curl-example-websocket_arm64-v8a curl-example-ftp-delete_arm64-v8a curl-example-pop3-multi_arm64-v8a curl-example-pop3-top_arm64-v8a curl-example-urlapi_arm64-v8a curl-example-altsvc_arm64-v8a curl-example-multi-app_arm64-v8a curl-example-connect-to_arm64-v8a curl-example-http2-upload_arm64-v8a curl-example-ftpuploadresume_arm64-v8a SDL3_image-shared_arm64-v8a curl-example-multi-post_arm64-v8a curl-example-http-post_arm64-v8a curl-example-imap-create_arm64-v8a curl-example-imap-tls_arm64-v8a curl-example-postit2-formadd_arm64-v8a curl-example-certinfo_arm64-v8a curl-example-smtp-mime_arm64-v8a curl-example-smtp-tls_arm64-v8a curl-example-pop3-tls_arm64-v8a curl-example-fileupload_arm64-v8a curl-example-post-callback_arm64-v8a curl-example-ftpsget_arm64-v8a curl-example-pop3-list_arm64-v8a curl-example-postinmemory_arm64-v8a main_arm64-v8a curl-example-simplessl_arm64-v8a curl-example-smtp-multi_arm64-v8a curl-example-smtp-mail_arm64-v8a curl-example-http2-download_arm64-v8a curl-example-imap-ssl_arm64-v8a curl-example-ftpget_arm64-v8a curl-example-cookie_interface_arm64-v8a curl-example-smtp-vrfy_arm64-v8a curl-example-netrc_arm64-v8a curl-example-log_failed_transfers_arm64-v8a curl-example-imap-search_arm64-v8a curl-example-block_ip_arm64-v8a curl-example-smtp-ssl_arm64-v8a curl-example-ftpgetresp_arm64-v8a curl-example-hsts-preload_arm64-v8a SDL3-shared_arm64-v8a curl-example-imap-noop_arm64-v8a curl-example-shared-connection-cache_arm64-v8a
+C/C++: @echo off
+"C:\\Users\\Shortice\\Documents\\Android\\cmake\\3.22.1\\bin\\ninja.exe" ^
+  -C ^
+  "C:\\Users\\Shortice\\Documents\\GitHub\\jila\\android-project\\app\\.cxx\\Debug\\6f6t5623\\arm64-v8a" ^
+  SDL3-shared ^
+  SDL3_image-shared ^
+  SDL3_mixer-shared ^
+  curl ^
+  curl-example-10-at-a-time ^
+  curl-example-address-scope ^
+  curl-example-altsvc ^
+  curl-example-anyauthput ^
+  curl-example-block_ip ^
+  curl-example-certinfo ^
+  curl-example-chkspeed ^
+  curl-example-connect-to ^
+  curl-example-cookie_interface ^
+  curl-example-debug ^
+  curl-example-default-scheme ^
+  curl-example-externalsocket ^
+  curl-example-fileupload ^
+  curl-example-ftp-delete ^
+  curl-example-ftp-wildcard ^
+  curl-example-ftpget ^
+  curl-example-ftpgetinfo ^
+  curl-example-ftpgetresp ^
+  curl-example-ftpsget ^
+  curl-example-ftpupload ^
+  curl-example-ftpuploadfrommem ^
+  curl-example-ftpuploadresume ^
+  curl-example-getinfo ^
+  curl-example-getinmemory ^
+  curl-example-getredirect ^
+  curl-example-getreferrer ^
+  curl-example-headerapi ^
+  curl-example-hsts-preload ^
+  curl-example-http-options ^
+  curl-example-http-post ^
+  curl-example-http2-download ^
+  curl-example-http2-pushinmemory ^
+  curl-example-http2-serverpush ^
+  curl-example-http2-upload ^
+  curl-example-http3 ^
+  curl-example-http3-present ^
+  curl-example-httpcustomheader ^
+  curl-example-httpput ^
+  curl-example-httpput-postfields ^
+  curl-example-https ^
+  curl-example-imap-append ^
+  curl-example-imap-authzid ^
+  curl-example-imap-copy ^
+  curl-example-imap-create ^
+  curl-example-imap-delete ^
+  curl-example-imap-examine ^
+  curl-example-imap-fetch ^
+  curl-example-imap-list ^
+  curl-example-imap-lsub ^
+  curl-example-imap-multi ^
+  curl-example-imap-noop ^
+  curl-example-imap-search ^
+  curl-example-imap-ssl ^
+  curl-example-imap-store ^
+  curl-example-imap-tls ^
+  curl-example-interface ^
+  curl-example-ipv6 ^
+  curl-example-keepalive ^
+  curl-example-localport ^
+  curl-example-log_failed_transfers ^
+  curl-example-maxconnects ^
+  curl-example-multi-app ^
+  curl-example-multi-debugcallback ^
+  curl-example-multi-double ^
+  curl-example-multi-formadd ^
+  curl-example-multi-legacy ^
+  curl-example-multi-post ^
+  curl-example-multi-single ^
+  curl-example-netrc ^
+  curl-example-parseurl ^
+  curl-example-persistent ^
+  curl-example-pop3-authzid ^
+  curl-example-pop3-dele ^
+  curl-example-pop3-list ^
+  curl-example-pop3-multi ^
+  curl-example-pop3-noop ^
+  curl-example-pop3-retr ^
+  curl-example-pop3-ssl ^
+  curl-example-pop3-stat ^
+  curl-example-pop3-tls ^
+  curl-example-pop3-top ^
+  curl-example-pop3-uidl ^
+  curl-example-post-callback ^
+  curl-example-postinmemory ^
+  curl-example-postit2 ^
+  curl-example-postit2-formadd ^
+  curl-example-progressfunc ^
+  curl-example-protofeats ^
+  curl-example-range ^
+  curl-example-resolve ^
+  curl-example-rtsp-options ^
+  curl-example-sendrecv ^
+  curl-example-sepheaders ^
+  curl-example-sftpget ^
+  curl-example-sftpuploadresume ^
+  curl-example-shared-connection-cache ^
+  curl-example-simple ^
+  curl-example-simplepost ^
+  curl-example-simplessl ^
+  curl-example-smtp-authzid ^
+  curl-example-smtp-expn ^
+  curl-example-smtp-mail ^
+  curl-example-smtp-mime ^
+  curl-example-smtp-multi ^
+  curl-example-smtp-ssl ^
+  curl-example-smtp-tls ^
+  curl-example-smtp-vrfy ^
+  curl-example-sslbackend ^
+  curl-example-synctime ^
+  curl-example-threaded ^
+  curl-example-unixsocket ^
+  curl-example-url2file ^
+  curl-example-urlapi ^
+  curl-example-websocket ^
+  curl-example-websocket-cb ^
+  curl-example-websocket-updown ^
+  curlinfo ^
+  libcurl_shared ^
+  libluajit ^
+  libtests ^
+  luajit ^
+  main ^
+  servers ^
+  tunits ^
+  units
+
+Starting process 'command 'C:\Users\Shortice\Documents\Android\cmake\3.22.1\bin\ninja.exe''. Working directory: C:\Users\Shortice\Documents\GitHub\jila\android-project Command: C:\Users\Shortice\Documents\Android\cmake\3.22.1\bin\ninja.exe -C C:\Users\Shortice\Documents\GitHub\jila\android-project\app\.cxx\Debug\6f6t5623\arm64-v8a SDL3-shared SDL3_image-shared SDL3_mixer-shared curl curl-example-10-at-a-time curl-example-address-scope curl-example-altsvc curl-example-anyauthput curl-example-block_ip curl-example-certinfo curl-example-chkspeed curl-example-connect-to curl-example-cookie_interface curl-example-debug curl-example-default-scheme curl-example-externalsocket curl-example-fileupload curl-example-ftp-delete curl-example-ftp-wildcard curl-example-ftpget curl-example-ftpgetinfo curl-example-ftpgetresp curl-example-ftpsget curl-example-ftpupload curl-example-ftpuploadfrommem curl-example-ftpuploadresume curl-example-getinfo curl-example-getinmemory curl-example-getredirect curl-example-getreferrer curl-example-headerapi curl-example-hsts-preload curl-example-http-options curl-example-http-post curl-example-http2-download curl-example-http2-pushinmemory curl-example-http2-serverpush curl-example-http2-upload curl-example-http3 curl-example-http3-present curl-example-httpcustomheader curl-example-httpput curl-example-httpput-postfields curl-example-https curl-example-imap-append curl-example-imap-authzid curl-example-imap-copy curl-example-imap-create curl-example-imap-delete curl-example-imap-examine curl-example-imap-fetch curl-example-imap-list curl-example-imap-lsub curl-example-imap-multi curl-example-imap-noop curl-example-imap-search curl-example-imap-ssl curl-example-imap-store curl-example-imap-tls curl-example-interface curl-example-ipv6 curl-example-keepalive curl-example-localport curl-example-log_failed_transfers curl-example-maxconnects curl-example-multi-app curl-example-multi-debugcallback curl-example-multi-double curl-example-multi-formadd curl-example-multi-legacy curl-example-multi-post curl-example-multi-single curl-example-netrc curl-example-parseurl curl-example-persistent curl-example-pop3-authzid curl-example-pop3-dele curl-example-pop3-list curl-example-pop3-multi curl-example-pop3-noop curl-example-pop3-retr curl-example-pop3-ssl curl-example-pop3-stat curl-example-pop3-tls curl-example-pop3-top curl-example-pop3-uidl curl-example-post-callback curl-example-postinmemory curl-example-postit2 curl-example-postit2-formadd curl-example-progressfunc curl-example-protofeats curl-example-range curl-example-resolve curl-example-rtsp-options curl-example-sendrecv curl-example-sepheaders curl-example-sftpget curl-example-sftpuploadresume curl-example-shared-connection-cache curl-example-simple curl-example-simplepost curl-example-simplessl curl-example-smtp-authzid curl-example-smtp-expn curl-example-smtp-mail curl-example-smtp-mime curl-example-smtp-multi curl-example-smtp-ssl curl-example-smtp-tls curl-example-smtp-vrfy curl-example-sslbackend curl-example-synctime curl-example-threaded curl-example-unixsocket curl-example-url2file curl-example-urlapi curl-example-websocket curl-example-websocket-cb curl-example-websocket-updown curlinfo libcurl_shared libluajit libtests luajit main servers tunits units
+Successfully started process 'command 'C:\Users\Shortice\Documents\Android\cmake\3.22.1\bin\ninja.exe''
+C/C++: Received process result: 1
+
+> Task :app:buildCMakeDebug[arm64-v8a] FAILED
+
+[Incubating] Problems report is available at: file:///C:/Users/Shortice/Documents/GitHub/jila/android-project/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:buildCMakeDebug[arm64-v8a]'.
+> com.android.ide.common.process.ProcessException: ninja: Entering directory `C:\Users\Shortice\Documents\GitHub\jila\android-project\app\.cxx\Debug\6f6t5623\arm64-v8a'
+  [0/2] Re-checking globbed directories...
+  [1/917] Building C object external/SDL/CMakeFiles/SDL3-shared.dir/src/main/generic/SDL_sysmain_callbacks.c.o
+  [2/917] Building C object external/SDL/CMakeFiles/SDL3-shared.dir/src/tray/dummy/SDL_tray.c.o
+  [3/917] Building C object external/SDL_Image/CMakeFiles/SDL3_image-shared.dir/src/IMG_anim_decoder.c.o
+  [4/917] Building C object external/SDL/CMakeFiles/SDL3-shared.dir/src/process/dummy/SDL_dummyprocess.c.o
+  [5/917] Building C object external/SDL_Image/CMakeFiles/SDL3_image-shared.dir/src/IMG_avif.c.o
+  [6/917] Building C object external/SDL/CMakeFiles/SDL3-shared.dir/src/dialog/unix/SDL_zenitymessagebox.c.o
+  [7/917] Building C object external/SDL/CMakeFiles/SDL3-shared.dir/src/dialog/SDL_dialog.c.o
+  [8/917] Building C object external/SDL/CMakeFiles/SDL3-shared.dir/src/video/offscreen/SDL_offscreenwindow.c.o
+  [9/917] Building C object external/SDL/CMakeFiles/SDL3-shared.dir/src/process/SDL_process.c.o
+  [10/917] Building C object external/SDL/CMakeFiles/SDL3-shared.dir/src/storage/generic/SDL_genericstorage.c.o
+  [11/917] Building C object external/SDL/CMakeFiles/SDL3-shared.dir/src/video/offscreen/SDL_offscreenvulkan.c.o
+  [12/917] Generating minilua/minilua
+  -- Selecting Windows SDK version 10.0.26100.0 to target Windows 10.0.26200.
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/Shortice/Documents/GitHub/jila/android-project/app/.cxx/Debug/6f6t5623/arm64-v8a/cmake/lua_jit/minilua
+  Версия MSBuild 17.14.23+b0019275e для .NET Framework
+  
+    minilua.vcxproj -> C:\Users\Shortice\Documents\GitHub\jila\android-project\app\.cxx\Debug\6f6t5623\arm64-v8a\cmake\lua_jit\minilua\Debug\minilua.exe
+  [13/917] Generating C:/Users/Shortice/Documents/GitHub/jila/src/external/LuaJIT/src/luajit.h
+  FAILED: C:/Users/Shortice/Documents/GitHub/jila/src/external/LuaJIT/src/luajit.h 
+  cmd.exe /C "cd /D C:\Users\Shortice\Documents\GitHub\jila\android-project\app\.cxx\Debug\6f6t5623\arm64-v8a\cmake\lua_jit && C:\Users\Shortice\Documents\GitHub\jila\android-project\app\.cxx\Debug\6f6t5623\arm64-v8a\cmake\lua_jit\minilua\minilua C:/Users/Shortice/Documents/GitHub/jila/src/external/LuaJIT/src/host/genversion.lua C:/Users/Shortice/Documents/GitHub/jila/src/external/LuaJIT/src/luajit_rolling.h C:/Users/Shortice/Documents/GitHub/jila/android-project/app/.cxx/Debug/6f6t5623/arm64-v8a/cmake/lua_jit/luajit_relver.txt C:/Users/Shortice/Documents/GitHub/jila/src/external/LuaJIT/src/luajit.h"
+  'C:\Users\Shortice\Documents\GitHub\jila\android-project\app\.cxx\Debug\6f6t5623\arm64-v8a\cmake\lua_jit\minilua\minilua' is not recognized as an internal or external command,
+  operable program or batch file.
+  [14/917] Building C object external/SDL/CMakeFiles/SDL3-shared.dir/src/tray/SDL_tray_utils.c.o
+  [15/917] Building C object external/SDL/CMakeFiles/SDL_uclibc.dir/src/libm/s_modf.c.o
+  ninja: build stopped: subcommand failed.
+  
+  C++ build system [build] failed while executing:
+      @echo off
+      "C:\\Users\\Shortice\\Documents\\Android\\cmake\\3.22.1\\bin\\ninja.exe" ^
+        -C ^
+        "C:\\Users\\Shortice\\Documents\\GitHub\\jila\\android-project\\app\\.cxx\\Debug\\6f6t5623\\arm64-v8a" ^
+        SDL3-shared ^
+        SDL3_image-shared ^
+        SDL3_mixer-shared ^
+        curl ^
+        curl-example-10-at-a-time ^
+        curl-example-address-scope ^
+        curl-example-altsvc ^
+        curl-example-anyauthput ^
+        curl-example-block_ip ^
+        curl-example-certinfo ^
+        curl-example-chkspeed ^
+        curl-example-connect-to ^
+        curl-example-cookie_interface ^
+        curl-example-debug ^
+        curl-example-default-scheme ^
+        curl-example-externalsocket ^
+        curl-example-fileupload ^
+        curl-example-ftp-delete ^
+        curl-example-ftp-wildcard ^
+        curl-example-ftpget ^
+        curl-example-ftpgetinfo ^
+        curl-example-ftpgetresp ^
+        curl-example-ftpsget ^
+        curl-example-ftpupload ^
+        curl-example-ftpuploadfrommem ^
+        curl-example-ftpuploadresume ^
+        curl-example-getinfo ^
+        curl-example-getinmemory ^
+        curl-example-getredirect ^
+        curl-example-getreferrer ^
+        curl-example-headerapi ^
+        curl-example-hsts-preload ^
+        curl-example-http-options ^
+        curl-example-http-post ^
+        curl-example-http2-download ^
+        curl-example-http2-pushinmemory ^
+        curl-example-http2-serverpush ^
+        curl-example-http2-upload ^
+        curl-example-http3 ^
+        curl-example-http3-present ^
+        curl-example-httpcustomheader ^
+        curl-example-httpput ^
+        curl-example-httpput-postfields ^
+        curl-example-https ^
+        curl-example-imap-append ^
+        curl-example-imap-authzid ^
+        curl-example-imap-copy ^
+        curl-example-imap-create ^
+        curl-example-imap-delete ^
+        curl-example-imap-examine ^
+        curl-example-imap-fetch ^
+        curl-example-imap-list ^
+        curl-example-imap-lsub ^
+        curl-example-imap-multi ^
+        curl-example-imap-noop ^
+        curl-example-imap-search ^
+        curl-example-imap-ssl ^
+        curl-example-imap-store ^
+        curl-example-imap-tls ^
+        curl-example-interface ^
+        curl-example-ipv6 ^
+        curl-example-keepalive ^
+        curl-example-localport ^
+        curl-example-log_failed_transfers ^
+        curl-example-maxconnects ^
+        curl-example-multi-app ^
+        curl-example-multi-debugcallback ^
+        curl-example-multi-double ^
+        curl-example-multi-formadd ^
+        curl-example-multi-legacy ^
+        curl-example-multi-post ^
+        curl-example-multi-single ^
+        curl-example-netrc ^
+        curl-example-parseurl ^
+        curl-example-persistent ^
+        curl-example-pop3-authzid ^
+        curl-example-pop3-dele ^
+        curl-example-pop3-list ^
+        curl-example-pop3-multi ^
+        curl-example-pop3-noop ^
+        curl-example-pop3-retr ^
+        curl-example-pop3-ssl ^
+        curl-example-pop3-stat ^
+        curl-example-pop3-tls ^
+        curl-example-pop3-top ^
+        curl-example-pop3-uidl ^
+        curl-example-post-callback ^
+        curl-example-postinmemory ^
+        curl-example-postit2 ^
+        curl-example-postit2-formadd ^
+        curl-example-progressfunc ^
+        curl-example-protofeats ^
+        curl-example-range ^
+        curl-example-resolve ^
+        curl-example-rtsp-options ^
+        curl-example-sendrecv ^
+        curl-example-sepheaders ^
+        curl-example-sftpget ^
+        curl-example-sftpuploadresume ^
+        curl-example-shared-connection-cache ^
+        curl-example-simple ^
+        curl-example-simplepost ^
+        curl-example-simplessl ^
+        curl-example-smtp-authzid ^
+        curl-example-smtp-expn ^
+        curl-example-smtp-mail ^
+        curl-example-smtp-mime ^
+        curl-example-smtp-multi ^
+        curl-example-smtp-ssl ^
+        curl-example-smtp-tls ^
+        curl-example-smtp-vrfy ^
+        curl-example-sslbackend ^
+        curl-example-synctime ^
+        curl-example-threaded ^
+        curl-example-unixsocket ^
+        curl-example-url2file ^
+        curl-example-urlapi ^
+        curl-example-websocket ^
+        curl-example-websocket-cb ^
+        curl-example-websocket-updown ^
+        curlinfo ^
+        libcurl_shared ^
+        libluajit ^
+        libtests ^
+        luajit ^
+        main ^
+        servers ^
+        tunits ^
+        units
+    from C:\Users\Shortice\Documents\GitHub\jila\android-project\app
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.12/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD FAILED in 13s
+37 actionable tasks: 7 executed, 30 up-to-date
+Watched directory hierarchies: [C:\Users\Shortice\Documents\GitHub\jila\android-project]

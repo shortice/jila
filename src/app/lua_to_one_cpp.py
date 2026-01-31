@@ -24,9 +24,9 @@ tpl = Template(
 
 sources = []
 
-for i in glob("./app/*.lua"):
+for i in glob("./examples/full/*.lua"):
     with open(i) as fp:
-        sources.append(f'R"(\n{fp.read()}\n)"')
+        sources.append(f'R"""(\n{fp.read()}\n)"""')
 
 with open("result.hpp", "w+") as fp:
     fp.write(

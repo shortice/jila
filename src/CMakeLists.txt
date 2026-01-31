@@ -64,6 +64,18 @@ set(JILA_IMGUI_SOURCES
     "${JILA_EXTERNAL_DIR}/imgui/imgui_demo.cpp"
 )
 
+# Collect Lua sources
+file(GLOB JILA_LUA_SOURCES "${JILA_EXTERNAL_DIR}/Lua/*.c")
+list(REMOVE_ITEM JILA_LUA_SOURCES
+    "${JILA_EXTERNAL_DIR}/Lua/lua.c"
+    "${JILA_EXTERNAL_DIR}/Lua/luac.c"
+    "${JILA_EXTERNAL_DIR}/Lua/onelua.c"
+    "${JILA_EXTERNAL_DIR}/Lua/ltests.c"
+)
+
+add_library(lua STATIC ${JILA_LUA_SOURCES})
+target_include_directories(lua PUBLIC "${JILA_EXTERNAL_DIR}/Lua")
+
 # Collect library sources
 file(GLOB_RECURSE JILA_LIB_SOURCES
     "${JILA_ENGINE_DIR}/*.cpp"
@@ -87,6 +99,7 @@ endif()
 if(ANDROID)
     add_library(main SHARED
         "${JILA_SOURCE_DIR}/main.cpp"
+        "${JILA_SOURCE_DIR}/misc.cpp"
         "${JILA_SOURCE_DIR}/external/ulog.c"
         ${JILA_LIB_SOURCES}
         ${JILA_IMGUI_SOURCES}
@@ -94,6 +107,7 @@ if(ANDROID)
 else()
     add_executable(main
         "${JILA_SOURCE_DIR}/main.cpp"
+        "${JILA_SOURCE_DIR}/misc.cpp"
         "${JILA_SOURCE_DIR}/external/ulog.c"
         ${JILA_LIB_SOURCES}
         ${JILA_IMGUI_SOURCES}
@@ -138,9 +152,15 @@ if(WIN32 AND JILA_RELEASE)
     set_target_properties(main PROPERTIES WIN32_EXECUTABLE TRUE)
 endif()
 
+if(ANDROID)
+    find_package(jila-android REQUIRED CONFIG)
+    target_link_libraries(main PRIVATE jila-android::jila-android)
+endif()
+
 # Link libraries
 target_link_libraries(main
     PRIVATE
+    lua
     $<TARGET_NAME_IF_EXISTS:SDL3::SDL3main>
     $<IF:$<TARGET_EXISTS:SDL3::SDL3>,SDL3::SDL3,SDL3::SDL3-static>
 )
@@ -161,8 +181,6 @@ if(JILA_AUDIO)
     )
 endif()
 
-include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/luajit.cmake)
-
 if(JILA_NET)
     set(CURL_USE_LIBPSL OFF)
     # TODO: options for use SSL in Linux/Android
@@ -171,23 +189,17 @@ if(JILA_NET)
         set(CURL_USE_SCHANNEL ON)
     endif()
 
+    if(ANDROID)
+        set(CURL_ENABLE_SSL OFF)
+        # TODO: Fix curl build for Android. SSL dont work.
+    endif()
+
     add_subdirectory(${JILA_EXTERNAL_DIR}/curl)
 
-    if(ANDROID)
-        # TODO: Fix curl build for Android. SSL dont work.
-        target_link_libraries(main PRIVATE CURL::libcurl)
-    else()
-        target_link_libraries(main PRIVATE CURL::libcurl)
-    endif()
+    target_link_libraries(main PRIVATE CURL::libcurl)
 
     target_compile_definitions(main PRIVATE JILA_NET)
 endif()
-
-target_link_libraries(main
-    PRIVATE
-    luajit::lib
-    luajit::header
-)
 
 if(JILA_DATABASE)
     target_compile_definitions(main PRIVATE JILA_DATABASE)

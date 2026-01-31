@@ -1,0 +1,56 @@
+plugins {
+     id 'com.android.application'
+}
+
+android {
+    namespace = "org.libsdl.app"
+    compileSdkVersion 35
+    ndkVersion = "28.2.13676358"
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 35
+        versionCode 1
+        versionName "1.0"
+        externalNativeBuild {
+            cmake {
+                arguments "-DANDROID_PLATFORM=android-21", "-DANDROID_STL=c++_static", "-DJILA_ALL=ON", "-DJILA_RELEASE=ON", "-DSDLMIXER_VENDORED=OFF", "-DSDLIMAGE_VENDORED=OFF"
+                // abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+                abiFilters 'arm64-v8a'
+            }
+        }
+    }
+
+    buildFeatures {
+        prefab true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    applicationVariants.all { variant ->
+        tasks["merge${variant.name.capitalize()}Assets"]
+            .dependsOn("externalNativeBuild${variant.name.capitalize()}")
+    }
+    if (!project.hasProperty('EXCLUDE_NATIVE_LIBS')) {
+        sourceSets.main {
+            jniLibs.srcDir 'libs'
+        }
+        externalNativeBuild {
+            cmake {
+                path '../../src/CMakeLists.txt'
+            }
+        }
+
+    }
+    lint {
+        abortOnError = false
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ["*.jar", "*.aar"], dir: "libs")
+    implementation project(':jila-android')
+}

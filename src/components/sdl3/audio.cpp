@@ -5,6 +5,7 @@
 #include "components/sdl3/audio.hpp"
 #include "misc.hpp"
 #include "proxy.hpp"
+#include "components/sdl3/fio.hpp"
 
 typedef Proxy<MIX_Mixer> Mixer_Proxy;
 typedef Proxy<MIX_Audio> Audio_Proxy;
@@ -78,7 +79,7 @@ struct AudioMeta {
     }
 };
 
-Mixer _SDL_InitMixer(Uint8 channels, Uint16 freq) {
+Mixer _SDL_InitMixer() {
     if (!MIX_Init()) {
         return 0;
     }
@@ -100,8 +101,22 @@ void _SDL_QuitMixer(Mixer mixer) {
     MIX_Quit();
 }
 
-Audio _SDL_CreateAudio(Mixer mixer, std::string_view path) {
-    MIX_Audio* audio = MIX_LoadAudio(mixer->proxy, path.data(), false);
+Audio _SDL_CreateAudio(Mixer mixer, std::variant<std::string_view, IOStream> path) {
+    std::string_view* path_file = std::get_if<std::string_view>(&path);
+    MIX_Audio* audio;
+
+    if (path_file) {
+        audio = MIX_LoadAudio(mixer->proxy, path_file->data(), false);
+    } else {
+        IOStream& io = std::get<IOStream>(path);
+
+        audio = MIX_LoadAudio_IO(
+            mixer->proxy,
+            io->proxy,
+            false,
+            false
+        );
+    }
 
     if (!audio) return 0;
 

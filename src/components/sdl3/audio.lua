@@ -36,7 +36,7 @@ function Jila_QuitMixer(mixer) end
 --- Loading audio.
 ---
 --- @param mixer _Mixer
---- @param path string Path of the music file.
+--- @param path string|Jila_IO Path of the music file. If you use Jila_IO, this IO is auto close after execute this function.
 --- @return _Audio? Audio or nil when error.
 ---
 --- @see Jila_GetError for read error.

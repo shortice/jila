@@ -23,7 +23,7 @@ DataBase Data_Connect(
 
     int rc = sqlite3_open(path.data(), &db);
 
-    if (rc) {
+    if (rc != SQLITE_OK) {
         sqlite3_close(db);
         SDL_SetError("%s", sqlite3_errmsg(db));
         return 0;

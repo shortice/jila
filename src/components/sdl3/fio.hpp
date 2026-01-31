@@ -1,8 +1,9 @@
 #pragma once
 #include "SDL3/SDL_iostream.h"
+#include "proxy.hpp"
 #include "sol/sol.hpp"
 
-typedef std::shared_ptr<SDL_IOStream> IOStream;
+typedef std::shared_ptr<Proxy<SDL_IOStream>> IOStream;
 
 namespace Jila {
 

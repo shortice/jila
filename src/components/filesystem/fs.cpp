@@ -2,9 +2,6 @@
 #include "components/filesystem/fs.hpp"
 #include "SDL3/SDL_filesystem.h"
 #include "sol/sol.hpp"
-#ifdef __ANDROID__
-#include "components/system/jila_android.hpp"
-#endif
 
 // TODO: Android port
 
@@ -145,7 +142,7 @@ std::string Fs_GetHomePath() {
     #ifndef __ANDROID__
     return SDL_GetUserFolder(SDL_FOLDER_HOME);
     #else
-    return android_getExternalStoragePath();
+    return "";
     #endif
 }
 

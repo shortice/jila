@@ -45,6 +45,7 @@ compile_commands.json
 .gradle
 .cxx
 .idea
+local.properties
 
 # Lua release source code
 src/app/jila_app.cpp

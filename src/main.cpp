@@ -21,6 +21,11 @@
 #include "engine/errors.hpp"
 #include "components/threads/c_threads.hpp"
 #include "components/imgui/c_io.hpp"
+#include "components/sdl3/dialog.hpp"
+
+#ifdef __ANDROID__
+#include "misc.hpp"
+#endif
 
 const char* getScriptsLocation(char** argv) {
     argv++; // Skip executable path
@@ -52,6 +57,10 @@ void SetupImGui(
 
     ImGui_ImplSDL3_InitForSDLRenderer(window, renderer);
     ImGui_ImplSDLRenderer3_Init(renderer);
+
+    #ifdef __ANDROID__
+    Jila::Init_Jila_Android_Context();
+    #endif
 
     io.Fonts->Clear();
     io.Fonts -> AddFontFromMemoryCompressedTTF(
@@ -207,6 +216,10 @@ SDL_AppResult SDL_AppEvent(void *appstate, SDL_Event *event) {
 
         if (event->user.code == 1002) {
             delete (Jila::ThreadMessage *)event->user.data1;
+        }
+
+        if (event->user.code == 1005) {
+            delete (Jila::SDL_DialogState *)event->user.data1;
         }
     }
 

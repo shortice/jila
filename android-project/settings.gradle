@@ -1,0 +1,3 @@
+include ':app'
+include ':jila-android'
+project(':jila-android').projectDir = new File('../src/external/jila-android/jila-android')

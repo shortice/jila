@@ -15,4 +15,9 @@ MakeSafeMemory(T* mem, void deleter(T*)) {
 		deleter
 	);
 }
+
+#ifdef __ANDROID__
+void Init_Jila_Android_Context();
+#endif
+
 }
