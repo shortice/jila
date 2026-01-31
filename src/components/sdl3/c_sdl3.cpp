@@ -9,6 +9,7 @@
 #include "components/sdl3/window.hpp"
 #include "components/sdl3/micro.hpp"
 #include "components/sdl3/timer.hpp"
+#include "components/sdl3/fio.hpp"
 
 namespace Jila {
 
@@ -25,6 +26,7 @@ bool Init(sol::state* state) {
     bindSdlWindow(state);
     bindSdlMicro(state);
     bindSdlTimer(state);
+    bindSdlFio(state);
 
     return true;
 }
