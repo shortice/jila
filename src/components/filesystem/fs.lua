@@ -15,6 +15,8 @@ Jila_FsState = {}
 
 ---@param currentCwd string
 ---
+---This functional not working on Android at this moment.
+---
 ---@return Jila_FsState
 function Create_FS_State(currentCwd) end
 
