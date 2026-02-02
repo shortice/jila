@@ -6,7 +6,7 @@
 
 * Critical hotfix ignore this cycle, but not can ignore last cycle position (yes...);
 
-Current cycle position: 1
+Current cycle position: 2
 
 * Week is a 5-days every week;
 
@@ -15,7 +15,7 @@ Current cycle position: 1
 * But! You can play and test this library. Check how build on Windows/Linux in github CI .yml configuration. Or just use new CLI installed by this command:
 
     ```sh
-    pip install git+https://github.com/shortice/jila
+    pip install git+https://github.com/shortice/jila-manager
     ```
 
     Then:
