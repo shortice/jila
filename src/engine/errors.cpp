@@ -24,6 +24,9 @@ void RenderError(sol::protected_function_result& result) {
             err.what()
         );
 
+        // TODO: do not ignore last SDL error if exists
+        SDL_SetError("%s", err.what());
+
         ImGui::End();
     }
 }
