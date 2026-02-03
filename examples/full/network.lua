@@ -64,7 +64,7 @@ function M.Render(time)
         ImEndTable()
     end
 
-    if ImButton("ADD PARAM", Create_ImVec2(Scope.WindowSize.x - 10, 25)) then
+    if ImButton("ADD PARAM") then
         Scope.ParamsCount = Scope.ParamsCount + 1
 
         Scope.Params[Scope.ParamsCount] = {
@@ -73,9 +73,9 @@ function M.Render(time)
         }
     end
 
-    if ImButton("POST", Create_ImVec2(Scope.WindowSize.x - 10, 25)) then
+    if ImButton("POST") then
         local res = Jila_Post(
-            "http://www.httpbin.org/post",
+            "https://www.httpbin.org/post",
             json.encode(GetParamsAsTable())
         )
         local res_json = json.decode(res.text)

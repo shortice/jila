@@ -183,20 +183,18 @@ endif()
 
 if(JILA_NET)
     set(CURL_USE_LIBPSL OFF)
-    # TODO: options for use SSL in Linux/Android
 
     if(WIN32)
         set(CURL_USE_SCHANNEL ON)
     endif()
 
     if(ANDROID)
-        set(CURL_ENABLE_SSL OFF)
-        # TODO: Fix curl build for Android. SSL dont work.
+        find_package(curl REQUIRED CONFIG)
+        target_link_libraries(main PRIVATE curl::curl_static)
+    else()
+        add_subdirectory(${JILA_EXTERNAL_DIR}/curl)
+        target_link_libraries(main PRIVATE CURL::libcurl)
     endif()
-
-    add_subdirectory(${JILA_EXTERNAL_DIR}/curl)
-
-    target_link_libraries(main PRIVATE CURL::libcurl)
 
     target_compile_definitions(main PRIVATE JILA_NET)
 endif()
