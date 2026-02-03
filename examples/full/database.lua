@@ -6,7 +6,7 @@ local M = {
 }
 
 function M.Begin()
-    Scope.KvData = Jila_Kv_Connect("kv.db")
+    Scope.KvData = Jila_Kv_Connect(Jila_Fs_GetPrefPath("Shortice", "Jila demo") .. "kv.db")
 
     Scope.KvKey = Create_Char_Property()
     Scope.KvValue = Create_Char_Property()

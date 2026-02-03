@@ -38,7 +38,7 @@ function M.Render(time)
     end
 
     ImSeparator("Current error: ")
-    ImText(Scope.Error.str)
+    ImTextWrapped(Scope.Error.str)
 
     if ImCollapsingHeader("All widgets") then
         Jila_GetModule("all_widgets").Render(time)

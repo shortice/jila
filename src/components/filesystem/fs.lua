@@ -28,5 +28,25 @@ function Jila_Fs_GetFolders(state) end
 --- @overload fun(state: Jila_FsState, recursive: boolean, exts: string[])
 function Jila_Fs_GetAllFiles(state, recursive) end
 
----@return string
-function Jila_Fs_GetHomePath() end
+
+--- A function for getting a internal path of the Application.
+---
+--- This is safe place for writing/reading files. 
+--- The returned path is guaranteed to end with a path separator 
+--- ('\' on Windows, '/' on most other platforms).
+---
+--- @param org string Organization/author name
+--- @param name string Name of this application
+--- 
+--- @return string
+function Jila_Fs_GetPrefPath(org, name) end
+
+
+--- A function for getting a path to the application data directory.
+---
+--- On android please do not use this function for getting assets files path, instead
+--- just use path like this "test.png" for opening file "test.png" in the assets
+--- directory inside .apk.
+---
+--- @return string
+function Jila_Fs_GetBasePath() end

@@ -19,6 +19,8 @@ function M.Begin()
     Scope.texture = nil --- TODO: <-
     Scope.demo_window_display = Create_Bool_Property(false)
     Scope.debug_window_display = Create_Bool_Property(false)
+
+    Scope.opened_modal = Create_Bool_Property(false)
 end
 
 function M.End() end
@@ -155,12 +157,13 @@ function M.Render(time)
         if ImBeginTabItem("Utils & Modals") then
             if ImButton("Open Modal") then
                 ImOpenPopup("Modal Window")
+                Scope.opened_modal.value = true
             end
 
-            if ImBeginModal("Modal Window") then
+            if ImBeginModal("Modal Window", Scope.opened_modal) then
                 ImText("This is a modal window.")
                 if ImButton("Close") then
-                    -- In this environment, we just stop rendering the modal content
+                    Scope.opened_modal.value = false
                 end
                 ImEndModal()
             end

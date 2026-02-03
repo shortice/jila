@@ -1,6 +1,7 @@
 #include <filesystem>
 #include "components/filesystem/fs.hpp"
 #include "SDL3/SDL_filesystem.h"
+#include "SDL3/SDL_system.h"
 #include "sol/sol.hpp"
 
 // TODO: Android port
@@ -138,9 +139,21 @@ void Fs_GetAllFiles(
     }
 }
 
-std::string Fs_GetHomePath() {
+static std::string _pref_Path;
+
+std::string Fs_GetPrefPath(std::string_view org, std::string_view name) {
+    if (_pref_Path.empty()) {
+        const char* pref_path = SDL_GetPrefPath(org.data(), name.data());
+        _pref_Path = pref_path;
+        SDL_free((void*)pref_path);
+    };
+
+    return _pref_Path;
+}
+
+std::string Fs_GetBasePath() {
     #ifndef __ANDROID__
-    return SDL_GetUserFolder(SDL_FOLDER_HOME);
+    return SDL_GetBasePath();
     #else
     return "";
     #endif
@@ -195,8 +208,13 @@ bool Init(sol::state* state) {
     );
 
     state->set_function(
-        "Jila_Fs_GetHomePath",
-        &Fs_GetHomePath
+        "Jila_Fs_GetPrefPath",
+        &Fs_GetPrefPath
+    );
+
+    state->set_function(
+        "Jila_Fs_GetBasePath",
+        &Fs_GetBasePath
     );
 
     return true;
