@@ -201,7 +201,7 @@ bool Init(sol::state* state) {
                 return Fs_GetAllFiles(
                     state,
                     recursive,
-                    std::move(exts)
+                    exts
                 );
             }
         )

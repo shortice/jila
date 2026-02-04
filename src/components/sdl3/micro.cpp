@@ -8,7 +8,6 @@
 
 namespace Jila {
 
-// TODO: in functional style
 // This class stolen from the whisper.cpp project (MIT License).
 // Source: https://github.com/ggml-org/whisper.cpp/blob/f16c12f3f55f5bd3d6ac8cf2f31ab90a42c884d5/examples/common.h#L138
 class wav_writer {
