@@ -1,8 +1,12 @@
 #include <filesystem>
+#include <algorithm>
 #include "components/filesystem/fs.hpp"
 #include "SDL3/SDL_filesystem.h"
 #include "SDL3/SDL_system.h"
 #include "sol/sol.hpp"
+#ifdef __ANDROID__
+#include "jila-android.hpp"
+#endif
 
 // TODO: Android port
 
@@ -29,6 +33,7 @@ struct FsState {
     bool includeHidden;
 };
 
+// TODO: Android?
 void Fs_GetFolders(FsState& state) {
     state.currentEntries.clear();
     std::string filename;
@@ -119,6 +124,50 @@ void _IterFiles(
     }
 }
 
+#ifdef __ANDROID__
+void Fs_GetAllFilesAndroid(
+    FsState& state,
+    const char** paths,
+    std::vector<std::string>& exts
+) {
+    while (*paths) {
+        std::string_view path = *paths;
+        paths++;
+
+        size_t ext_start_pos = path.find_last_of(".");
+        size_t name_start_pos = path.find_last_of("/");
+        std::string file_ext;
+
+        if (ext_start_pos != path.npos) {
+            // https://en.cppreference.com/w/cpp/string/basic_string/find_last_of
+            file_ext = {
+                path.begin() + ext_start_pos,
+                path.end()
+            };
+        }
+        else {
+            file_ext = "";
+        }
+
+        std::string_view file_name = {
+            path.begin() + name_start_pos,
+            path.begin() + ext_start_pos
+        };
+
+        if (exts.size() != 0 && file_ext != "") {
+            const auto& _ = std::find(exts.begin(), exts.end(), file_ext);
+            if (_ == exts.end()) continue;
+        };
+
+        // TODO: Iter dirs on Android? Maybe
+        state.currentEntries.push_back({
+            path.data(), file_name.data(),
+            file_ext, false
+        });
+    }
+}
+#endif
+
 void Fs_GetAllFiles(
     FsState& state,
     bool recursive,
@@ -126,6 +175,7 @@ void Fs_GetAllFiles(
 ) {
     state.currentEntries.clear();
 
+    #ifndef __ANDROID__
     if (recursive) {
         _IterFiles<recursive_directory_iterator>(
             state,
@@ -137,6 +187,16 @@ void Fs_GetAllFiles(
             exts
         );
     }
+    #else
+    const char** paths = Jila_Android_IterateFiles(
+        state.currentCwd.c_str(),
+        recursive
+    );
+
+    Fs_GetAllFilesAndroid(state, paths, exts);
+
+    free(paths);
+    #endif
 }
 
 static std::string _pref_Path;
@@ -169,7 +229,7 @@ bool Init(sol::state* state) {
     );
 
     state->set_function(
-        "Create_FS_State", 
+        "Jila_Create_FS_State", 
         [](std::string currentCwd) { 
             return FsState(currentCwd); 
         }

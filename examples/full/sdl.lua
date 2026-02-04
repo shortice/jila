@@ -53,6 +53,8 @@ function M.Event(event)
 
         local dialog = Jila_GetDialogState(event.user)
 
+        if dialog.is_folder == true then return end
+
         Scope.CurrentFile.str = dialog.selected_files[1]
 
         if Scope.Audio ~= nil then

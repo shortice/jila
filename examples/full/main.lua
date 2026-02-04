@@ -77,6 +77,7 @@ function M.Event(event)
 
     Jila_GetModule("threads").Event(event)
     Jila_GetModule("sdl").Event(event)
+    Jila_GetModule("information").Event(event)
 end
 
 return M -- Required!!!

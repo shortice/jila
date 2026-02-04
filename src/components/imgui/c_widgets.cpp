@@ -3,7 +3,9 @@
 #include "components/properties/c_properties.hpp"
 #include "components/imgui/c_widgets.hpp"
 #include "components/imgui/c_io.hpp"
+#ifdef JILA_IMAGES
 #include "components/sdl3/images.hpp"
+#endif
 
 namespace Jila {
 
@@ -217,6 +219,7 @@ void _ImGui_EndListBox() {
     ImGui::EndListBox();
 }
 
+#ifdef JILA_IMAGES
 void _ImGui_Image(Texture texture, ImVec2& imageSize) {
     ImGui::Image(
         (intptr_t)texture.get(),
@@ -235,6 +238,7 @@ bool _ImGui_ImageButton_V1(
         imageSize
     );
 }
+#endif
 
 void bindImWidgets(sol::state* state) {
     state -> set_function(
@@ -435,6 +439,7 @@ void bindImWidgets(sol::state* state) {
         &_ImGui_EndListBox
     );
 
+    #ifdef JILA_IMAGES
     state -> set_function(
         "ImImage",
         &_ImGui_Image
@@ -446,6 +451,7 @@ void bindImWidgets(sol::state* state) {
             &_ImGui_ImageButton_V1
         )
     );
+    #endif
 }
 
 }
