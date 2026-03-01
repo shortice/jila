@@ -18,7 +18,11 @@ function Jila_GetError() end
 function Jila_GetModule(name) end
 
 --- Global variables for storing some data across modules.
---- Careful! This not work in separate thread's.
+--- Careful! This not work in separate thread's. On separate
+--- thread please use SharedScope_XXX functions.
+--- 
+--- Implementation details on SharedScope:
+--- Read the value of XXXProperty from all threads is safe, but not write.
 ---
 --- @type table
 Scope = {}

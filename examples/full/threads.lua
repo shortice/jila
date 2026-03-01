@@ -6,19 +6,22 @@ local M = {
 }
 
 function M.Begin()
-    Scope.Int = "0"
+    Scope.Int = SharedScope_CreateI("myvar", 1)
     Scope.Running = false
 end
 
 function M.End() end
 
 function Lol()
-    local i = 1
+    local i = SharedScope_GetI("myvar")
 
-    while i < 99 do
-        i = i + 2
-        Jila_PushThreadMessage("Lol", i)
-        Jila_Sleep(2)
+    if i == nil then
+        return
+    end
+
+    while i.value < 99 do
+        i.value = i.value + 2
+        Jila_Sleep(200)
     end
 end
 
@@ -32,17 +35,7 @@ function M.Render(time)
     end
 
     ImSeparator("Result in thread:")
-    ImText(Scope.Int)
-end
-
-function M.Event(event)
-    if event.type == Jila_EventType.Jila_EVENT_USER then
-        if event.user.code == 1002 then
-            local th = Jila_GetThreadMessage(event.user)
-
-            Scope.Int = tostring(th.var)
-        end
-    end
+    ImText(tostring(Scope.Int.value))
 end
 
 return M -- Required!!!

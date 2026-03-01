@@ -1,63 +1,96 @@
+// FIXME: Crash after/before (?) reload all modules
 #include "components/threads/c_threads.hpp"
 #include "components/net/c_net.hpp"
+#include <mutex>
 #include <thread>
-#include "SDL3/SDL_events.h"
 #include "SDL3/SDL_timer.h"
+#include "components/properties/c_properties.hpp"
 
 namespace Jila {
 
-void _PushThreadMessage(ThreadMessage *message) {
-    SDL_Event event;
-    SDL_zero(event);
-    event.type = SDL_EVENT_USER;
-    event.user.code = 1002;
-    event.user.data1 = message;
+#define S(T) std::shared_ptr<T>
+
+typedef std::variant<
+    S(IntProperty), S(FloatProperty), 
+    S(BoolProperty), S(CharProperty)
+> THSupportTypes;
+static std::mutex global_mutex;
+static std::map<std::string, THSupportTypes> shared_scope = {};
+
+template<typename T>
+std::shared_ptr<T> SharedScope_Get(const std::string_view key) {
+    std::lock_guard<std::mutex> lock(global_mutex);
     
-    SDL_PushEvent(&event);
+    auto it = shared_scope.find(key.data());
+
+    if (it != shared_scope.end()) {
+        return std::get<std::shared_ptr<T>>(it->second);
+    }
+
+    return 0;
 }
-    
-void _PushThreadMessageLua(
-    std::string threadName,
-    sol::object m) {
-    ThreadMessage *msg = new ThreadMessage{};
-    msg->threadName = threadName;
-    msg->statusCode = RUNNING;
-    
-    if (m.get_type() == sol::type::number) {
-        msg->var = m.as<double>();
-    }
-    
-    if (m.get_type() == sol::type::string) {
-        msg->var = m.as<std::string>();
-    }
-    
-    if (m.get_type() == sol::type::nil) {
-        msg->var = sol::nil;
-    }
-    
-    _PushThreadMessage(msg);
+
+void shared_functions(sol::state& state) {
+    state.set_function(
+        "Jila_Sleep", [](int ms) {
+        SDL_Delay(ms);
+    });
+
+    // SharedStorage: Create functions
+    state.set_function(
+        "SharedScope_CreateF", [](const std::string key, float value) {
+        std::lock_guard<std::mutex> lock(global_mutex);
+        auto prop = std::make_shared<FloatProperty>(value);
+        shared_scope[key] = prop;
+        return prop;
+    });
+
+    state.set_function(
+        "SharedScope_CreateI", [](const std::string key, int value) {
+        std::lock_guard<std::mutex> lock(global_mutex);
+        auto prop = std::make_shared<IntProperty>(value);
+        shared_scope[key] = prop;
+        return prop;
+    });
+
+    state.set_function(
+        "SharedScope_CreateC", [](const std::string& key, const std::string value) {
+        std::lock_guard<std::mutex> lock(global_mutex);
+        auto prop = std::make_shared<CharProperty>(value);
+        shared_scope[key] = prop;
+        return prop;
+    });
+
+    state.set_function(
+        "SharedScope_CreateB", [](const std::string key, bool value) {
+        std::lock_guard<std::mutex> lock(global_mutex);
+        auto prop = std::make_shared<BoolProperty>(value);
+        shared_scope[key] = prop;
+        auto m = std::get<std::shared_ptr<BoolProperty>>(shared_scope[key]);
+        return prop;
+    });
+
+    // SharedStorage: Get functions
+    state.set_function("SharedScope_GetF", &SharedScope_Get<FloatProperty>);
+    state.set_function("SharedScope_GetI", &SharedScope_Get<IntProperty>);
+    state.set_function("SharedScope_GetC", &SharedScope_Get<CharProperty>);
+    state.set_function("SharedScope_GetB", &SharedScope_Get<BoolProperty>);
+
+    // SharedStorage: Delete function
+    state.set_function(
+        "SharedScope_Delete", [](const std::string_view key) -> bool {
+        std::lock_guard<std::mutex> lock(global_mutex);
+        return shared_scope.erase(key.data()) > 0;
+    });
 }
-    
+
 void _RunSeparated(
     sol::basic_bytecode<> byteCode, 
     std::string moduleName
 ) {
-    ThreadMessage *start_msg = new ThreadMessage{};
-    start_msg->threadName = moduleName;
-    start_msg->statusCode = STARTING;
-    _PushThreadMessage(start_msg);
-    
     sol::state threaded_state;
-    
-    threaded_state.set_function(
-        "Jila_Sleep", [](int seconds) {
-        SDL_Delay(seconds * 1000);
-    });
-    
-    threaded_state.set_function(
-        "Jila_PushThreadMessage", 
-        &_PushThreadMessageLua
-    );
+
+    shared_functions(threaded_state);
     
     threaded_state.open_libraries(
         sol::lib::base, sol::lib::table, 
@@ -65,6 +98,7 @@ void _RunSeparated(
     );
 
     #ifdef JILA_NET
+    PropertiesComponent::Init(&threaded_state);
     NetComponent::Init(&threaded_state);
     #endif
     
@@ -73,36 +107,14 @@ void _RunSeparated(
         sol::detail::default_chunk_name(),
         sol::load_mode::binary
     );
-    
-    ThreadMessage *msg = new ThreadMessage{};
-    msg->threadName = moduleName;
-    
-    if (m.valid()) {
-        msg->statusCode = COMPLETED;
-    
-        if (m.get_type() == sol::type::number) {
-            msg->var = m.get<double>();
-        }
-    
-        if (m.get_type() == sol::type::string) {
-            msg->var = m.get<std::string>();
-        }
-    
-        if (m.get_type() == sol::type::nil) {
-            msg->var = sol::nil;
-        }
-    } else {
-        msg->statusCode = ERROR;
-        sol::error err = m;
-        msg->var = err.what();
+
+    #ifndef __ANDROID__
+    if (!m.valid()) {
+        std::cout << sol::error(m).what() << "\n";
     }
-    
-    _PushThreadMessage(msg);
-}
-    
-ThreadMessage _GetThreadMessage(SDL_UserEvent &event) {
-    ThreadMessage msg = *(ThreadMessage *)event.data1;
-    return msg;
+    #endif
+
+    // TODO: need improve error handling in threads
 }
     
 void _Go(sol::function func, std::string threadName) {
@@ -115,35 +127,19 @@ void _Go(sol::function func, std::string threadName) {
 namespace ThreadsComponent {
 
 bool Init(sol::state *state) {
-    state -> new_enum(
-        "Jila_ThreadStatusCode",
-        "STARTING", _StatusCode::STARTING,
-        "COMPLETED", _StatusCode::COMPLETED,
-        "ERROR", _StatusCode::ERROR,
-        "RUNNING", _StatusCode::RUNNING
-    );
-
-    state -> new_usertype<ThreadMessage>(
-        "Jila_ThreadMessage",
-        "threadName", sol::readonly(&ThreadMessage::threadName),
-        "statusCode", sol::readonly(&ThreadMessage::statusCode),
-        "var", sol::readonly(&ThreadMessage::var)
-    );
+    shared_functions(*state);
 
     state -> set_function(
         "Jila_Go",
         &_Go
     );
 
-    state -> set_function(
-        "Jila_GetThreadMessage",
-        &_GetThreadMessage
-    );
-
     return true;
 }
 
-void Quit(sol::state *state) {}
+void Quit(sol::state *state) {
+    shared_scope.clear();
+}
 
 }
 

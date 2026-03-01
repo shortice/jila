@@ -14,17 +14,20 @@ end
 
 function M.BeginMainLoop()
     Scope.WindowSize = Jila_GetWindowSize()
-    Scope.Int = "0"
     Scope.Running = false
+    Scope.MyValue = SharedScope_CreateC("myvar", "")
 end
 
 function Lol()
-    local i = 1
+    local m = 0
+    local i = SharedScope_GetC("myvar")
 
-    while i < 999999 do
-        i = i + 1
-        Jila_PushThreadMessage("Lol", i)
-        Jila_Sleep(0.1)
+    if i == nil then return end
+
+    while m < 999999 do
+        m = m + 1
+        i.value = i.value .. tostring(m)
+        Jila_Sleep(300)
     end
 end
 
@@ -36,13 +39,12 @@ function M.Render(time)
     if ImButton("Start thread") then
         if Scope.Running == false then
             Jila_Go(Lol, "Lol")
-
             Scope.Running = true
         end
     end
 
     ImSeparator("Result in thread:")
-    ImText(Scope.Int)
+    ImTextWrapped(Scope.MyValue.value)
 
     ImEnd()
 end
@@ -52,14 +54,6 @@ function M.Event(event)
     if event.type == Jila_EventType.Jila_EVENT_WINDOW_PIXEL_SIZE_CHANGED then
         Scope.WindowSize.x = event.window.data1
         Scope.WindowSize.y = event.window.data2
-    end
-
-    if event.type == Jila_EventType.Jila_EVENT_USER then
-        if event.user.code == 1002 then
-            local th = Jila_GetThreadMessage(event.user)
-
-            Scope.Int = tostring(th.var)
-        end
     end
 end
 

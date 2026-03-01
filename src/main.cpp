@@ -19,7 +19,6 @@
 #include "engine/logger.hpp"
 #include "engine/component.hpp"
 #include "engine/errors.hpp"
-#include "components/threads/c_threads.hpp"
 #include "components/imgui/c_io.hpp"
 #include "components/sdl3/dialog.hpp"
 
@@ -212,10 +211,6 @@ SDL_AppResult SDL_AppEvent(void *appstate, SDL_Event *event) {
     if (event->type == SDL_EVENT_USER) {
         if (event->user.code == 1001) {
             Jila::ReloadAll();
-        }
-
-        if (event->user.code == 1002) {
-            delete (Jila::ThreadMessage *)event->user.data1;
         }
 
         if (event->user.code == 1005) {

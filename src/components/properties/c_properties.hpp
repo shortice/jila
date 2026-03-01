@@ -1,5 +1,4 @@
 #pragma once
-
 #include "engine/component.hpp"
 
 namespace Jila {
@@ -30,7 +29,6 @@ typedef _Property<bool>    BoolProperty;
     
 template<typename T>
 void BindProperty(std::string name, sol::state& state) {
-
     state.new_usertype<
         _Property<T>
     >(
