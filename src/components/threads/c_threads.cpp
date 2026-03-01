@@ -5,6 +5,9 @@
 #include <thread>
 #include "SDL3/SDL_timer.h"
 #include "components/properties/c_properties.hpp"
+#ifndef __ANDROID__ // TODO: logging?..
+#include <iostream>
+#endif
 
 namespace Jila {
 
