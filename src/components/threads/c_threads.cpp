@@ -5,7 +5,7 @@
 #include <thread>
 #include "SDL3/SDL_timer.h"
 #include "components/properties/c_properties.hpp"
-#ifndef __ANDROID__ // TODO: logging?..
+#ifndef JILA_RELEASE // TODO: logging?..
 #include <iostream>
 #endif
 
@@ -33,6 +33,14 @@ std::shared_ptr<T> SharedScope_Get(const std::string_view key) {
     return 0;
 }
 
+template<typename PropT, typename ArgT>
+std::shared_ptr<PropT> SharedCreate(const std::string_view key, ArgT value) {
+    std::lock_guard<std::mutex> lock(global_mutex);
+    auto prop = std::make_shared<PropT>(value);
+    shared_scope[key.data()] = prop;
+    return prop;
+}
+
 void shared_functions(sol::state& state) {
     state.set_function(
         "Jila_Sleep", [](int ms) {
@@ -40,38 +48,10 @@ void shared_functions(sol::state& state) {
     });
 
     // SharedStorage: Create functions
-    state.set_function(
-        "SharedScope_CreateF", [](const std::string key, float value) {
-        std::lock_guard<std::mutex> lock(global_mutex);
-        auto prop = std::make_shared<FloatProperty>(value);
-        shared_scope[key] = prop;
-        return prop;
-    });
-
-    state.set_function(
-        "SharedScope_CreateI", [](const std::string key, int value) {
-        std::lock_guard<std::mutex> lock(global_mutex);
-        auto prop = std::make_shared<IntProperty>(value);
-        shared_scope[key] = prop;
-        return prop;
-    });
-
-    state.set_function(
-        "SharedScope_CreateC", [](const std::string& key, const std::string value) {
-        std::lock_guard<std::mutex> lock(global_mutex);
-        auto prop = std::make_shared<CharProperty>(value);
-        shared_scope[key] = prop;
-        return prop;
-    });
-
-    state.set_function(
-        "SharedScope_CreateB", [](const std::string key, bool value) {
-        std::lock_guard<std::mutex> lock(global_mutex);
-        auto prop = std::make_shared<BoolProperty>(value);
-        shared_scope[key] = prop;
-        auto m = std::get<std::shared_ptr<BoolProperty>>(shared_scope[key]);
-        return prop;
-    });
+    state.set_function("SharedScope_CreateF", &SharedCreate<FloatProperty, float>);
+    state.set_function("SharedScope_CreateI", &SharedCreate<IntProperty, int>);
+    state.set_function("SharedScope_CreateC", &SharedCreate<CharProperty, std::string_view>);
+    state.set_function("SharedScope_CreateB", &SharedCreate<BoolProperty, bool>);
 
     // SharedStorage: Get functions
     state.set_function("SharedScope_GetF", &SharedScope_Get<FloatProperty>);
@@ -81,7 +61,7 @@ void shared_functions(sol::state& state) {
 
     // SharedStorage: Delete function
     state.set_function(
-        "SharedScope_Delete", [](const std::string_view key) -> bool {
+        "SharedScope_Delete", [](const std::string_view key) {
         std::lock_guard<std::mutex> lock(global_mutex);
         return shared_scope.erase(key.data()) > 0;
     });
@@ -99,9 +79,9 @@ void _RunSeparated(
         sol::lib::base, sol::lib::table, 
         sol::lib::math, sol::lib::string
     );
+    PropertiesComponent::Init(&threaded_state);
 
     #ifdef JILA_NET
-    PropertiesComponent::Init(&threaded_state);
     NetComponent::Init(&threaded_state);
     #endif
     
@@ -111,7 +91,7 @@ void _RunSeparated(
         sol::load_mode::binary
     );
 
-    #ifndef __ANDROID__
+    #ifndef JILA_RELEASE
     if (!m.valid()) {
         std::cout << sol::error(m).what() << "\n";
     }
