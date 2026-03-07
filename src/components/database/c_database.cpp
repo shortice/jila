@@ -30,7 +30,7 @@ DataBase Data_Connect(
     }
 
     return MakeSafeMemory<DB>(
-        new DB {db, {}}, 
+        new DB {db, {}},
         [](DB* db) {
             sqlite3_close(db -> conn);
         }
@@ -38,9 +38,9 @@ DataBase Data_Connect(
 }
 
 int callback(
-    void *db, 
-    int argc, 
-    char **argv, 
+    void *db,
+    int argc,
+    char **argv,
     char **azColName
 ) {
     int i;
