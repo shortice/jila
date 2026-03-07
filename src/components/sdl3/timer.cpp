@@ -28,7 +28,7 @@ Uint32 _SDL_DateTimeToTime(SDL_DateTime dateTime) {
 
     if (!SDL_DateTimeToTime(
         &dateTime, &time
-    )) return nullptr;
+    )) return NULL;
 
     return time;
 }
@@ -36,7 +36,7 @@ Uint32 _SDL_DateTimeToTime(SDL_DateTime dateTime) {
 Uint32 _SDL_GetCurrentTime() {
     SDL_Time time = 0;
 
-    if (!SDL_GetCurrentTime(&time)) return nullptr;
+    if (!SDL_GetCurrentTime(&time)) return NULL;
 
     return SDL_NS_TO_SECONDS(time);
 }

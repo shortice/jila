@@ -19,6 +19,8 @@ function Lol()
         return
     end
 
+    print(Scope.Dwdwdwd + 131)
+
     while i.value < 99 do
         i.value = i.value + 2
         Jila_Sleep(200)

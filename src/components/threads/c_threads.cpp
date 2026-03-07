@@ -1,13 +1,11 @@
-// FIXME: Crash after/before (?) reload all modules
+// FIXME: Crash after/before (?) reload all modules (i dont know how fix this at the current time)
 #include "components/threads/c_threads.hpp"
 #include "components/net/c_net.hpp"
 #include <mutex>
 #include <thread>
 #include "SDL3/SDL_timer.h"
+#include "ulog.h"
 #include "components/properties/c_properties.hpp"
-#ifndef JILA_RELEASE // TODO: logging?..
-#include <iostream>
-#endif
 
 namespace Jila {
 
@@ -30,7 +28,7 @@ std::shared_ptr<T> SharedScope_Get(const std::string_view key) {
         return std::get<std::shared_ptr<T>>(it->second);
     }
 
-    return nullptr;
+    return NULL;
 }
 
 template<typename PropT, typename ArgT>
@@ -67,6 +65,11 @@ void shared_functions(sol::state& state) {
     });
 }
 
+inline void ThreadError(std::string_view threadName, std::string_view error) {
+    ulog_error((std::string("In thread ") + std::string(threadName)).data());
+    ulog_error(error.data());
+}
+
 void _RunSeparated(
     sol::basic_bytecode<> byteCode, 
     std::string moduleName
@@ -90,14 +93,12 @@ void _RunSeparated(
         sol::detail::default_chunk_name(),
         sol::load_mode::binary
     );
-
     #ifndef JILA_RELEASE
     if (!m.valid()) {
-        std::cout << sol::error(m).what() << "\n";
+        sol::error err = m;
+        ThreadError(moduleName, err.what());
     }
     #endif
-
-    // TODO: need improve error handling in threads
 }
     
 void _Go(sol::function func, std::string threadName) {

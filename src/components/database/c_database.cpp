@@ -26,7 +26,7 @@ DataBase Data_Connect(
     if (rc != SQLITE_OK) {
         sqlite3_close(db);
         SDL_SetError("%s", sqlite3_errmsg(db));
-        return nullptr;
+        return NULL;
     }
 
     return MakeSafeMemory<DB>(
@@ -54,7 +54,7 @@ int callback(
         });
     }
 
-    return nullptr;
+    return NULL;
 }
 
 bool Data_Exec(DataBase db, std::string_view sql) {

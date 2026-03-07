@@ -17,7 +17,7 @@ KvDataBase Kv_Connect(std::string_view path) {
     if (rc != SQLITE_OK) {
         SDL_SetError("SQLite Error: %s", sqlite3_errmsg(db));
         sqlite3_close(db);
-        return nullptr;
+        return NULL;
     }
 
     const char* create_sql = "CREATE TABLE IF NOT EXISTS kv_store (key TEXT PRIMARY KEY, value TEXT);";
@@ -33,7 +33,7 @@ KvDataBase Kv_Connect(std::string_view path) {
         SDL_SetError("SQLite Init Error: %s", err_msg);
         sqlite3_free(err_msg);
         sqlite3_close(db);
-        return nullptr;
+        return NULL;
     }
 
     return MakeSafeMemory<Proxy<sqlite3>>(

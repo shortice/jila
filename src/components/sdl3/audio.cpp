@@ -20,7 +20,7 @@ namespace Jila {
 Sint64 toSeconds(Sint64 ms) {
     if (ms == -1) {
         SDL_ClearError();
-        return nullptr;.0;
+        return NULL;
     } else {
         return ms / 1000;
     }
@@ -81,7 +81,7 @@ struct AudioMeta {
 
 Mixer _SDL_InitMixer() {
     if (!MIX_Init()) {
-        return nullptr;
+        return NULL;
     }
 
     SDL_AudioSpec spec {SDL_AUDIO_F32, 2, 48000};
@@ -118,7 +118,7 @@ Audio _SDL_CreateAudio(Mixer mixer, std::variant<std::string_view, IOStream> pat
         );
     }
 
-    if (!audio) return nullptr;
+    if (!audio) return NULL;
 
     return MakeSafeMemory<Audio_Proxy>(
         new Audio_Proxy {audio},
@@ -131,7 +131,7 @@ Audio _SDL_CreateAudio(Mixer mixer, std::variant<std::string_view, IOStream> pat
 Track _SDL_CreateTrack(Mixer mixer) {
     MIX_Track* track = MIX_CreateTrack(mixer->proxy);
 
-    if (!track) return nullptr;
+    if (!track) return NULL;
 
     return MakeSafeMemory<Track_Proxy>(
         new Track_Proxy {track},
