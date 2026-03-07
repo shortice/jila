@@ -15,7 +15,6 @@ void CriticalError(std::string func) {
 }
 
 void RenderError(sol::protected_function_result& result) {
-    // TODO: Improve error messages?
     if (!result.valid()) {
         sol::error err = result;
 
@@ -23,9 +22,6 @@ void RenderError(sol::protected_function_result& result) {
             "Error when render!\n\n",
             err.what()
         );
-
-        // TODO: do not ignore last SDL error if exists
-        SDL_SetError("%s", err.what());
 
         ImGui::End();
     }

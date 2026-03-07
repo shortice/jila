@@ -75,7 +75,6 @@ function M.Event(event)
         Scope.WindowSize.y = event.window.data2
     end
 
-    Jila_GetModule("threads").Event(event)
     Jila_GetModule("sdl").Event(event)
     Jila_GetModule("information").Event(event)
 end

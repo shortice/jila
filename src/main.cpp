@@ -21,6 +21,7 @@
 #include "engine/errors.hpp"
 #include "components/imgui/c_io.hpp"
 #include "components/sdl3/dialog.hpp"
+#include "external/ulog.h"
 
 #ifdef __ANDROID__
 #include "misc.hpp"
@@ -200,17 +201,31 @@ SDL_AppResult SDL_AppIterate(void *appstate) {
     return SDL_APP_CONTINUE;
 }
 
+static bool errorPrintedAppEvent = false;
+
 SDL_AppResult SDL_AppEvent(void *appstate, SDL_Event *event) {
     ImGui_ImplSDL3_ProcessEvent(event);
 
     Jila::LuaModule* module = Jila::LuaModule::GetModule("main");
     SDL_Event& _event = *event;
 
-    if (module) module->Event(_event); // TODO: TryCall func?
+    if (module) {
+        sol::protected_function_result result = module->Event(_event);
+        
+        #ifndef JILA_RELEASE
+        if (!result.valid() && !errorPrintedAppEvent) {
+            sol::error error = result;
+            ulog_error("Error in Event function in main.lua:");
+            ulog_error(error.what());
+            errorPrintedAppEvent = true;
+        }
+        #endif
+    }
 
     if (event->type == SDL_EVENT_USER) {
         if (event->user.code == 1001) {
             Jila::ReloadAll();
+            errorPrintedAppEvent = false;
         }
 
         if (event->user.code == 1005) {
