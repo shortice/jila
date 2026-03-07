@@ -14,7 +14,6 @@ void UpdateListener::handleFileAction(
     .info("Making hot reload!");
 
     SDL_Event event;
-    (void)event;
     event.type = SDL_EVENT_USER;
     event.user.code = 1001;
 

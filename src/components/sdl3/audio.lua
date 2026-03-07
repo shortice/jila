@@ -6,7 +6,7 @@
 --- @field album string Track album [readonly]
 --- @field artist string Track author [readonly]
 --- @field copyright string Copyright [readonly]
---- @field lenght integer Track lenght [readonly]
+--- @field length integer Track length [readonly]
 Jila_TrackMeta = {}
 
 --- @class _Mixer

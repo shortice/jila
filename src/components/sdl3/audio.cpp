@@ -20,7 +20,7 @@ namespace Jila {
 Sint64 toSeconds(Sint64 ms) {
     if (ms == -1) {
         SDL_ClearError();
-        return 0.0;
+        return nullptr;.0;
     } else {
         return ms / 1000;
     }
@@ -31,7 +31,7 @@ struct AudioMeta {
     std::string_view album;
     std::string_view artist;
     std::string_view copyright;
-    Sint64 lenght; // seconds
+    Sint64 length; // seconds
 
     static void Bind(sol::state& state) {
         state.new_usertype<AudioMeta>("Jila_TrackMeta",
@@ -39,7 +39,7 @@ struct AudioMeta {
             "album", sol::readonly(&AudioMeta::album),
             "artist", sol::readonly(&AudioMeta::artist),
             "copyright", sol::readonly(&AudioMeta::copyright),
-            "lenght", sol::readonly(&AudioMeta::lenght)
+            "length", sol::readonly(&AudioMeta::length)
         );
     }
 
@@ -81,7 +81,7 @@ struct AudioMeta {
 
 Mixer _SDL_InitMixer() {
     if (!MIX_Init()) {
-        return 0;
+        return nullptr;
     }
 
     SDL_AudioSpec spec {SDL_AUDIO_F32, 2, 48000};
@@ -118,7 +118,7 @@ Audio _SDL_CreateAudio(Mixer mixer, std::variant<std::string_view, IOStream> pat
         );
     }
 
-    if (!audio) return 0;
+    if (!audio) return nullptr;
 
     return MakeSafeMemory<Audio_Proxy>(
         new Audio_Proxy {audio},
@@ -131,7 +131,7 @@ Audio _SDL_CreateAudio(Mixer mixer, std::variant<std::string_view, IOStream> pat
 Track _SDL_CreateTrack(Mixer mixer) {
     MIX_Track* track = MIX_CreateTrack(mixer->proxy);
 
-    if (!track) return 0;
+    if (!track) return nullptr;
 
     return MakeSafeMemory<Track_Proxy>(
         new Track_Proxy {track},
@@ -217,7 +217,7 @@ void bindSdlAudio(sol::state* state) {
     );
 
     state -> set_function(
-        "Jila_TrackIsPlayed",
+        "Jila_TrackIsPlaying",
         &_SDL_TrackIsPlaying
     );
 

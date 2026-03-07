@@ -140,7 +140,7 @@ Micro _SDL_CreateMicro() {
         );
     }
 
-    return 0;
+    return nullptr;
 }
 
 bool _SDL_MicroPause(Micro micro) {

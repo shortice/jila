@@ -23,14 +23,14 @@ static std::map<std::string, THSupportTypes> shared_scope = {};
 template<typename T>
 std::shared_ptr<T> SharedScope_Get(const std::string_view key) {
     std::lock_guard<std::mutex> lock(global_mutex);
-    
+
     auto it = shared_scope.find(key.data());
 
     if (it != shared_scope.end()) {
         return std::get<std::shared_ptr<T>>(it->second);
     }
 
-    return 0;
+    return nullptr;
 }
 
 template<typename PropT, typename ArgT>

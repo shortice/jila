@@ -14,7 +14,7 @@ void Quit(sol::state* state);
 
 static LuaComponent ComponentDataBase {
     "DataBase",
-    "Shotice",
+    "Shortice",
     DataBase_Component::Init,
     DataBase_Component::Quit
 };
