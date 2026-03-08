@@ -177,11 +177,12 @@ SDL_AppResult SDL_AppIterate(void *appstate) {
     ImGui_ImplSDL3_NewFrame();
     ImGui::NewFrame();
 
-    // TODO: only Debug mode
+    #ifndef JILA_RELEASE
     if (module) {
         sol::protected_function_result result = module->Render(SDL_GetTicks());
         Jila::RenderError(result);
     }
+    #endif
 
     ImGui::Render();
     SDL_SetRenderScale(

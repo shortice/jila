@@ -18,9 +18,11 @@ void RenderError(sol::protected_function_result& result) {
     if (!result.valid()) {
         sol::error err = result;
 
-        ImGui::SetTooltip("%s %s\n",
-            "Error when render!\n\n",
-            err.what()
+        ImGui::SetTooltip("%s %s %s %s\n",
+            "Error when render!\n\nLua Error:\n",
+            err.what(),
+            "\n\nSDL Error:\n",
+            SDL_GetError()
         );
 
         ImGui::End();

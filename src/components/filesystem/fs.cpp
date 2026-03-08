@@ -45,6 +45,7 @@ void Fs_GetFolders(FsState& state) {
         try {
             if (_.status().type() != file_type::directory) continue;
         } catch (std::exception&) {
+            // TODO: we really need handle errors in this lines?
             continue;
         }
 

@@ -46,7 +46,9 @@ struct AudioMeta {
     static AudioMeta fromAudio(Audio audio) {
         SDL_PropertiesID propId = MIX_GetAudioProperties(audio->proxy);
 
-        // TODO: how handle errors at this place?
+        if (propId == 0) {
+            return {"", "", "", "", 0};
+        }
         
         Sint64 ms = MIX_AudioFramesToMS(
             audio->proxy,
@@ -184,8 +186,13 @@ AudioMeta _SDL_GetAudioMeta(Audio audio) {
 }
 
 Sint64 _SDL_GetTrackPosistion(Track track) {
-    // TODO: handle -1 when error
-    return toSeconds(MIX_GetTrackPlaybackPosition(track.get()->proxy));
+    Sint64 pos = MIX_GetTrackPlaybackPosition(track.get()->proxy);
+
+    if (pos == -1) {
+        return pos;
+    }
+
+    return toSeconds(pos);
 }
 
 void bindSdlAudio(sol::state* state) {
@@ -242,6 +249,7 @@ void bindSdlAudio(sol::state* state) {
     );
 
     // TODO: implement track/audio hooks
+    // Maybe in the future.
 
     state -> set_function(
         "Jila_SetTrackPosition",
