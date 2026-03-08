@@ -3,6 +3,7 @@
 #include "SDL3/SDL_events.h"
 #include "engine/runtime.hpp"
 #include "engine/logger.hpp"
+#include "tracy/Tracy.hpp"
 
 #ifdef __ANDROID__
 #include "jila-android.hpp"
@@ -11,6 +12,7 @@
 namespace Jila {
 
 void _PushDialogEvent(SDL_DialogState* state) {
+    ZoneScoped;
     SDL_Event event;
 
     event.type = SDL_EVENT_USER;
@@ -25,6 +27,7 @@ void _SDL_OpenFileDialogCallback(
     const char* const* filelist,
     int filter
 ) {
+    ZoneScoped;
     SDL_DialogState* state = new SDL_DialogState();
 
     state->is_folder = false;
@@ -39,6 +42,7 @@ void _SDL_OpenFileDialogCallback(
 }
 
 void _SDL_OpenFolderDialogCallback(void* userdata, const char* const* filelist, int filter) {
+    ZoneScoped;
     SDL_DialogState* state = new SDL_DialogState();
     state->is_folder = true;
 
@@ -51,6 +55,7 @@ void _SDL_OpenFolderDialogCallback(void* userdata, const char* const* filelist, 
 
 #ifdef __ANDROID__
 void _Android_OpenFolderCallback(const char* folder_uri) {
+    ZoneScoped;
     SDL_DialogState* state = new SDL_DialogState();
     state->is_folder = true;
 
@@ -65,6 +70,7 @@ void _Android_OpenFolderCallback(const char* folder_uri) {
 #endif
 
 void SDL_OpenFileDialog(const std::vector<std::string>& allow_extensions) {
+    ZoneScoped;
     std::string patterns;
 
     for (size_t i = 0; i < allow_extensions.size(); ++i) {
@@ -95,6 +101,7 @@ void SDL_OpenFileDialog(const std::vector<std::string>& allow_extensions) {
 }
 
 void _SDL_OpenFolderDialog() {
+    ZoneScoped;
     #ifdef __ANDROID__
     Jila_Android_OpenFolder(&_Android_OpenFolderCallback);
     #else
@@ -107,14 +114,17 @@ void _SDL_OpenFolderDialog() {
 }
 
 void _SDL_OpenFileDialog() {
+    ZoneScoped;
     SDL_OpenFileDialog({});
 }
 
 void _SDL_OpenFileDialog_V2(std::vector<std::string> extensions) { 
+    ZoneScoped;
     SDL_OpenFileDialog(extensions);
 }
 
 SDL_DialogState _SDL_GetDialogState(SDL_UserEvent& event) {
+    ZoneScoped;
     return *(SDL_DialogState*)event.data1;
 }
 

@@ -5,6 +5,7 @@
 #include "misc.hpp"
 #include "cstdint"
 #include <fstream>
+#include "tracy/Tracy.hpp"
 
 namespace Jila {
 
@@ -21,7 +22,6 @@ class wav_writer {
             const uint16_t bits_per_sample,
             const uint16_t channels
         ) {
-
             file.write("RIFF", 4);
             file.write("\0\0\0\0", 4);    // Placeholder for file size
             file.write("WAVE", 4);
@@ -118,6 +118,7 @@ typedef std::shared_ptr<_Microphone> Micro;
 
 // 0 - failed
 Micro _SDL_CreateMicro() {
+    ZoneScoped;
     SDL_AudioSpec capture_spec_requested {
         SDL_AUDIO_F32,
         1,
@@ -144,18 +145,22 @@ Micro _SDL_CreateMicro() {
 }
 
 bool _SDL_MicroPause(Micro micro) {
+    ZoneScoped;
     return SDL_PauseAudioStreamDevice(micro -> stream);
 }
 
 bool _SDL_MicroResume(Micro micro) {
+    ZoneScoped;
     return SDL_ResumeAudioStreamDevice(micro -> stream);
 }
 
 bool _SDL_MicroPaused(Micro micro) {
+    ZoneScoped;
     return SDL_AudioStreamDevicePaused(micro->stream);
 }
 
 bool _SDL_MicroSaveWAV(Micro micro, std::string fileName) {
+    ZoneScoped;
     wav_writer writer;
     std::vector<float> audioRaw;
 

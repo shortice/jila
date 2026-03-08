@@ -1,4 +1,5 @@
 // FIXME: Crash after/before (?) reload all modules (i dont know how fix this at the current time)
+// NOTE: I think error in separate thread. Error: 
 #include "components/threads/c_threads.hpp"
 #include "components/net/c_net.hpp"
 #include <mutex>
@@ -6,6 +7,7 @@
 #include "SDL3/SDL_timer.h"
 #include "ulog.h"
 #include "components/properties/c_properties.hpp"
+#include "tracy/Tracy.hpp"
 
 namespace Jila {
 
@@ -18,8 +20,31 @@ typedef std::variant<
 static std::mutex global_mutex;
 static std::map<std::string, THSupportTypes> shared_scope = {};
 
+// for tracy
+// NOTE: move to separate file? Maybe.
+template <typename T> constexpr const char* type_name();
+
+template <>
+constexpr const char* type_name<FloatProperty>()
+{ return "FloatProperty"; }
+
+template <>
+constexpr const char* type_name<IntProperty>()
+{ return "IntProperty"; }
+
+template <>
+constexpr const char* type_name<CharProperty>()
+{ return "CharProperty"; }
+
+template <>
+constexpr const char* type_name<BoolProperty>()
+{ return "BoolProperty"; }
+//
+
 template<typename T>
 std::shared_ptr<T> SharedScope_Get(const std::string_view key) {
+    ZoneScoped;
+    ZoneTextF("Variable: %s - Type: %s", key.data(), type_name<T>());
     std::lock_guard<std::mutex> lock(global_mutex);
 
     auto it = shared_scope.find(key.data());
@@ -33,6 +58,8 @@ std::shared_ptr<T> SharedScope_Get(const std::string_view key) {
 
 template<typename PropT, typename ArgT>
 std::shared_ptr<PropT> SharedCreate(const std::string_view key, ArgT value) {
+    ZoneScoped;
+    ZoneTextF("Variable: %s - Type: %s", key.data(), type_name<PropT>());
     std::lock_guard<std::mutex> lock(global_mutex);
     auto prop = std::make_shared<PropT>(value);
     shared_scope[key.data()] = prop;
@@ -74,6 +101,9 @@ void _RunSeparated(
     sol::basic_bytecode<> byteCode, 
     std::string moduleName
 ) {
+    ZoneScoped;
+    ZoneTextF("Thread name: %s", moduleName.c_str());
+
     sol::state threaded_state;
 
     shared_functions(threaded_state);
@@ -102,6 +132,9 @@ void _RunSeparated(
 }
     
 void _Go(sol::function func, std::string threadName) {
+    ZoneScoped;
+    ZoneTextF("Thread name: %s", threadName.c_str());
+
     sol::basic_bytecode byteCode = (func.dump());
     
     std::thread d(_RunSeparated, byteCode, threadName);

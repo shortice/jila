@@ -4,6 +4,7 @@
 #include "sqlite3/sqlite3.h"
 #include "SDL3/SDL_error.h"
 #include "proxy.hpp"
+#include "tracy/Tracy.hpp"
 
 namespace Jila {
 namespace DataBase_Component {
@@ -11,6 +12,7 @@ namespace DataBase_Component {
 typedef std::shared_ptr<Proxy<sqlite3>> KvDataBase;
 
 KvDataBase Kv_Connect(std::string_view path) {
+    ZoneScoped;
     sqlite3* db = nullptr;
     int rc = sqlite3_open(path.data(), &db);
     
@@ -45,6 +47,7 @@ KvDataBase Kv_Connect(std::string_view path) {
 }
 
 bool Kv_Set(KvDataBase db, std::string key, std::string value) {
+    ZoneScoped;
     if (!db) return false;
 
     const char* sql = "INSERT OR REPLACE INTO kv_store (key, value) VALUES (?, ?);";
@@ -76,6 +79,7 @@ bool Kv_Set(KvDataBase db, std::string key, std::string value) {
 }
 
 std::string Kv_Get(KvDataBase db, std::string key) {
+    ZoneScoped;
     if (!db) return "";
 
     const char* sql = "SELECT value FROM kv_store WHERE key = ?;";
@@ -105,6 +109,7 @@ std::string Kv_Get(KvDataBase db, std::string key) {
 }
 
 void Kv_Delete(KvDataBase db, std::string key) {
+    ZoneScoped;
     if (!db) return;
 
     const char* sql = "DELETE FROM kv_store WHERE key = ?;";
@@ -124,6 +129,7 @@ void Kv_Delete(KvDataBase db, std::string key) {
 }
 
 bool Kv_IsExist(KvDataBase db, std::string key) {
+    ZoneScoped;
     if (!db) return false;
 
     const char* sql = "SELECT 1 FROM kv_store WHERE key = ? LIMIT 1;";

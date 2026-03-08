@@ -1,6 +1,7 @@
 #include "components/sdl3/timer.hpp"
 #include "SDL3/SDL_timer.h"
 #include "SDL3/SDL_time.h"
+#include "tracy/Tracy.hpp"
 
 namespace Jila {
 
@@ -14,6 +15,7 @@ static SDL_DateTime DEFAULT_NULL {
 };
 
 SDL_DateTime _SDL_TimeToDateTime(Uint32 time, bool localTime) {
+    ZoneScoped;
     SDL_DateTime dt = DEFAULT_NULL;
 
     if (!SDL_TimeToDateTime(
@@ -24,6 +26,7 @@ SDL_DateTime _SDL_TimeToDateTime(Uint32 time, bool localTime) {
 }
 
 Uint32 _SDL_DateTimeToTime(SDL_DateTime dateTime) {
+    ZoneScoped;
     SDL_Time time = 0;
 
     if (!SDL_DateTimeToTime(
@@ -34,6 +37,7 @@ Uint32 _SDL_DateTimeToTime(SDL_DateTime dateTime) {
 }
 
 Uint32 _SDL_GetCurrentTime() {
+    ZoneScoped;
     SDL_Time time = 0;
 
     if (!SDL_GetCurrentTime(&time)) return NULL;
@@ -42,6 +46,7 @@ Uint32 _SDL_GetCurrentTime() {
 }
 
 SDL_DateTime _SDL_GetCurrentDateTime(bool localTime) {
+    ZoneScoped;
     Uint32 time = _SDL_GetCurrentTime();
 
     if (!time) return DEFAULT_NULL;

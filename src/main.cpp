@@ -22,12 +22,14 @@
 #include "components/imgui/c_io.hpp"
 #include "components/sdl3/dialog.hpp"
 #include "external/ulog.h"
+#include "tracy/Tracy.hpp"
 
 #ifdef __ANDROID__
 #include "misc.hpp"
 #endif
 
 const char* getScriptsLocation(char** argv) {
+    ZoneScoped;
     argv++; // Skip executable path
 
     if (*argv) {
@@ -42,6 +44,7 @@ void SetupImGui(
     SDL_Window* window,
     SDL_Renderer* renderer
 ) {
+    ZoneScoped;
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO(); (void)io;
@@ -101,6 +104,7 @@ void SetupImGui(
 }
 
 SDL_AppResult SDL_AppInit(void **appstate, int argc, char **argv) {
+    ZoneScoped;
     Jila::Logger::named("Runtime").info("Starting...");
 
     if (!SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO)) {
@@ -165,6 +169,7 @@ SDL_AppResult SDL_AppInit(void **appstate, int argc, char **argv) {
 }
 
 SDL_AppResult SDL_AppIterate(void *appstate) {
+    ZoneScoped;
     Jila::LuaModule* module = Jila::LuaModule::GetModule("main");
     Jila::AppState* state = (Jila::AppState*)appstate;
 
@@ -199,12 +204,15 @@ SDL_AppResult SDL_AppIterate(void *appstate) {
 
     Jila::UpdateSelectedText("");
 
+    FrameMark;
+
     return SDL_APP_CONTINUE;
 }
 
 static bool errorPrintedAppEvent = false;
 
 SDL_AppResult SDL_AppEvent(void *appstate, SDL_Event *event) {
+    ZoneScoped;
     ImGui_ImplSDL3_ProcessEvent(event);
 
     Jila::LuaModule* module = Jila::LuaModule::GetModule("main");
@@ -242,6 +250,7 @@ SDL_AppResult SDL_AppEvent(void *appstate, SDL_Event *event) {
 }
 
 void SDL_AppQuit(void *appstate, SDL_AppResult result) {
+    ZoneScoped;
     Jila::QuitRuntime();
 
     ImGui_ImplSDLRenderer3_Shutdown();
@@ -261,7 +270,22 @@ void SDL_AppQuit(void *appstate, SDL_AppResult result) {
 
 #ifndef JILA_RELEASE
 
+// Tracy memory profiler
+void* operator new ( std :: size_t count )
+{
+    auto ptr = malloc(count);
+    TracySecureAlloc(ptr, count);
+    return ptr;
+}
+
+void operator delete(void* ptr) noexcept
+{
+    TracySecureFree(ptr);
+    free(ptr);
+}
+
 int main(int argc, char *argv[]) {
+    ZoneScoped;
     void* state = NULL;
 
     if (SDL_AppInit(

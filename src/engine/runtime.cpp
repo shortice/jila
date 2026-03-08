@@ -10,6 +10,7 @@
 #include "app/jila_app.hpp"
 #endif
 #include "components/components.hpp"
+#include "tracy/Tracy.hpp"
 
 namespace Jila {
 
@@ -41,6 +42,7 @@ void Error() {
 }
 
 void IterComponentEnable(LuaComponent& component) {
+    ZoneScoped;
     Logger::named("Runtime").info(
         std::string("Loading Lua component: ") + component.name
     );
@@ -49,11 +51,13 @@ void IterComponentEnable(LuaComponent& component) {
 }
 
 void IterComponentQuit(LuaComponent& component) {
+    ZoneScoped;
     component.Quit(runtime->state);
 }
 
 //
 void loadFiles(LuaRuntime* runtime) {
+    ZoneScoped;
     #ifndef JILA_RELEASE
     for (const auto& _ :
         std::filesystem::recursive_directory_iterator(runtime->path)
@@ -82,6 +86,7 @@ void loadFiles(LuaRuntime* runtime) {
 }
 
 LuaRuntime::LuaRuntime(const char* path) : path(path) {
+    ZoneScoped;
     state = new sol::state();
 
     state->create_table("Scope");
@@ -92,6 +97,7 @@ LuaRuntime::~LuaRuntime() {
 }
 
 LuaRuntime* InitRuntime(const char* path) {
+    ZoneScoped;
     runtime = new LuaRuntime(path);
 
     runtime->state->open_libraries(
@@ -122,6 +128,7 @@ LuaRuntime* InitRuntime(const char* path) {
 }
 
 void ReloadAll() {
+    ZoneScoped;
     LuaModule::UnloadModules();
     loadFiles(runtime);
 
@@ -131,6 +138,7 @@ void ReloadAll() {
 }
 
 void QuitRuntime() {
+    ZoneScoped;
     for (auto component : components) {
         IterComponentQuit(component);
     }

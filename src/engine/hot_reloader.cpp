@@ -2,6 +2,7 @@
 #include "SDL3/SDL_events.h"
 #include "engine/hot_reloader.hpp"
 #include "engine/logger.hpp"
+#include "tracy/Tracy.hpp"
 
 namespace Jila {
 
@@ -10,6 +11,7 @@ void UpdateListener::handleFileAction(
     const std::string &filename, efsw::Action action,
     std::string oldFilename
 ) {
+    ZoneScoped;
     Logger::named("Lua(hot-reload)") \
     .info("Making hot reload!");
 

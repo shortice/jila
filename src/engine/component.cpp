@@ -2,12 +2,14 @@
 #include "SDL3/SDL_iostream.h"
 #include "engine/component.hpp"
 #include "engine/logger.hpp"
+#include "tracy/Tracy.hpp"
 
 namespace Jila {
 
 std::map<std::string, LuaModule*> LuaModule::modules = {};
 
 void LoadFile(std::string path, std::string* data) {
+    ZoneScoped;
     SDL_IOStream* file = SDL_IOFromFile(path.c_str(), "r");
     Logger::named("Lua").debug(
         std::string("Loading module: ") + path
@@ -38,6 +40,7 @@ LuaModule* LuaModule::LoadFrom(
     const char* script,
     sol::state* runtime
 ) {
+    ZoneScoped;
     std::string data;
 
     if (path) {
@@ -118,6 +121,7 @@ LuaModule* LuaModule::LoadFrom(
 }
 
 LuaModule* LuaModule::FromLuaTable(sol::table module) {
+    ZoneScoped;
     return new LuaModule {
         module,
         module.get<std::string>("name"),
@@ -133,6 +137,7 @@ LuaModule* LuaModule::FromLuaTable(sol::table module) {
 }
 
 LuaModule* LuaModule::GetModule(std::string name) {
+    ZoneScoped;
     auto module = LuaModule::modules.find(name);
 
     if (module == LuaModule::modules.end()) return NULL;
@@ -141,6 +146,7 @@ LuaModule* LuaModule::GetModule(std::string name) {
 }
 
 sol::table LuaModule::GetModuleLuaAPI(std::string name) {
+    ZoneScoped;
     LuaModule* module = LuaModule::GetModule(name);
 
     if (module) return module -> native;
@@ -149,6 +155,7 @@ sol::table LuaModule::GetModuleLuaAPI(std::string name) {
 }
 
 void LuaModule::UnloadModules() {
+    ZoneScoped;
     for (auto i : LuaModule::modules) {
         i.second->End();
         delete i.second; // Memory allocated.

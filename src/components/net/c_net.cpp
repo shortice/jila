@@ -7,6 +7,7 @@
 #include <vector>
 #include <map>
 #include <optional>
+#include "tracy/Tracy.hpp"
 
 namespace Jila {
 
@@ -20,6 +21,7 @@ struct Response {
 };
 
 static size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp) {
+    ZoneScoped;
     size_t totalSize = size * nmemb;
     auto* responseText = (std::string*)(userp);
     responseText->append((char*)(contents), totalSize);
@@ -27,6 +29,7 @@ static size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* use
 }
 
 static size_t HeaderCallback(void* contents, size_t size, size_t nmemb, void* userp) {
+    ZoneScoped;
     size_t totalSize = size * nmemb;
     auto* response = (Response*)(userp);
     std::string headerLine((char*)(contents), totalSize);
@@ -61,6 +64,7 @@ static Response PerformRequest(
     std::string_view postData = "", 
     const std::vector<std::string>& extraHeaders = {}
 ) {
+    ZoneScoped;
     Response response;
     CURL* curl = curl_easy_init();
     if (!curl) return response;
@@ -104,14 +108,17 @@ static Response PerformRequest(
 }
 
 Response Get(std::string_view url) {
+    ZoneScoped;
     return PerformRequest(url);
 }
 
 Response Post_V1(std::string_view url) {
+    ZoneScoped;
     return PerformRequest(url, true);
 }
 
 Response Post_V2(std::string_view url, std::string_view json) {
+    ZoneScoped;
     return PerformRequest(
         url, 
         true,
@@ -123,6 +130,7 @@ Response Post_V2(std::string_view url, std::string_view json) {
 std::optional<std::string> Response_GetHeaderValue(
     Response& response, std::string_view key
 ) {
+    ZoneScoped;
     auto it = response.header.find(std::string(key));
     if (it != response.header.end()) {
         return it->second;

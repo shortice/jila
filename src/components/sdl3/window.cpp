@@ -1,5 +1,6 @@
 #include "components/sdl3/window.hpp"
 #include "engine/runtime.hpp"
+#include "tracy/Tracy.hpp"
 
 namespace Jila {
 
@@ -8,6 +9,7 @@ void bindSdlWindow(sol::state* state) {
     state -> set_function(
         "Jila_SetWindowTitle",
         [](std::string_view title) -> bool {
+            ZoneScoped;
             return SDL_SetWindowTitle(
                 GetState() -> window, title.data()
             );
@@ -18,6 +20,7 @@ void bindSdlWindow(sol::state* state) {
     state -> set_function(
         "Jila_GetWindowSize",
         []() -> ImVec2 {
+            ZoneScoped;
             int w = 0, h = 0;
             SDL_GetWindowSize(GetState() -> window, &w, &h);
             return ImVec2(w, h);
@@ -27,6 +30,7 @@ void bindSdlWindow(sol::state* state) {
     state -> set_function(
         "Jila_GetWindowSafeArea",
         []() -> ImVec4 {
+            ZoneScoped;
             SDL_Rect rect {0, 0, 0, 0};
             SDL_GetWindowSafeArea(GetState() -> window, &rect);
             return ImVec4(rect.x, rect.y, rect.h, rect.w);
@@ -37,6 +41,7 @@ void bindSdlWindow(sol::state* state) {
     state -> set_function(
         "Jila_SetWindowSize",
         [](ImVec2 size) -> bool {
+            ZoneScoped;
             return SDL_SetWindowSize(GetState() -> window, size.x, size.y);
         }
     );

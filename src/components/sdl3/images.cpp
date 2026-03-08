@@ -3,12 +3,14 @@
 #include "SDL3_image/SDL_image.h"
 #include "misc.hpp"
 #include "engine/runtime.hpp"
+#include "tracy/Tracy.hpp"
 
 namespace Jila {
 
 Texture _SDL_CreateImageTexture(
     std::string_view path
 ) {
+    ZoneScoped;
     return MakeSafeMemory<SDL_Texture>(
         IMG_LoadTexture(GetState() -> renderer, path.data()),
         [](SDL_Texture* texture) {
@@ -18,6 +20,7 @@ Texture _SDL_CreateImageTexture(
 }
 
 ImVec2 _SDL_GetTextureSize(Texture texture) {
+    ZoneScoped;
     ImVec2 vec = ImVec2();
 
     if (!SDL_GetTextureSize(texture.get(), &vec.x, &vec.y)) {

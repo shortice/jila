@@ -4,6 +4,7 @@
 #include "misc.hpp"
 #include "SDL3/SDL_error.h"
 #include "sqlite3/sqlite3.h"
+#include "tracy/Tracy.hpp"
 
 namespace Jila {
 
@@ -19,6 +20,7 @@ typedef std::shared_ptr<DB> DataBase;
 DataBase Data_Connect(
     std::string_view path
 ) {
+    ZoneScoped;
     sqlite3* db;
 
     int rc = sqlite3_open(path.data(), &db);
@@ -43,6 +45,7 @@ int callback(
     char **argv,
     char **azColName
 ) {
+    ZoneScoped;
     int i;
 
     DataBase* _db = (DataBase*)db;
@@ -58,6 +61,7 @@ int callback(
 }
 
 bool Data_Exec(DataBase db, std::string_view sql) {
+    ZoneScoped;
     char* err = 0;
 
     if (db->objects.size() > 0) {

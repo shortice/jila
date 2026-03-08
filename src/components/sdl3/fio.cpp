@@ -1,5 +1,6 @@
 #include "components/sdl3/fio.hpp"
 #include "misc.hpp"
+#include "tracy/Tracy.hpp"
 
 namespace Jila {
 
@@ -7,6 +8,7 @@ IOStream _SDL_IO_Open(
     std::string_view path,
     std::string_view mode
 ) {
+    ZoneScoped;
     SDL_IOStream* s = SDL_IOFromFile(
         path.data(), mode.data()
     );
@@ -23,6 +25,7 @@ size_t _SDL_IO_Write(
     IOStream stream,
     std::string_view data
 ) {
+    ZoneScoped;
     return SDL_WriteIO(
         stream.get()->proxy, data.data(), 
         data.size()
@@ -30,6 +33,7 @@ size_t _SDL_IO_Write(
 }
 
 std::string _SDL_IO_Read(IOStream stream, size_t size) {
+    ZoneScoped;
     std::string buffer(size, '\0');
     size_t nr = SDL_ReadIO(
         stream.get()->proxy, buffer.data(),
@@ -44,6 +48,7 @@ long long _SDL_IO_Seek(
     long long offset, 
     int whence
 ) {
+    ZoneScoped;
     return SDL_SeekIO(
         stream.get()->proxy, offset,
         (SDL_IOWhence)whence
@@ -51,10 +56,12 @@ long long _SDL_IO_Seek(
 }
 
 long long _SDL_IO_Tell(IOStream stream) {
+    ZoneScoped;
     return SDL_TellIO(stream.get()->proxy);
 }
 
 long long _SDL_IO_GetSize(IOStream stream) {
+    ZoneScoped;
     return SDL_GetIOSize(stream.get()->proxy);
 }
 

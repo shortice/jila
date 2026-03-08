@@ -87,8 +87,6 @@ if(JILA_RELEASE)
     # TODO: need execute script for .lua files to one .cpp
     # or maybe other? Like .res file contains all code? I need think.
     list(APPEND JILA_LIB_SOURCES "${JILA_APP_DIR}/jila_app.cpp")
-else()
-    list(APPEND JILA_LIB_SOURCES "${JILA_EXTERNAL_DIR}/tracy/public/TracyClient.cpp")
 endif()
 
 if(JILA_DATABASE)
@@ -114,16 +112,17 @@ else()
     )
 endif()
 
-if (NOT JILA_RELEASE)
-    target_compile_definitions(main PRIVATE TRACY_ENABLE)
-endif()
-
 # Compiler configuration
 if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
     target_compile_options(main PRIVATE -Wno-unused-parameter -Wno-newline-eof)
 else()
     message(FATAL_ERROR "Unsupported compiler.")
 endif()
+
+option(TRACY_ENABLE "" ON)
+option(TRACY_ON_DEMAND "" ON)
+add_subdirectory(${JILA_EXTERNAL_DIR}/tracy)
+target_link_libraries(main PUBLIC Tracy::TracyClient)
 
 add_subdirectory(${JILA_EXTERNAL_DIR}/SDL)
 

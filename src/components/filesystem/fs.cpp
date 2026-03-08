@@ -7,6 +7,7 @@
 #ifdef __ANDROID__
 #include "jila-android.hpp"
 #endif
+#include "tracy/Tracy.hpp"
 
 // TODO: Android port
 
@@ -35,6 +36,7 @@ struct FsState {
 
 // TODO: Android?
 void Fs_GetFolders(FsState& state) {
+    ZoneScoped;
     state.currentEntries.clear();
     std::string filename;
     std::string ext;
@@ -80,6 +82,7 @@ void _IterFiles(
     FsState& state, 
     std::vector<std::string>& exts
 ) {
+    ZoneScoped;
     std::string filename;
     std::string ext;
 
@@ -131,6 +134,7 @@ void Fs_GetAllFilesAndroid(
     const char** paths,
     std::vector<std::string>& exts
 ) {
+    ZoneScoped;
     while (*paths) {
         std::string_view path = *paths;
         paths++;
@@ -174,6 +178,7 @@ void Fs_GetAllFiles(
     bool recursive,
     std::vector<std::string> exts
 ) {
+    ZoneScoped;
     state.currentEntries.clear();
 
     #ifndef __ANDROID__
@@ -203,6 +208,7 @@ void Fs_GetAllFiles(
 static std::string _pref_Path;
 
 std::string Fs_GetPrefPath(std::string_view org, std::string_view name) {
+    ZoneScoped;
     if (_pref_Path.empty()) {
         const char* pref_path = SDL_GetPrefPath(org.data(), name.data());
         _pref_Path = pref_path;
@@ -213,6 +219,7 @@ std::string Fs_GetPrefPath(std::string_view org, std::string_view name) {
 }
 
 std::string Fs_GetBasePath() {
+    ZoneScoped;
     #ifndef __ANDROID__
     return SDL_GetBasePath();
     #else

@@ -6,6 +6,7 @@
 #include "misc.hpp"
 #include "proxy.hpp"
 #include "components/sdl3/fio.hpp"
+#include "tracy/Tracy.hpp"
 
 typedef Proxy<MIX_Mixer> Mixer_Proxy;
 typedef Proxy<MIX_Audio> Audio_Proxy;
@@ -18,6 +19,7 @@ typedef std::shared_ptr<Track_Proxy> Track;
 namespace Jila {
 
 Sint64 toSeconds(Sint64 ms) {
+    ZoneScoped;
     if (ms == -1) {
         SDL_ClearError();
         return NULL;
@@ -44,6 +46,7 @@ struct AudioMeta {
     }
 
     static AudioMeta fromAudio(Audio audio) {
+        ZoneScoped;
         SDL_PropertiesID propId = MIX_GetAudioProperties(audio->proxy);
 
         if (propId == 0) {
@@ -82,6 +85,7 @@ struct AudioMeta {
 };
 
 Mixer _SDL_InitMixer() {
+    ZoneScoped;
     if (!MIX_Init()) {
         return NULL;
     }
@@ -99,11 +103,13 @@ Mixer _SDL_InitMixer() {
 }
 
 void _SDL_QuitMixer(Mixer mixer) {
+    ZoneScoped;
     MIX_DestroyMixer(mixer->proxy);
     MIX_Quit();
 }
 
 Audio _SDL_CreateAudio(Mixer mixer, std::variant<std::string_view, IOStream> path) {
+    ZoneScoped;
     std::string_view* path_file = std::get_if<std::string_view>(&path);
     MIX_Audio* audio;
 
@@ -131,6 +137,7 @@ Audio _SDL_CreateAudio(Mixer mixer, std::variant<std::string_view, IOStream> pat
 }
 
 Track _SDL_CreateTrack(Mixer mixer) {
+    ZoneScoped;
     MIX_Track* track = MIX_CreateTrack(mixer->proxy);
 
     if (!track) return NULL;
@@ -144,26 +151,32 @@ Track _SDL_CreateTrack(Mixer mixer) {
 }
 
 bool _SDL_SetTrackAudio(Track track, Audio audio) {
+    ZoneScoped;
     return MIX_SetTrackAudio(track->proxy, audio->proxy);
 }
 
 bool _SDL_PlayTrack(Track track) {
+    ZoneScoped;
     return MIX_PlayTrack(track.get()->proxy, 0);
 }
 
 bool _SDL_StopTrack(Track track) {
+    ZoneScoped;
     return MIX_StopTrack(track->proxy, 0);
 }
 
 bool _SDL_PauseTrack(Track track) {
+    ZoneScoped;
     return MIX_PauseTrack(track->proxy);
 }
 
 bool _SDL_ResumeTrack(Track track) {
+    ZoneScoped;
     return MIX_ResumeTrack(track->proxy);
 }
 
 bool _SDL_SetTrackPosition(Track track, Sint64 newPos) {
+    ZoneScoped;
     return MIX_SetTrackPlaybackPosition(
         track->proxy,
         MIX_TrackMSToFrames(
@@ -174,18 +187,22 @@ bool _SDL_SetTrackPosition(Track track, Sint64 newPos) {
 }
 
 bool _SDL_SetMixerVolume(Mixer mixer, Uint8 volume) {
+    ZoneScoped;
     return MIX_SetMasterGain(mixer->proxy, (float)volume / 100);
 }
 
 bool _SDL_TrackIsPlaying(Track track) {
+    ZoneScoped;
     return MIX_TrackPlaying(track->proxy);
 }
 
 AudioMeta _SDL_GetAudioMeta(Audio audio) {
+    ZoneScoped;
     return AudioMeta::fromAudio(audio);
 }
 
 Sint64 _SDL_GetTrackPosistion(Track track) {
+    ZoneScoped;
     Sint64 pos = MIX_GetTrackPlaybackPosition(track.get()->proxy);
 
     if (pos == -1) {
