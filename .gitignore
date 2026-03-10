@@ -69,3 +69,6 @@ infer-out
 __pycache__
 *.egg-info
 wip/
+
+# App .bundle
+*.bundle

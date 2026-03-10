@@ -24,10 +24,9 @@ if(JILA_ALL)
     set(JILA_DATABASE ON)
 endif()
 
-# TODO: Enable if i develop bundles, similar to React Native
-#if(CMAKE_BUILD_TYPE STREQUAL "Release")
-#    set(JILA_RELEASE ON)
-#endif()
+if(CMAKE_BUILD_TYPE STREQUAL "Release")
+    set(JILA_RELEASE ON)
+endif()
 
 # Set default build type
 # TODO: Maybe not use Debug at default build?
@@ -82,13 +81,6 @@ file(GLOB_RECURSE JILA_LIB_SOURCES
     "${JILA_COMPONENTS_DIR}/**/*.cpp"
 )
 
-# Add application source for release builds
-if(JILA_RELEASE)
-    # TODO: need execute script for .lua files to one .cpp
-    # or maybe other? Like .res file contains all code? I need think.
-    list(APPEND JILA_LIB_SOURCES "${JILA_APP_DIR}/jila_app.cpp")
-endif()
-
 if(JILA_DATABASE)
     list(APPEND JILA_LIB_SOURCES "${JILA_EXTERNAL_DIR}/sqlite3/sqlite3.c")
 endif()
@@ -126,9 +118,17 @@ target_link_libraries(main PUBLIC Tracy::TracyClient)
 
 add_subdirectory(${JILA_EXTERNAL_DIR}/SDL)
 
+if(WIN32)
+    # Disable MSVC deprecations warnings
+    add_compile_definitions(_CRT_SECURE_NO_WARNINGS)
+    add_compile_definitions(_CRT_NONSTDC_NO_WARNINGS)
+endif()
+
 # Define build-specific macros
 if(JILA_RELEASE)
+    add_subdirectory(${JILA_EXTERNAL_DIR}/zip)
     target_compile_definitions(main PRIVATE JILA_RELEASE)
+    target_link_libraries(main PUBLIC zip::zip)
 endif()
 
 if(JILA_IMAGES)

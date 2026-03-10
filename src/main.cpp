@@ -250,7 +250,7 @@ SDL_AppResult SDL_AppEvent(void *appstate, SDL_Event *event) {
     return SDL_APP_CONTINUE;
 }
 
-void SDL_AppQuit(void *appstate, SDL_AppResult result) {
+void SDL_AppQuit(void* appstate, SDL_AppResult result) {
     ZoneScoped;
     Jila::QuitRuntime();
 
@@ -272,7 +272,7 @@ void SDL_AppQuit(void *appstate, SDL_AppResult result) {
 #ifndef JILA_RELEASE
 
 // Tracy memory profiler
-void* operator new ( std :: size_t count )
+void* operator new(std::size_t count)
 {
     auto ptr = malloc(count);
     TracySecureAlloc(ptr, count);

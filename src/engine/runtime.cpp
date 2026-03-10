@@ -7,16 +7,12 @@
 #include <filesystem>
 #include "engine/hot_reloader.hpp"
 #else
-#include "app/jila_app.hpp"
+#include "engine/bundle.hpp"
 #endif
 #include "components/components.hpp"
 #include "tracy/Tracy.hpp"
 
 namespace Jila {
-
-#ifdef JILA_RELEASE
-using namespace LuaApplication;
-#endif
 
 #ifndef JILA_RELEASE
 static efsw::FileWatcher* fileWatcher;
@@ -71,9 +67,10 @@ void loadFiles(LuaRuntime* runtime) {
         LuaModule::LoadFrom(_path.c_str(), NULL, runtime->state);
     }
     #else
-    auto _codes = GetCode();
-    for (auto code : _codes) {
-        LuaModule::LoadFrom(NULL, code, runtime->state);
+    LuaBundle bundle = BundleUnpack("./app.bundle");
+    
+    for (auto code : bundle.luaCode) {
+        LuaModule::LoadFrom(NULL, code.c_str(), runtime->state);
     }
     #endif
 
