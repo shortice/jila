@@ -11,7 +11,7 @@ struct buffer_t {
 
 static size_t on_extract(
     void *arg, 
-    unsigned long long offset, 
+    size_t offset, 
     const void *data, size_t size
 ) {
     struct buffer_t *buf = (struct buffer_t *)arg;
