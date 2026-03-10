@@ -1,3 +1,4 @@
+#ifdef JILA_RELEASE
 #include "engine/bundle.hpp"
 #include "zip.h"
 #include "SDL3/SDL_iostream.h"
@@ -116,3 +117,4 @@ LuaBundle BundleUnpack(const char* path) {
 }
 
 }
+#endif

@@ -1,3 +1,4 @@
+#ifdef JILA_RELEASE
 /*
 Lua code bundle loader.
 
@@ -33,3 +34,4 @@ Returns the LuaBundle struct.
 LuaBundle BundleUnpack(const char* path);
 
 }
+#endif

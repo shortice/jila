@@ -9,7 +9,7 @@ Version
 03 - month of the library path
 0001 - current commit number
 */
-#define JILA_VERSION 2026030087
+#define JILA_VERSION 2026030088
 
 namespace Jila {
 

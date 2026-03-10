@@ -6,6 +6,7 @@ local M = {
 
 function M.Begin()
     Scope.ParamsCount = 0
+    Scope.ResponseData = Create_Char_Property()
 
     ---@type table<number, [CharProperty, CharProperty]>
     Scope.Params = {}
@@ -76,10 +77,12 @@ function M.Render(time)
     if ImButton("POST") then
         local res = Jila_Post(
             "https://www.httpbin.org/post",
+            Scope.ResponseData,
             json.encode(GetParamsAsTable())
         )
-        local res_json = json.decode(res.text)
-        Scope.Response = res.text .. "\nJSON: " .. json.encode(res_json["data"])
+        local res_json = json.decode(Scope.ResponseData.str)
+        Scope.Response = Scope.ResponseData.str .. "\nJSON: " .. json.encode(res_json["data"])
+        Scope.ResponseData.str = ""
     end
 
     ImSeparator("Response: ")

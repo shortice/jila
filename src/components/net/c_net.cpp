@@ -7,6 +7,7 @@
 #include <vector>
 #include <map>
 #include <optional>
+#include "components/properties/c_properties.hpp"
 #include "tracy/Tracy.hpp"
 
 namespace Jila {
@@ -15,7 +16,6 @@ namespace NetComponent {
 
 struct Response {
     long status_code = 0;
-    std::string text;
     std::string raw_header;
     std::map<std::string, std::string> header;
 };
@@ -23,8 +23,8 @@ struct Response {
 static size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp) {
     ZoneScoped;
     size_t totalSize = size * nmemb;
-    auto* responseText = (std::string*)(userp);
-    responseText->append((char*)(contents), totalSize);
+    auto* responseText = (CharProperty*)(userp);
+    responseText->str.append((char*)(contents), totalSize);
     return totalSize;
 }
 
@@ -59,19 +59,21 @@ static size_t HeaderCallback(void* contents, size_t size, size_t nmemb, void* us
 }
 
 static Response PerformRequest(
-    std::string_view url, 
+    std::string_view url,
+    CharProperty& data,
     bool isPost = false, 
     std::string_view postData = "", 
     const std::vector<std::string>& extraHeaders = {}
 ) {
     ZoneScoped;
     Response response;
+
     CURL* curl = curl_easy_init();
     if (!curl) return response;
 
     curl_easy_setopt(curl, CURLOPT_URL, url.data());
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
-    curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response.text);
+    curl_easy_setopt(curl, CURLOPT_WRITEDATA, &data);
     curl_easy_setopt(curl, CURLOPT_HEADERFUNCTION, HeaderCallback);
     curl_easy_setopt(curl, CURLOPT_HEADERDATA, &response);
     curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
@@ -107,20 +109,21 @@ static Response PerformRequest(
     return response;
 }
 
-Response Get(std::string_view url) {
+Response Get(std::string_view url, CharProperty& data) {
     ZoneScoped;
-    return PerformRequest(url);
+    return PerformRequest(url, data);
 }
 
-Response Post_V1(std::string_view url) {
+Response Post_V1(std::string_view url, CharProperty& data) {
     ZoneScoped;
-    return PerformRequest(url, true);
+    return PerformRequest(url, data, true);
 }
 
-Response Post_V2(std::string_view url, std::string_view json) {
+Response Post_V2(std::string_view url, CharProperty& data, std::string_view json) {
     ZoneScoped;
     return PerformRequest(
-        url, 
+        url,
+        data,
         true,
         json, 
         {"Content-Type: application/json"}
@@ -156,7 +159,6 @@ bool Init(sol::state* state) {
     state->new_usertype<Response>(
         "Jila_Response",
         "status_code", sol::readonly(&Response::status_code),
-        "text", sol::readonly(&Response::text),
         "raw_header", sol::readonly(&Response::raw_header)
     );
 

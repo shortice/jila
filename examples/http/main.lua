@@ -4,6 +4,31 @@ local M = {
     version = 0.1
 }
 
+
+function ThreadedResponse()
+    local responseReq = SharedScope_GetC("Response")
+    responseReq.str = ""
+    local dataReq = SharedScope_GetC("Data")
+    local completedReq = SharedScope_GetB("completedReq")
+
+    Jila_Post(
+        "http://www.httpbin.org/post",
+        ---@diagnostic disable-next-line: param-type-mismatch
+        responseReq,
+        ---@diagnostic disable-next-line: need-check-nil
+        dataReq.str
+    )
+
+    ---@diagnostic disable-next-line: need-check-nil
+    local res_json = json.decode(responseReq.str)
+
+    ---@diagnostic disable-next-line: need-check-nil
+    responseReq.str = responseReq.str .. "\nJSON: " .. json.encode(res_json["data"])
+
+    dataReq.str = ""
+    completedReq.value = true
+end
+
 function M.Begin()
 
 end
@@ -18,7 +43,10 @@ function M.BeginMainLoop()
 
     ---@type table<number, [CharProperty, CharProperty]>
     Scope.Params = {}
-    Scope.Response = "None"
+
+    Scope.DataReq = SharedScope_CreateC("Data", "")
+    Scope.Response = SharedScope_CreateC("Response", "")
+    Scope.CompletedReq = SharedScope_CreateB("completedReq", true)
 end
 
 ---@param number number
@@ -83,17 +111,16 @@ function M.Render(time)
         }
     end
 
-    if ImButton("POST", Create_ImVec2(Scope.WindowSize.x - 10, 25)) then
-        local res = Jila_Post(
-            "http://www.httpbin.org/post",
-            json.encode(GetParamsAsTable())
-        )
-        local res_json = json.decode(res.text)
-        Scope.Response = res.text .. "\nJSON: " .. json.encode(res_json["data"])
+    if Scope.CompletedReq.value == true then
+        if ImButton("POST", Create_ImVec2(Scope.WindowSize.x - 10, 25)) then
+            Scope.DataReq.str = json.encode(GetParamsAsTable())
+            Scope.CompletedReq.value = false
+            Jila_Go(ThreadedResponse, "request")
+        end
     end
 
     ImSeparator("Response: ")
-    ImTextWrapped(Scope.Response)
+    ImTextWrapped(Scope.Response.str)
 
     ImEnd()
 end

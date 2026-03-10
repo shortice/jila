@@ -2,7 +2,6 @@
 
 ---@class Jila_Response
 ---@field status_code integer HTTP status code [readonly]
----@field text string Raw response text [readonly]
 ---@field raw_header string Raw response http header [readonly]
 Jila_Response = {}
 
@@ -15,13 +14,15 @@ Jila_Response = {}
 function Jila_Response_GetHeaderValue(res, key) end
 
 ---@param url string
+---@param data CharProperty
 ---
 ---@return Jila_Response
-function Jila_Get(url) end
+function Jila_Get(url, data) end
 
 ---@param url string
+---@param data CharProperty
 ---
 ---@return Jila_Response
 ---
----@overload fun(url: string, json: string): Jila_Response
-function Jila_Post(url) end
+---@overload fun(url: string, data: CharProperty, json: string): Jila_Response
+function Jila_Post(url, data) end
