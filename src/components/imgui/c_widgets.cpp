@@ -240,6 +240,14 @@ bool _ImGui_ImageButton_V1(
 }
 #endif
 
+void _ImGui_SetItemTooltip(std::string_view label) {
+    return ImGui::SetItemTooltip("%s", label.data());
+}
+
+void _ImGui_SetTooltip(std::string_view label) {
+    return ImGui::SetTooltip("%s", label.data());
+}
+
 void bindImWidgets(sol::state* state) {
     state -> set_function(
         "ImButton",
@@ -452,6 +460,16 @@ void bindImWidgets(sol::state* state) {
         )
     );
     #endif
+
+    state -> set_function(
+        "ImSetTooltip",
+        &_ImGui_SetTooltip
+    );
+
+    state -> set_function(
+        "ImSetItemTooltip",
+        &_ImGui_SetItemTooltip
+    );
 }
 
 }

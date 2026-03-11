@@ -3,7 +3,7 @@
 
 namespace Jila {
 
-constexpr unsigned int getCompiledVersion() {
+unsigned int getCompiledVersion() {
     return JILA_VERSION;
 }
 

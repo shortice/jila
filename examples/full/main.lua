@@ -36,6 +36,7 @@ function M.Render(time)
     if ImButton("Get error") then
         Scope.Error.str = Jila_GetError()
     end
+    ImSetItemTooltip("Got error? Push it away ;D")
 
     ImSeparator("Current error: ")
     ImTextWrapped(Scope.Error.str)

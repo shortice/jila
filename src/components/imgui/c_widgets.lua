@@ -147,3 +147,9 @@ function ImImage(texture, imageSize) end
 --- @param texture Jila_Texture
 --- @param imageSize ImVec2
 function ImImageButton(label, texture, imageSize) end
+
+--- @param label string
+function ImSetTooltip(label) end
+
+--- @param label string
+function ImSetItemTooltip(label) end

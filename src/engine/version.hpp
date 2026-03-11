@@ -9,12 +9,10 @@ Version
 03 - month of the library path
 0001 - current commit number
 */
-#define JILA_VERSION 2026030088
+#define JILA_VERSION 2026030089
 
 namespace Jila {
 
-constexpr unsigned int getCompiledVersion();
-
-#define JILA_COMPILED_VERSION getCompiledVersion()
+unsigned int getCompiledVersion();
 
 }
