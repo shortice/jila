@@ -6,7 +6,7 @@
 
 * Critical hotfix ignore this cycle, but not can ignore last cycle position (yes...);
 
-Current cycle position: 2
+Current cycle position: 3
 
 * Week is a 5-days every week;
 
